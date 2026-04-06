@@ -1,0 +1,22 @@
+{
+  "name": "amc-online",
+  "version": "1.0.0",
+  "description": "Australian Mathematics Competition online practice site",
+  "private": true,
+  "scripts": {
+    "dev": "npx wrangler pages dev public",
+    "deploy": "npx wrangler pages deploy public",
+    "build:library": "python3 scripts/build_amc_library.py",
+    "check:library": "python3 scripts/build_amc_library.py --no-copy",
+    "generate:2024b": "python3 scripts/generate_amc_questions.py --level b --year 2024 && python3 scripts/build_amc_library.py",
+    "generate:2025": "python3 scripts/generate_amc_questions.py --level a --year 2025 && python3 scripts/generate_amc_questions.py --level b --year 2025 && python3 scripts/generate_amc_questions.py --level c --year 2025 && python3 scripts/build_amc_library.py",
+    "generate:ready": "python3 scripts/generate_ready_sets.py"
+  },
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260317.1",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.76.0"
+  }
+}

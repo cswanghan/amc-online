@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMC Online · 学习诊断</title>
+    <script src="auth-guard.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Raleway:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+        :root {
+            --paper: #FDFBF9; --paper-shadow: #E8E4DF; --desk: #EAE6E1;
+            --ink: #171717; --ink-med: #5a5652; --ink-light: #A39E99; --ink-faint: rgba(23,23,23,0.08);
+            --rose: #BA6D73; --blush: #F1BABA; --blush-faint: rgba(241,186,186,0.3);
+            --font-serif: 'Lora', 'Noto Serif SC', serif;
+            --font-sans: 'Raleway', 'Noto Serif SC', sans-serif;
+            --success: #6b9a7d; --success-bg: #edf5f0; --error: #c47070; --error-bg: #fdf0f0;
+            --amber: #e6a23c; --amber-bg: #fdf6ec;
+        }
+
+        body {
+            font-family: var(--font-sans); color: var(--ink);
+            background: var(--desk); background-image: radial-gradient(circle at 50% 0%, #F5F2EF, var(--desk));
+            min-height: 100vh;
+        }
+
+        .page { max-width: 880px; margin: 0 auto; padding: 48px 24px 80px; }
+
+        .select-header { text-align: center; margin-bottom: 12px; }
+        .select-header h1 { font-family: var(--font-serif); font-size: 2rem; font-weight: 500; margin-bottom: 6px; }
+        .select-header .sub { color: var(--ink-light); font-size: 0.9rem; }
+
+        .nav-row { display: flex; justify-content: center; gap: 14px; margin-bottom: 40px; flex-wrap: wrap; }
+        .nav-link {
+            color: var(--ink-light); text-decoration: none; font-size: 0.85rem;
+            padding: 6px 18px; border: 1px solid var(--paper-shadow); border-radius: 16px;
+            transition: all 0.2s;
+        }
+        .nav-link:hover { color: var(--rose); border-color: var(--blush); }
+
+        /* Loading & Empty */
+        .loading-state, .empty-state {
+            text-align: center; padding: 80px 24px; color: var(--ink-light);
+        }
+        .loading-state .spinner {
+            width: 36px; height: 36px; border: 3px solid var(--paper-shadow); border-top-color: var(--rose);
+            border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 20px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .empty-state .empty-icon { font-size: 3rem; margin-bottom: 16px; opacity: 0.5; }
+        .empty-state h2 { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 500; margin-bottom: 8px; color: var(--ink-med); }
+        .empty-state p { font-size: 0.9rem; line-height: 1.7; }
+        .empty-state a { color: var(--rose); text-decoration: none; }
+        .empty-state a:hover { text-decoration: underline; }
+
+        /* Section */
+        .section { margin-bottom: 36px; }
+        .section-title {
+            font-family: var(--font-serif); font-size: 1.15rem; font-weight: 500;
+            margin-bottom: 18px; padding-bottom: 10px;
+            border-bottom: 1px solid var(--paper-shadow); color: var(--ink);
+        }
+
+        /* Overview Cards */
+        .overview-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+        }
+        .stat-card {
+            background: var(--paper); border: 1px solid var(--paper-shadow); border-radius: 12px;
+            padding: 24px 16px; text-align: center; transition: all 0.2s;
+        }
+        .stat-card:hover { border-color: var(--blush); box-shadow: 0 4px 16px rgba(0,0,0,0.05); transform: translateY(-2px); }
+        .stat-card .stat-value {
+            font-family: var(--font-serif); font-size: 2rem; font-weight: 500; color: var(--rose);
+            margin-bottom: 4px;
+        }
+        .stat-card .stat-label { color: var(--ink-light); font-size: 0.8rem; letter-spacing: 0.5px; }
+
+        /* Chart containers */
+        .chart-box {
+            background: var(--paper); border: 1px solid var(--paper-shadow); border-radius: 12px;
+            padding: 24px; position: relative;
+        }
+        .chart-box canvas { max-height: 320px; }
+
+        /* Wrong questions table */
+        .wrong-table { width: 100%; border-collapse: collapse; }
+        .wrong-table th, .wrong-table td {
+            padding: 12px 16px; text-align: left; font-size: 0.9rem;
+        }
+        .wrong-table thead { background: var(--paper); }
+        .wrong-table th {
+            color: var(--ink-light); font-weight: 500; font-size: 0.8rem;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--paper-shadow);
+        }
+        .wrong-table tbody tr { border-bottom: 1px solid var(--ink-faint); transition: background 0.15s; }
+        .wrong-table tbody tr:hover { background: var(--blush-faint); }
+        .wrong-table .q-num {
+            font-family: var(--font-serif); font-weight: 500; color: var(--rose);
+        }
+        .wrong-table .wrong-count {
+            display: inline-flex; align-items: center; gap: 4px;
+            background: var(--error-bg); color: var(--error); padding: 2px 10px;
+            border-radius: 10px; font-size: 0.85rem; font-weight: 500;
+        }
+        .wrong-table-wrap {
+            background: var(--paper); border: 1px solid var(--paper-shadow); border-radius: 12px;
+            overflow: hidden;
+        }
+        .wrong-empty {
+            text-align: center; padding: 40px; color: var(--ink-light); font-size: 0.9rem;
+        }
+
+        /* Suggestions */
+        .suggestions-box {
+            background: var(--paper); border: 1px solid var(--paper-shadow); border-radius: 12px;
+            padding: 28px;
+        }
+        .suggestion-item {
+            display: flex; gap: 12px; align-items: flex-start; padding: 12px 0;
+            border-bottom: 1px solid var(--ink-faint); font-size: 0.92rem; line-height: 1.6;
+        }
+        .suggestion-item:last-child { border-bottom: none; }
+        .suggestion-dot {
+            width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 7px;
+        }
+        .suggestion-dot.warn { background: var(--amber); }
+        .suggestion-dot.error { background: var(--error); }
+        .suggestion-dot.good { background: var(--success); }
+        .suggestion-text { color: var(--ink-med); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .overview-grid { grid-template-columns: repeat(2, 1fr); }
+            .stat-card .stat-value { font-size: 1.6rem; }
+            .page { padding: 32px 16px 60px; }
+        }
+        @media (max-width: 480px) {
+            .select-header h1 { font-size: 1.5rem; }
+            .chart-box { padding: 16px; }
+            .stat-card { padding: 18px 12px; }
+            .wrong-table th, .wrong-table td { padding: 10px 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="select-header">
+            <h1>学习诊断</h1>
+            <p class="sub">基于你的做题数据生成个性化分析报告</p>
+        </div>
+
+        <div class="nav-row">
+            <a href="index.html" class="nav-link">&larr; 首页</a>
+            <a href="quiz.html" class="nav-link">在线练习</a>
+        </div>
+
+        <!-- Loading -->
+        <div id="loadingState" class="loading-state">
+            <div class="spinner"></div>
+            <p>正在加载数据...</p>
+        </div>
+
+        <!-- Empty -->
+        <div id="emptyState" class="empty-state" style="display:none;">
+            <div class="empty-icon">📊</div>
+            <h2>暂无做题数据</h2>
+            <p>完成至少一次在线练习后，这里会生成你的个性化学习诊断报告。<br>
+            <a href="quiz.html">去做一套题 &rarr;</a></p>
+        </div>
+
+        <!-- Main content -->
+        <div id="mainContent" style="display:none;">
+
+            <!-- Section 1: Overview Cards -->
+            <div class="section">
+                <div class="section-title">总体概况</div>
+                <div class="overview-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="statQuizzes">-</div>
+                        <div class="stat-label">总做题次数</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="statAvgScore">-</div>
+                        <div class="stat-label">平均得分</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="statCorrectRate">-</div>
+                        <div class="stat-label">总正确率</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="statBestScore">-</div>
+                        <div class="stat-label">最高分</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Difficulty Analysis -->
+            <div class="section">
+                <div class="section-title">难度维度分析</div>
+                <div class="chart-box">
+                    <canvas id="difficultyChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Section 3: Trend -->
+            <div class="section">
+                <div class="section-title">正确率趋势</div>
+                <div class="chart-box">
+                    <canvas id="trendChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Section 4: By Level -->
+            <div class="section">
+                <div class="section-title">各级别表现</div>
+                <div class="chart-box">
+                    <canvas id="levelChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Section 5: Frequent Wrong -->
+            <div class="section">
+                <div class="section-title">高频错题</div>
+                <div class="wrong-table-wrap">
+                    <div id="wrongTableContent"></div>
+                </div>
+            </div>
+
+            <!-- Section 6: Suggestions -->
+            <div class="section">
+                <div class="section-title">学习建议</div>
+                <div class="suggestions-box" id="suggestionsContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    (async function() {
+        const token = localStorage.getItem('token');
+        if (!token) return;
+
+        try {
+            const r = await fetch('/api/quiz/stats', {
+                headers: { 'Authorization': 'Bearer ' + token }
+            });
+            if (!r.ok) {
+                const errBody = await r.text().catch(() => '');
+                throw new Error(`HTTP ${r.status}: ${errBody}`);
+            }
+            const data = await r.json();
+
+            document.getElementById('loadingState').style.display = 'none';
+
+            if (!data.overview || data.overview.totalQuizzes === 0) {
+                document.getElementById('emptyState').style.display = '';
+                return;
+            }
+
+            document.getElementById('mainContent').style.display = '';
+            renderOverview(data.overview);
+            renderDifficultyChart(data.byDifficulty || []);
+            renderTrendChart(data.trend || []);
+            renderLevelChart(data.byLevel || []);
+            renderWrongTable(data.frequentWrong || []);
+            renderSuggestions(data);
+        } catch (e) {
+            console.error('Stats load error:', e);
+            document.getElementById('loadingState').innerHTML =
+                `<p style="color:var(--error);">加载失败：${e.message}</p><p style="color:var(--ink-light);font-size:0.8rem;margin-top:8px;">请打开浏览器控制台(F12)查看详细错误</p>`;
+        }
+    })();
+
+    function renderOverview(o) {
+        document.getElementById('statQuizzes').textContent = o.totalQuizzes;
+        document.getElementById('statAvgScore').textContent = o.avgScore;
+        const rate = o.totalQuestions > 0
+            ? Math.round(o.totalCorrect / o.totalQuestions * 100)
+            : 0;
+        document.getElementById('statCorrectRate').textContent = rate + '%';
+        document.getElementById('statBestScore').textContent = o.bestScore;
+    }
+
+    function renderDifficultyChart(items) {
+        const tierLabels = { '3pts': '3 分题（基础）', '4pts': '4 分题（中等）', '5pts': '5 分题（困难）' };
+        const tierColors = { '3pts': '#6b9a7d', '4pts': '#e6a23c', '5pts': '#c47070' };
+        const tiers = ['3pts', '4pts', '5pts'];
+        const tierMap = {};
+        items.forEach(i => { tierMap[i.tier] = i; });
+
+        const labels = tiers.map(t => tierLabels[t] || t);
+        const rates = tiers.map(t => tierMap[t] ? Math.round(tierMap[t].rate * 100) : 0);
+        const colors = tiers.map(t => tierColors[t]);
+
+        new Chart(document.getElementById('difficultyChart'), {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '正确率 %',
+                    data: rates,
+                    backgroundColor: colors.map(c => c + '33'),
+                    borderColor: colors,
+                    borderWidth: 2,
+                    borderRadius: 6,
+                    barPercentage: 0.6,
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(ctx) {
+                                const tier = tiers[ctx.dataIndex];
+                                const d = tierMap[tier];
+                                if (d) return `正确率 ${ctx.raw}%（${d.correct}/${d.total}）`;
+                                return ctx.raw + '%';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true, max: 100,
+                        ticks: { callback: v => v + '%', color: '#A39E99', font: { family: 'Raleway' } },
+                        grid: { color: 'rgba(23,23,23,0.05)' }
+                    },
+                    y: {
+                        ticks: { color: '#5a5652', font: { family: 'Noto Serif SC', size: 13 } },
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+    }
+
+    function renderTrendChart(sessions) {
+        if (!sessions.length) return;
+
+        // Reverse to chronological order
+        const sorted = [...sessions].reverse();
+
+        // Group by level
+        const levelGroups = {};
+        sorted.forEach(s => {
+            const lv = (s.level || 'b').toUpperCase();
+            if (!levelGroups[lv]) levelGroups[lv] = [];
+            levelGroups[lv].push(s);
+        });
+
+        const levelColors = {
+            A: '#6b9a7d', B: '#BA6D73', C: '#e6a23c', D: '#7b8ec4', E: '#9b7bc4', F: '#c47070'
+        };
+
+        // Build datasets - each level gets its own line
+        // X axis: all sessions in chronological order (index-based)
+        const labels = sorted.map((s, i) => {
+            const dt = s.created_at ? s.created_at.slice(5, 10) : (i + 1);
+            return dt;
+        });
+
+        const datasets = Object.keys(levelGroups).sort().map(lv => {
+            // For each session in sorted, if it matches this level show data, otherwise null
+            const data = sorted.map(s => {
+                if ((s.level || 'b').toUpperCase() === lv) {
+                    return s.total > 0 ? Math.round(s.correct / s.total * 100) : 0;
+                }
+                return null;
+            });
+            return {
+                label: 'Level ' + lv,
+                data: data,
+                borderColor: levelColors[lv] || '#BA6D73',
+                backgroundColor: (levelColors[lv] || '#BA6D73') + '22',
+                tension: 0.3,
+                pointRadius: 4,
+                pointHoverRadius: 6,
+                spanGaps: false,
+                borderWidth: 2,
+            };
+        });
+
+        new Chart(document.getElementById('trendChart'), {
+            type: 'line',
+            data: { labels, datasets },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: { font: { family: 'Raleway', size: 12 }, usePointStyle: true, pointStyle: 'circle' }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(items) {
+                                const i = items[0].dataIndex;
+                                const s = sorted[i];
+                                return s.created_at ? s.created_at.slice(0, 10) : '';
+                            },
+                            label: function(ctx) {
+                                const i = ctx.dataIndex;
+                                const s = sorted[i];
+                                return `${ctx.dataset.label}: ${ctx.raw}%（${s.correct}/${s.total}）`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true, max: 100,
+                        ticks: { callback: v => v + '%', color: '#A39E99', font: { family: 'Raleway' } },
+                        grid: { color: 'rgba(23,23,23,0.05)' }
+                    },
+                    x: {
+                        ticks: { color: '#A39E99', font: { family: 'Raleway', size: 11 }, maxRotation: 45 },
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+    }
+
+    function renderLevelChart(items) {
+        if (!items.length) return;
+
+        const allLevels = ['a', 'b', 'c', 'd', 'e', 'f'];
+        const levelMap = {};
+        items.forEach(i => { levelMap[i.level] = i; });
+
+        const labels = allLevels.filter(l => levelMap[l]).map(l => 'Level ' + l.toUpperCase());
+        const rates = allLevels.filter(l => levelMap[l]).map(l => Math.round((levelMap[l].avgCorrectRate || 0) * 100));
+
+        new Chart(document.getElementById('levelChart'), {
+            type: 'radar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '平均正确率 %',
+                    data: rates,
+                    backgroundColor: 'rgba(186, 109, 115, 0.15)',
+                    borderColor: '#BA6D73',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#BA6D73',
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(ctx) {
+                                const idx = ctx.dataIndex;
+                                const lvKey = allLevels.filter(l => levelMap[l])[idx];
+                                const d = levelMap[lvKey];
+                                return `正确率 ${ctx.raw}%（${d.quizzes} 次练习）`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    r: {
+                        beginAtZero: true, max: 100,
+                        ticks: { stepSize: 20, callback: v => v + '%', color: '#A39E99', backdropColor: 'transparent', font: { size: 11 } },
+                        grid: { color: 'rgba(23,23,23,0.06)' },
+                        pointLabels: { font: { family: 'Raleway', size: 13 }, color: '#5a5652' },
+                        angleLines: { color: 'rgba(23,23,23,0.06)' },
+                    }
+                }
+            }
+        });
+    }
+
+    function renderWrongTable(items) {
+        const container = document.getElementById('wrongTableContent');
+        if (!items.length) {
+            container.innerHTML = '<div class="wrong-empty">暂无错题记录，继续保持！</div>';
+            return;
+        }
+
+        let html = `<table class="wrong-table">
+            <thead><tr>
+                <th>排名</th>
+                <th>题号</th>
+                <th>错误次数</th>
+            </tr></thead><tbody>`;
+
+        items.forEach((item, i) => {
+            html += `<tr>
+                <td style="color:var(--ink-light);">${i + 1}</td>
+                <td><span class="q-num">Q${item.question}</span></td>
+                <td><span class="wrong-count">${item.wrongCount} 次</span></td>
+            </tr>`;
+        });
+
+        html += '</tbody></table>';
+        container.innerHTML = html;
+    }
+
+    function renderSuggestions(data) {
+        const container = document.getElementById('suggestionsContent');
+        const suggestions = [];
+
+        // Check difficulty rates
+        const diffMap = {};
+        (data.byDifficulty || []).forEach(d => { diffMap[d.tier] = d; });
+
+        if (diffMap['5pts'] && diffMap['5pts'].rate < 0.5) {
+            suggestions.push({
+                type: 'error',
+                text: '5 分难题正确率偏低（' + Math.round(diffMap['5pts'].rate * 100) + '%），建议多做高难度题目，重点攻克难题。'
+            });
+        }
+
+        if (diffMap['3pts'] && diffMap['3pts'].rate < 0.8) {
+            suggestions.push({
+                type: 'warn',
+                text: '基础题（3 分题）正确率不足 80%（' + Math.round(diffMap['3pts'].rate * 100) + '%），建议回顾基础知识，确保基础题得分。'
+            });
+        }
+
+        if (data.overview && data.overview.totalQuizzes < 5) {
+            suggestions.push({
+                type: 'warn',
+                text: '练习次数较少（仅 ' + data.overview.totalQuizzes + ' 次），建议多做几套真题来巩固知识、提升熟练度。'
+            });
+        }
+
+        if (diffMap['4pts'] && diffMap['4pts'].rate < 0.6) {
+            suggestions.push({
+                type: 'warn',
+                text: '4 分中等难度题正确率为 ' + Math.round(diffMap['4pts'].rate * 100) + '%，这部分是拉开差距的关键，建议重点练习。'
+            });
+        }
+
+        if (data.frequentWrong && data.frequentWrong.length > 5) {
+            suggestions.push({
+                type: 'warn',
+                text: '有 ' + data.frequentWrong.length + ' 道高频错题，建议利用错题本功能针对性复习。'
+            });
+        }
+
+        if (!suggestions.length) {
+            suggestions.push({
+                type: 'good',
+                text: '各项表现良好，继续保持！可以尝试挑战更高难度的级别来进一步提升。'
+            });
+        }
+
+        container.innerHTML = suggestions.map(s =>
+            `<div class="suggestion-item">
+                <div class="suggestion-dot ${s.type}"></div>
+                <div class="suggestion-text">${s.text}</div>
+            </div>`
+        ).join('');
+    }
+    </script>
+</body>
+</html>

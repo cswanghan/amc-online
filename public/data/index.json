@@ -1,0 +1,994 @@
+{
+  "competition": "Australian Mathematics Competition",
+  "generatedAt": "2026-04-06T23:23:29.058425+00:00",
+  "sourceRoot": "extracted/澳大利亚AMC",
+  "stats": {
+    "levels": 3,
+    "papers": 57,
+    "answers": 21,
+    "quizReady": 4
+  },
+  "levels": [
+    {
+      "id": "a",
+      "label": "AMC A",
+      "grade": "3-4年级",
+      "years": [
+        {
+          "year": 2025,
+          "paper": {
+            "url": "/library/a/2025/paper.pdf",
+            "source": "2025A试卷.pdf",
+            "path": "public/library/a/2025/paper.pdf"
+          },
+          "answer": {
+            "url": "/library/a/2025/answer.pdf",
+            "source": "2025答案.pdf",
+            "path": "public/library/a/2025/answer.pdf"
+          },
+          "sourceFiles": [
+            "2025A试卷.pdf",
+            "2025答案.pdf"
+          ],
+          "quizReady": true,
+          "questionDataUrl": "/data/generated/a/2025.json",
+          "note": "已生成题目 JSON，可接入正式练习流程。"
+        },
+        {
+          "year": 2024,
+          "paper": {
+            "url": "/library/a/2024/paper.pdf",
+            "source": "2024A试卷.pdf",
+            "path": "public/library/a/2024/paper.pdf"
+          },
+          "answer": {
+            "url": "/library/a/2024/answer.pdf",
+            "source": "2024A 答案解析.pdf",
+            "path": "public/library/a/2024/answer.pdf"
+          },
+          "sourceFiles": [
+            "2024A 答案解析.pdf",
+            "2024A试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2023,
+          "paper": {
+            "url": "/library/a/2023/paper.pdf",
+            "source": "2023A试卷.pdf",
+            "path": "public/library/a/2023/paper.pdf"
+          },
+          "answer": {
+            "url": "/library/a/2023/answer.pdf",
+            "source": "2023 答案解析.pdf",
+            "path": "public/library/a/2023/answer.pdf"
+          },
+          "sourceFiles": [
+            "2023 答案解析.pdf",
+            "2023A试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2022,
+          "paper": {
+            "url": "/library/a/2022/paper.pdf",
+            "source": "2022A试卷.pdf",
+            "path": "public/library/a/2022/paper.pdf"
+          },
+          "answer": {
+            "url": "/library/a/2022/answer.png",
+            "source": "2022答案.png",
+            "path": "public/library/a/2022/answer.png"
+          },
+          "sourceFiles": [
+            "2022A试卷.pdf",
+            "2022答案.png"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2021,
+          "paper": {
+            "url": "/library/a/2021/paper.pdf",
+            "source": "2021A试卷.pdf",
+            "path": "public/library/a/2021/paper.pdf"
+          },
+          "answer": {
+            "url": "/library/a/2021/answer.pdf",
+            "source": "2021答案.pdf",
+            "path": "public/library/a/2021/answer.pdf"
+          },
+          "sourceFiles": [
+            "2021A试卷.pdf",
+            "2021答案.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2020,
+          "paper": {
+            "url": "/library/a/2020/paper.pdf",
+            "source": "2020A试卷.pdf",
+            "path": "public/library/a/2020/paper.pdf"
+          },
+          "answer": {
+            "url": "/library/a/2020/answer.pdf",
+            "source": "2020答案.pdf",
+            "path": "public/library/a/2020/answer.pdf"
+          },
+          "sourceFiles": [
+            "2020A试卷.pdf",
+            "2020答案.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2019,
+          "paper": {
+            "url": "/library/a/2019/paper.pdf",
+            "source": "2019A试卷.pdf",
+            "path": "public/library/a/2019/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2019A试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2018,
+          "paper": {
+            "url": "/library/a/2018/paper.pdf",
+            "source": "2018A试卷.pdf",
+            "path": "public/library/a/2018/paper.pdf"
+          },
+          "answer": {
+            "url": "/library/a/2018/answer.pdf",
+            "source": "2018A 答案.pdf",
+            "path": "public/library/a/2018/answer.pdf"
+          },
+          "sourceFiles": [
+            "2018A 答案.pdf",
+            "2018A试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2017,
+          "paper": {
+            "url": "/library/a/2017/paper.pdf",
+            "source": "2017A试卷.pdf",
+            "path": "public/library/a/2017/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2017A试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2016,
+          "paper": {
+            "url": "/library/a/2016/paper.pdf",
+            "source": "2016A试卷.pdf",
+            "path": "public/library/a/2016/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2016A试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2015,
+          "paper": {
+            "url": "/library/a/2015/paper.pdf",
+            "source": "2015A试卷.pdf",
+            "path": "public/library/a/2015/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2015A试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2014,
+          "paper": {
+            "url": "/library/a/2014/paper.pdf",
+            "source": "2014A试卷.pdf",
+            "path": "public/library/a/2014/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2014A试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2013,
+          "paper": {
+            "url": "/library/a/2013/paper.pdf",
+            "source": "2013A试卷.pdf",
+            "path": "public/library/a/2013/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2013A试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2012,
+          "paper": {
+            "url": "/library/a/2012/paper.pdf",
+            "source": "2012A试卷.pdf",
+            "path": "public/library/a/2012/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2012A试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2011,
+          "paper": {
+            "url": "/library/a/2011/paper.pdf",
+            "source": "2011A试卷.pdf",
+            "path": "public/library/a/2011/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2011A试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2010,
+          "paper": {
+            "url": "/library/a/2010/paper.pdf",
+            "source": "2010A试卷.pdf",
+            "path": "public/library/a/2010/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2010A试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2009,
+          "paper": {
+            "url": "/library/a/2009/paper.pdf",
+            "source": "2009A试卷.pdf",
+            "path": "public/library/a/2009/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2009A试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2008,
+          "paper": {
+            "url": "/library/a/2008/paper.pdf",
+            "source": "2008A试卷.pdf",
+            "path": "public/library/a/2008/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2008A试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2007,
+          "paper": {
+            "url": "/library/a/2007/paper.pdf",
+            "source": "2007A试卷.pdf",
+            "path": "public/library/a/2007/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2007A试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        }
+      ]
+    },
+    {
+      "id": "b",
+      "label": "AMC B",
+      "grade": "5-6年级",
+      "years": [
+        {
+          "year": 2025,
+          "paper": {
+            "url": "/library/b/2025/paper.pdf",
+            "source": "2025B 试卷.pdf",
+            "path": "public/library/b/2025/paper.pdf"
+          },
+          "answer": {
+            "url": "/library/b/2025/answer.pdf",
+            "source": "2025答案.pdf",
+            "path": "public/library/b/2025/answer.pdf"
+          },
+          "sourceFiles": [
+            "2025B 试卷.pdf",
+            "2025答案.pdf"
+          ],
+          "quizReady": true,
+          "questionDataUrl": "/data/generated/b/2025.json",
+          "note": "已生成题目 JSON，可接入正式练习流程。"
+        },
+        {
+          "year": 2024,
+          "paper": {
+            "url": "/library/b/2024/paper.pdf",
+            "source": "2024B 试卷.pdf",
+            "path": "public/library/b/2024/paper.pdf"
+          },
+          "answer": {
+            "url": "/library/b/2024/answer.pdf",
+            "source": "2024B 答案解析.pdf",
+            "path": "public/library/b/2024/answer.pdf"
+          },
+          "sourceFiles": [
+            "2024B 答案解析.pdf",
+            "2024B 试卷.pdf"
+          ],
+          "quizReady": true,
+          "questionDataUrl": "/data/generated/b/2024.json",
+          "note": "已生成题目 JSON，可接入正式练习流程。"
+        },
+        {
+          "year": 2023,
+          "paper": {
+            "url": "/library/b/2023/paper.pdf",
+            "source": "2023B 试卷.pdf",
+            "path": "public/library/b/2023/paper.pdf"
+          },
+          "answer": {
+            "url": "/library/b/2023/answer.pdf",
+            "source": "2023 答案解析.pdf",
+            "path": "public/library/b/2023/answer.pdf"
+          },
+          "sourceFiles": [
+            "2023 答案解析.pdf",
+            "2023B 试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2022,
+          "paper": {
+            "url": "/library/b/2022/paper.pdf",
+            "source": "2022B 试卷.pdf",
+            "path": "public/library/b/2022/paper.pdf"
+          },
+          "answer": {
+            "url": "/library/b/2022/answer.png",
+            "source": "2022 答案.png",
+            "path": "public/library/b/2022/answer.png"
+          },
+          "sourceFiles": [
+            "2022 答案.png",
+            "2022B 试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2021,
+          "paper": {
+            "url": "/library/b/2021/paper.pdf",
+            "source": "2021B 试卷.pdf",
+            "path": "public/library/b/2021/paper.pdf"
+          },
+          "answer": {
+            "url": "/library/b/2021/answer.pdf",
+            "source": "2021 答案.pdf",
+            "path": "public/library/b/2021/answer.pdf"
+          },
+          "sourceFiles": [
+            "2021 答案.pdf",
+            "2021B 试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2020,
+          "paper": {
+            "url": "/library/b/2020/paper.pdf",
+            "source": "2020B试卷.pdf",
+            "path": "public/library/b/2020/paper.pdf"
+          },
+          "answer": {
+            "url": "/library/b/2020/answer.pdf",
+            "source": "2020 答案.pdf",
+            "path": "public/library/b/2020/answer.pdf"
+          },
+          "sourceFiles": [
+            "2020 答案.pdf",
+            "2020B试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2019,
+          "paper": {
+            "url": "/library/b/2019/paper.pdf",
+            "source": "2019B试卷.pdf",
+            "path": "public/library/b/2019/paper.pdf"
+          },
+          "answer": {
+            "url": "/library/b/2019/answer.pdf",
+            "source": "2019 答案.pdf",
+            "path": "public/library/b/2019/answer.pdf"
+          },
+          "sourceFiles": [
+            "2019 答案.pdf",
+            "2019B试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2018,
+          "paper": {
+            "url": "/library/b/2018/paper.pdf",
+            "source": "2018B试卷.pdf",
+            "path": "public/library/b/2018/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2018B试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2017,
+          "paper": {
+            "url": "/library/b/2017/paper.pdf",
+            "source": "2017B试卷.pdf",
+            "path": "public/library/b/2017/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2017B试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2016,
+          "paper": {
+            "url": "/library/b/2016/paper.pdf",
+            "source": "2016B试卷.pdf",
+            "path": "public/library/b/2016/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2016B试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2015,
+          "paper": {
+            "url": "/library/b/2015/paper.pdf",
+            "source": "2015B试卷.pdf",
+            "path": "public/library/b/2015/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2015B试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2014,
+          "paper": {
+            "url": "/library/b/2014/paper.pdf",
+            "source": "2014B试卷.pdf",
+            "path": "public/library/b/2014/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2014B试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2013,
+          "paper": {
+            "url": "/library/b/2013/paper.pdf",
+            "source": "2013B试卷.pdf",
+            "path": "public/library/b/2013/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2013B试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2012,
+          "paper": {
+            "url": "/library/b/2012/paper.pdf",
+            "source": "2012B试卷.pdf",
+            "path": "public/library/b/2012/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2012B试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2011,
+          "paper": {
+            "url": "/library/b/2011/paper.pdf",
+            "source": "2011B试卷.pdf",
+            "path": "public/library/b/2011/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2011B试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2010,
+          "paper": {
+            "url": "/library/b/2010/paper.pdf",
+            "source": "2010B试卷.pdf",
+            "path": "public/library/b/2010/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2010B试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2009,
+          "paper": {
+            "url": "/library/b/2009/paper.pdf",
+            "source": "2009B试卷.pdf",
+            "path": "public/library/b/2009/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2009B试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2008,
+          "paper": {
+            "url": "/library/b/2008/paper.pdf",
+            "source": "2008B试卷.pdf",
+            "path": "public/library/b/2008/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2008B试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2007,
+          "paper": {
+            "url": "/library/b/2007/paper.pdf",
+            "source": "2007B试卷.pdf",
+            "path": "public/library/b/2007/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2007B试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        }
+      ]
+    },
+    {
+      "id": "c",
+      "label": "AMC C",
+      "grade": "7-8年级",
+      "years": [
+        {
+          "year": 2025,
+          "paper": {
+            "url": "/library/c/2025/paper.pdf",
+            "source": "2025C 试卷.pdf",
+            "path": "public/library/c/2025/paper.pdf"
+          },
+          "answer": {
+            "url": "/library/c/2025/answer.pdf",
+            "source": "2025答案.pdf",
+            "path": "public/library/c/2025/answer.pdf"
+          },
+          "sourceFiles": [
+            "2025C 试卷.pdf",
+            "2025答案.pdf"
+          ],
+          "quizReady": true,
+          "questionDataUrl": "/data/generated/c/2025.json",
+          "note": "已生成题目 JSON，可接入正式练习流程。"
+        },
+        {
+          "year": 2024,
+          "paper": {
+            "url": "/library/c/2024/paper.pdf",
+            "source": "2024C 试卷.pdf",
+            "path": "public/library/c/2024/paper.pdf"
+          },
+          "answer": {
+            "url": "/library/c/2024/answer.pdf",
+            "source": "2024C 答案解析.pdf",
+            "path": "public/library/c/2024/answer.pdf"
+          },
+          "sourceFiles": [
+            "2024C 答案解析.pdf",
+            "2024C 试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2023,
+          "paper": {
+            "url": "/library/c/2023/paper.pdf",
+            "source": "2023C 试卷.pdf",
+            "path": "public/library/c/2023/paper.pdf"
+          },
+          "answer": {
+            "url": "/library/c/2023/answer.pdf",
+            "source": "2023 答案解析.pdf",
+            "path": "public/library/c/2023/answer.pdf"
+          },
+          "sourceFiles": [
+            "2023 答案解析.pdf",
+            "2023C 试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2022,
+          "paper": {
+            "url": "/library/c/2022/paper.pdf",
+            "source": "2022C试卷.pdf",
+            "path": "public/library/c/2022/paper.pdf"
+          },
+          "answer": {
+            "url": "/library/c/2022/answer.pdf",
+            "source": "2022 答案解析.pdf",
+            "path": "public/library/c/2022/answer.pdf"
+          },
+          "sourceFiles": [
+            "2022 答案解析.pdf",
+            "2022C试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2021,
+          "paper": {
+            "url": "/library/c/2021/paper.pdf",
+            "source": "2021C 试卷.pdf",
+            "path": "public/library/c/2021/paper.pdf"
+          },
+          "answer": {
+            "url": "/library/c/2021/answer.pdf",
+            "source": "2021 答案s.pdf",
+            "path": "public/library/c/2021/answer.pdf"
+          },
+          "sourceFiles": [
+            "2021 答案s.pdf",
+            "2021C 试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2020,
+          "paper": {
+            "url": "/library/c/2020/paper.pdf",
+            "source": "2020C试卷.pdf",
+            "path": "public/library/c/2020/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2020C试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2019,
+          "paper": {
+            "url": "/library/c/2019/paper.pdf",
+            "source": "2019C试卷.pdf",
+            "path": "public/library/c/2019/paper.pdf"
+          },
+          "answer": {
+            "url": "/library/c/2019/answer.pdf",
+            "source": "2019C答案.pdf",
+            "path": "public/library/c/2019/answer.pdf"
+          },
+          "sourceFiles": [
+            "2019C答案.pdf",
+            "2019C试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2018,
+          "paper": {
+            "url": "/library/c/2018/paper.pdf",
+            "source": "2018C试卷.pdf",
+            "path": "public/library/c/2018/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2018C试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2017,
+          "paper": {
+            "url": "/library/c/2017/paper.pdf",
+            "source": "2017C试卷.pdf",
+            "path": "public/library/c/2017/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2017C试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2016,
+          "paper": {
+            "url": "/library/c/2016/paper.pdf",
+            "source": "2016C试卷.pdf",
+            "path": "public/library/c/2016/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2016C试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2015,
+          "paper": {
+            "url": "/library/c/2015/paper.pdf",
+            "source": "2015C试卷.pdf",
+            "path": "public/library/c/2015/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2015C试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2014,
+          "paper": {
+            "url": "/library/c/2014/paper.pdf",
+            "source": "2014C试卷.pdf",
+            "path": "public/library/c/2014/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2014C试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2013,
+          "paper": {
+            "url": "/library/c/2013/paper.pdf",
+            "source": "2013C试卷.pdf",
+            "path": "public/library/c/2013/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2013C试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2012,
+          "paper": {
+            "url": "/library/c/2012/paper.pdf",
+            "source": "2012C试卷.pdf",
+            "path": "public/library/c/2012/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2012C试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2011,
+          "paper": {
+            "url": "/library/c/2011/paper.pdf",
+            "source": "2011C试卷.pdf",
+            "path": "public/library/c/2011/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2011C试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2010,
+          "paper": {
+            "url": "/library/c/2010/paper.pdf",
+            "source": "2010C试卷.pdf",
+            "path": "public/library/c/2010/paper.pdf"
+          },
+          "answer": {
+            "url": "/library/c/2010/answer.pdf",
+            "source": "2010C 答案.pdf",
+            "path": "public/library/c/2010/answer.pdf"
+          },
+          "sourceFiles": [
+            "2010C 答案.pdf",
+            "2010C试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2009,
+          "paper": {
+            "url": "/library/c/2009/paper.pdf",
+            "source": "2009C试卷.pdf",
+            "path": "public/library/c/2009/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2009C试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2008,
+          "paper": {
+            "url": "/library/c/2008/paper.pdf",
+            "source": "2008C试卷.pdf",
+            "path": "public/library/c/2008/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2008C试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        },
+        {
+          "year": 2007,
+          "paper": {
+            "url": "/library/c/2007/paper.pdf",
+            "source": "2007C试卷.pdf",
+            "path": "public/library/c/2007/paper.pdf"
+          },
+          "answer": null,
+          "sourceFiles": [
+            "2007C试卷.pdf"
+          ],
+          "quizReady": false,
+          "questionDataUrl": null,
+          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+        }
+      ]
+    }
+  ]
+}

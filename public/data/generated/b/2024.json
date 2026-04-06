@@ -1,0 +1,311 @@
+{
+  "competition": "Australian Mathematics Competition",
+  "level": "b",
+  "year": 2024,
+  "durationMinutes": 60,
+  "totalQuestions": 30,
+  "totalScore": 135,
+  "questions": [
+    {
+      "number": 1,
+      "type": "choice",
+      "points": 3,
+      "answer": "D",
+      "images": [
+        "/generated/b/2024/q01-1.png"
+      ],
+      "explanation": "1.\nA square has area 16 cm2. What is its perimeter in centimetres?\n(A) 4\n(B) 8\n(C) 12\n(D) 16\n(E) 24\nThe square has side length 4 cm therefore perimeter 16 cm,\nhence (D)."
+    },
+    {
+      "number": 2,
+      "type": "choice",
+      "points": 3,
+      "answer": "C",
+      "images": [
+        "/generated/b/2024/q02-1.png"
+      ],
+      "explanation": "2.\nMarlie was born in 2016. In which year will she turn 14?\n(A) 2026\n(B) 2028\n(C) 2030\n(D) 2032\n(E) 2034\nSince 2016 + 14 = 2030, she will turn 14 in 2030,\nhence (C)."
+    },
+    {
+      "number": 3,
+      "type": "choice",
+      "points": 3,
+      "answer": "D",
+      "images": [
+        "/generated/b/2024/q03-1.png"
+      ],
+      "explanation": "3.\nAt a theme park, one ride costs $8. How many rides can Sally buy with her $65?\n(A) 5\n(B) 6\n(C) 7\n(D) 8\n(E) 9\nThe closest multiple of 8 is 8 × 8 = 64, so Sally can buy 8 rides,\nhence (D)."
+    },
+    {
+      "number": 4,
+      "type": "choice",
+      "points": 3,
+      "answer": "C",
+      "images": [
+        "/generated/b/2024/q04-1.png"
+      ],
+      "explanation": "4.\nEvan set the temperature dial on his oven as shown.\nWhat temperature is it set to?\n(A) 155 ◦C\n(C) 180 ◦C\n(B) 170 ◦C\n(D) 220 ◦C\n(E) 230 ◦C\nOFF\n100\n150\n200\n250\n◦C\nBetween 150 and 200 there are 5 intervals, so each interval represents 10 ◦C. The dial is\nset 3 intervals above 150 ◦C which is therefore 180 ◦C,\nhence (C)."
+    },
+    {
+      "number": 5,
+      "type": "choice",
+      "points": 3,
+      "answer": "A",
+      "images": [
+        "/generated/b/2024/q05-1.png"
+      ],
+      "explanation": "5.\nThe following decimals are to be placed in increasing order.\n0.42 0.24 4.02 2.4 0.042\nWhich number will be in the middle position?\n(A) 0.42\n(B) 0.24\n(C) 4.02\n(D) 2.4\n(E) 0.042\nWhen we put the 5 numbers in ascending order, they are 0.042, 0.24, 0.42, 2.4, 4.02, and\nso the middle number is 0.42,\nhence (A)."
+    },
+    {
+      "number": 6,
+      "type": "choice",
+      "points": 3,
+      "answer": "B",
+      "images": [
+        "/generated/b/2024/q06-1.png"
+      ],
+      "explanation": "6.\nIf I choose one of these cards at random, which of the following am I least likely to\nget?\n(A) A four\n(B) A seven\n(C) A spade ♠\n(D) A heart ♥\n(E) A diamond ♦\n♦\n♦\n♦\n♦\n♦\n♦\n♦\n7\n♦\n7\n♦\n♠\n♠\n♠\n♠\n♠\n5\n♠\n5\n♠\n♣\n♣\n♣\n♣\n4\n♣\n4\n♣\nJ\n♥\nJ\n♥\n♥\n♥\n♥\n♥\n♥\n♥\n6\n♥\n6\n♥\n♦\n♦\n♦\n♦\n♦\n♦\n6\n♦\n6\n♦\n♣\nA\n♣\nA\n♣\nJ\n♠\nJ\n♠\n♠\n♠\n♠\n♠\n4\n♠\n4\n♠\nK\n♦\nK\n♦\n♥\n♥\n♥\n♥\n♥\n♥\n♥\n7\n♥\n7\n♥\n♦\n♦\n♦\n♦\n4\n♦\n4\n♦\nFor each of spades, diamonds, hearts and fours, there are 3 cards. However, there are\nonly 2 sevens. So I am least likely to get a seven,\nhence (B)."
+    },
+    {
+      "number": 7,
+      "type": "choice",
+      "points": 3,
+      "answer": "E",
+      "images": [
+        "/generated/b/2024/q07-1.png"
+      ],
+      "explanation": "7.\nLeila has found out three facts about the speeds of her four favourite fast birds:\n• The spur-winged goose (SWG) is slower than the white-throated needletail (WTN).\n• The peregrine falcon (PF) is the fastest bird.\n• The frigate bird (FB) is faster than only one of the other birds.\nWhich of the following lists gives the birds from fastest to slowest?\n(A) SWG, WTN, PF, FB\n(C) PF, WTN, SWG, FB\n(B) PF, SWG, FB, WTN\n(D) FB, PF, WTN, SWG\n(E) PF, WTN, FB, SWG\nUsing the abbreviations in the question, place them in order as required. PF is fastest, so\nmust be first. FB is the second slowest, hence third. The other two birds must be 2nd\nand 4th, but SWG is slower than WTN.\nSo fastest to slowest is PF, WTN, FB, SWG,\nhence (E)."
+    },
+    {
+      "number": 8,
+      "type": "choice",
+      "points": 3,
+      "answer": "D",
+      "images": [
+        "/generated/b/2024/q08-1.png"
+      ],
+      "explanation": "8.\nThis graph shows the temperature throughout the\nschool day, but part of it has been hidden.\nThe hottest part of the day is at 2 pm. What does\nthe missing section of the graph look like?\n9\n10 11 12\n1\n2\n3\n0\n5\n10\n15\n20\n25\nTemp.\n(◦C)\nTime\n(A)\n(B)\n(C)\n(D)\n(E)\nThe temperature rises from 1pm to 2pm but then falls. Picture (D) is the only image\nshowing a rise and then a fall,\nhence (D)."
+    },
+    {
+      "number": 9,
+      "type": "choice",
+      "points": 3,
+      "answer": "E",
+      "images": [
+        "/generated/b/2024/q09-1.png"
+      ],
+      "explanation": "9.\nIn Primeland, they use coins worth $2, $3 and $5.\nWhich of the following totals is not possible using exactly 3 coins?\n(A) $6\n(B) $8\n(C) $10\n(D) $12\n(E) $14\nPossible combinations of 3 coins are\n2 + 2 + 2 = 6\n2 + 2 + 3 = 7\n2 + 2 + 5 = 9\n2 + 3 + 3 = 8\n2 + 3 + 5 = 10\n2 + 5 + 5 = 12\n3 + 3 + 3 = 9\n3 + 3 + 5 = 11\n3 + 5 + 5 = 13\n5 + 5 + 5 = 15\nThis includes options (A), (B), (C) and (D), but not (E),\nhence (E)."
+    },
+    {
+      "number": 10,
+      "type": "choice",
+      "points": 3,
+      "answer": "A",
+      "images": [
+        "/generated/b/2024/q10-1.png"
+      ],
+      "explanation": "10. The cube pictured has six different faces.\nWhich of the following is not a possible picture of this\ncube?\n×\n□\n⃝\n(A)\n×\n⃝\n□\n(B)\n⃝\n□\n.\n(C)\n×\n⃝\n.\n(D)\n⃝\n×\n□\n(E)\n□\n⃝\n×\nPictures (D) and (E) are possible by rotating the diagram of the cube by 120◦\nanticlockwise and clockwise, respectively. Picture (A) shows the same faces, but the\norder of the red-blue-green faces is clockwise in the question and anticlockwise in (A). So\n(A) is not possible. The other two options are possible: (B) by having the red face\ndownwards and (C) by having the green face downwards. Consequently the only picture\nthat is not possible is (A),\nhence (A).\nQuestions 11 to 20, 4 marks each\n11-20 题，每题4 分"
+    },
+    {
+      "number": 11,
+      "type": "choice",
+      "points": 4,
+      "answer": "D",
+      "images": [
+        "/generated/b/2024/q11-1.png"
+      ],
+      "explanation": "11. The Balga is a grass tree found in south-western Australia.\nBalgas grow between 1 and 2 centimetres taller each year.\nApproximately how old is a Balga that is 4 metres tall?\n(A) 10 years\n(B) 30 years\n(C) 60 years\n(D) 300 years\n(E) 1000 years\nEach 100 years, a Balga will grow between 1 and 2 metres. To reach 4 metres will take\nbetween 4 centuries, at 1 metre per century, or 2 centuries, at 2 metres per century. Of\nthe answers given, 300 years is the best approximation,\nhence (D)."
+    },
+    {
+      "number": 12,
+      "type": "choice",
+      "points": 4,
+      "answer": "B",
+      "images": [
+        "/generated/b/2024/q12-1.png"
+      ],
+      "explanation": "12. What fraction of this rectangle is shaded?\n(A) 1\n2\n(B) 5\n12\n(C) 1\n3\n(D) 2\n5\n(E) 5\n9\nThe rectangle has 10 congruent equilateral triangles, and 4 smaller triangles, each being\none half the area of the equilateral triangles. So the rectangle is equal to 12 of the\nequilateral triangles. Since 5 of these are shaded, the fraction shaded is 5\n12,\nhence (B)."
+    },
+    {
+      "number": 13,
+      "type": "choice",
+      "points": 4,
+      "answer": "D",
+      "images": [
+        "/generated/b/2024/q13-1.png"
+      ],
+      "explanation": "13. A shop has a special deal where you can buy two different items and get the cheaper item\nat half price. Roberta bought two of these items, and paid $16. Which two items did she\nbuy?\nMagazines\n$6 each\nGift cards\n$12 each\n`\n`\n`\n`\n`\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\nS\nS\nS\nS\nS\nS\nS\nS\nS\nS\nS\n8\n8\n8\n8\n8\n8\n8\n8\n8\n8\n8\n3\n3\n3\n3\n3\n3\n3\n3\n3\n3\n3\n5\n5\n5\n5\n5\n5\n5\n5\n5\n5\n5\nBooks\n$10 each\nThe Hobbit\nFellowship of the Ring\nReturn of the King\nThe Two Towers\nCreative Woodwork\nPalaeontology\nMaths Puzzles\nBirthday cards\n$4 each\n1\nYOU’RE\n2\nYOU’RE\n3\nYOU’RE\n4\nYOU’RE\n5\nYOU’RE\n6\nYOU’RE\n7\nYOU’RE\n8\nYOU’RE\nWrapping paper\n$8 each\n(A) A birthday card and a magazine\n(B) A gift card and a birthday card\n(C) A book and a roll of wrapping paper\n(D) A gift card and a roll of wrapping paper\n(E) A magazine and a roll of wrapping paper\nSince Roberta paid $16, she spent more than $8 on the most expensive item, which is\neither a book or a gift card. If her expensive item was a $10 book, then she spent $6 on\nher other item at half price. But then her cheaper item would have cost $12, which does\nnot work. So her expensive item can’t have been a book.\nIf her expensive item was a $12 gift card, she spent $4 on the other item, which must\nhave been priced at $8, which is the wrapping paper. So Roberta bought a gift card and\na roll of wrapping paper,\nhence (D)."
+    },
+    {
+      "number": 14,
+      "type": "choice",
+      "points": 4,
+      "answer": "A",
+      "images": [
+        "/generated/b/2024/q14-1.png"
+      ],
+      "explanation": "14. A rectangular block measures 4 × 3 × 2 in centimetres. All of its\nsurfaces are painted and then it is cut into 24 cubes of side\nlength 1 centimetre.\nHow many cubes have exactly one face painted?\n(A) 4\n(B) 8\n(C) 12\n(D) 18\n(E) 24\nIn the top layer, only the centre two cubes have a single painted face. Similarly in the\nbottom layer, the centre two cubes have a single painted face. Consequently, 4 cubes\nhave exactly one painted face,\nhence (A)."
+    },
+    {
+      "number": 15,
+      "type": "choice",
+      "points": 4,
+      "answer": "C",
+      "images": [
+        "/generated/b/2024/q15-1.png"
+      ],
+      "explanation": "15. James convinces his parents to start a new plan for paying him pocket money. In week 1,\nthey will give him 10 cents and every week after that, they will double the amount they\npay him.\nIn which week will he first receive more than $10 pocket money?\n(A) 6\n(B) 7\n(C) 8\n(D) 9\n(E) 10\nTabulate the amount received each week:\nWeek\n1\n2\n3\n4\n5\n6\n7\n8\nAmount\n$0.10\n$0.20\n$0.40\n$0.80\n$1.60\n$3.20\n$6.40\n$12.80\nFrom this table, week 8 is the first week with more than $10,\nhence (C)."
+    },
+    {
+      "number": 16,
+      "type": "choice",
+      "points": 4,
+      "answer": "C",
+      "images": [
+        "/generated/b/2024/q16-1.png"
+      ],
+      "explanation": "16. This graph shows the percentages of different\neye colours of the students in Year 6.\nIn Year 6, 48 students have brown eyes.\nWhat is the total number of students in Year 6?\n0%\n10%\n20%\n30%\n40%\nBrown\nBlue\nGreen\nBlack\n(A) 96\n(B) 100\n(C) 120\n(D) 132\n(E) 144\nFrom the graph, 48 students are 40% of the students. So 48 ÷ 4 = 12 students is 10% of\nthe students and 120 students is 100% of the students,\nhence (C)."
+    },
+    {
+      "number": 17,
+      "type": "choice",
+      "points": 4,
+      "answer": "B",
+      "images": [
+        "/generated/b/2024/q17-1.png"
+      ],
+      "explanation": "17. Chester has 5 identical tiles, each measuring 10 cm\nby 30 cm. He wants to tile the area shown with these\ntiles.\nIn how many different ways can he do this?\n50 cm\n30 cm\n(A) 2\n(B) 4\n(C) 6\n(D) 8\n(E) 10\nTiles can be placed horizontally\nor vertically\nOne possibility is to have 5 vertical tiles:\nOtherwise the space above or below any horizontal tile must also have horizontal tiles,\nmaking a triple of horizontal tiles:\nThe remaining two tiles must be vertical, and there are 3 ways to arrange these: (i)\n(ii)\n(iii)\nSo there are 4 different ways to tile the rectangle,\nhence (B)."
+    },
+    {
+      "number": 18,
+      "type": "choice",
+      "points": 4,
+      "answer": "D",
+      "images": [
+        "/generated/b/2024/q18-1.png"
+      ],
+      "explanation": "18. I meant to add two numbers together and then subtract a third number.\nUnfortunately I got my plus and minus symbols the wrong way round. But I was lucky!\nThe answer still came out to be correct.\nWhich statement must be true?\n(A) The first number equals the sum of the other two.\n(B) The third number is the difference between the other two.\n(C) The first and second numbers are equal.\n(D) The second and third numbers are equal.\n(E) The third number is zero.\nThe difference between the two calculations is that the second and third numbers both\nchange from add to subtract, or vice-versa.\nSo if the second and third numbers are the same, the answers will both be equal to the\nfirst number. If the second number is bigger than the third, then the first calculation\nwould be bigger than the first number and the second calculation would be smaller than\nthe first number, so the two answers will not be the same.\nIf the second number is smaller than the third, the two answers will not be the same, for\nsimilar reasons.\nSo the only way to have the two answers the same is for the second and third numbers to\nbe the same. So (D) must be true.\nTo see that (D) is the only statement that is must be true, a simple example like\n5 + 2 −2 = 5 = 5 −2 + 2 is one where (D) is true but (A), (B), (C) and (E) are all false,\nhence (D)."
+    },
+    {
+      "number": 19,
+      "type": "choice",
+      "points": 4,
+      "answer": "A",
+      "images": [
+        "/generated/b/2024/q19-1.png"
+      ],
+      "explanation": "19. A square piece of paper is folded along the dotted lines, as shown in the diagrams. The\nbottom-right corner is then cut off, as shown by the shading in the third diagram.\n\u0004\nWhen the paper is unfolded, which of the following is the result?\n(A)\n(B)\n(C)\n(D)\n(E)\nWork backwards from the cut shape:\nThe shape is clearly (A),\nhence (A)."
+    },
+    {
+      "number": 20,
+      "type": "choice",
+      "points": 4,
+      "answer": "B",
+      "images": [
+        "/generated/b/2024/q20-1.png"
+      ],
+      "explanation": "20. The number 15 is divisible by its unit digit, that is, 15 ÷ 5 = 3.\nHow many whole numbers between 20 and 50 have this property?\n(A) 12\n(B) 14\n(C) 16\n(D) 18\n(E) 20\nConsider such a number, like 25. Subtract its units digit to make a second number. This\nnumber has a units digit equal to 0: 25 −5 = 20. Also 20 is a multiple of 5, the units\ndigit.\nIn general this second number will be a multiple of 10, being one of 20, 30 or 40, and also\na multiple of the unit digit.\nGoing back to the units digit, this will be a factor of this second number. So we make a\ntable of possibilities\nMultiple of 10\nPossible units digit\nCount\n20\n1, 2, 4, 5\n4\n30\n1, 2, 3, 5, 6\n5\n40\n1, 2, 4, 5, 8\n5\nThis gives 14 numbers: 21, 22, 24, 25, 31, 32, 33, 35, 36, 41, 42, 44, 45 and 48,\nhence (B).\nQuestions 21 to 25, 5 marks each\n21-25 题，每题5 分"
+    },
+    {
+      "number": 21,
+      "type": "choice",
+      "points": 5,
+      "answer": "E",
+      "images": [
+        "/generated/b/2024/q21-1.png"
+      ],
+      "explanation": "21. Troy makes a list of 6 numbers by writing down a starting number then writing the next 5\ncounting numbers, going up in steps of 1. When he adds them, the total is less than 100.\nHe increases each number by 1, and the new total is greater than 100.\nWhat is this new total?\n(A) 101\n(B) 102\n(C) 103\n(D) 104\n(E) 105\nConsider the smallest case: 1 + 2 + 3 + 4 + 5 + 6 = 21. The next case will be\n2 + 3 + 4 + 5 + 6 + 7 = 27 since all 6 numbers have been increased by 1. The next will be\n27 + 6 = 33, then 33 + 6 = 39 and so on. So when you add six consecutive numbers\ntogether, you will always get 21 plus a multiple of 6.\nNearest to 100 are 21 + 78 = 99 and 21 + 84 = 105, which can be found to be\n14 + 15 + 16 + 17 + 18 + 19 = 99 and 15 + 16 + 17 + 18 + 19 + 20 = 105,\nhence (E)."
+    },
+    {
+      "number": 22,
+      "type": "choice",
+      "points": 5,
+      "answer": "A",
+      "images": [
+        "/generated/b/2024/q22-1.png"
+      ],
+      "explanation": "22. To prepare a garden bed for growing ginger, Xiao makes a special mix of ginger soil. She\nfirst mixes 2 buckets of manure with 4 buckets of compost. Then she mixes 1 bucket of\nthis mixture with 3 buckets of sand to make ginger soil.\nHow much compost is in each bucket of ginger soil?\n(A) 1\n6 of a bucket\n(B) 1\n8 of a bucket\n(C) 2\n9 of a bucket\n(D) 1\n10 of a bucket\n(E) 1\n12 of a bucket\nAlternative 1\nAfter the first mixing, Xiao has 6 buckets. If she then used this to make 6 batches of\nginger soil, she would use 18 buckets of sand to make 24 buckets of ginger soil.\nThese 24 buckets would contain 4 buckets of compost, so that the soil is one-sixth\ncompost. Then each bucket of soil contains 1\n6 of a bucket of compost,\nhence (A).\nAlternative 2\nThe mixture of manure and compost is 1\n3 manure and 2\n3 compost. So the final 4 buckets\nof soil contains 2\n3 of a bucket of compost. One bucket of this soil is 1\n4 of these final 4\nbuckets, so it contains 2\n3 × 1\n4 = 2\n12 = 1\n6 of a bucket of compost,\nhence (A)."
+    },
+    {
+      "number": 23,
+      "type": "choice",
+      "points": 5,
+      "answer": "E",
+      "images": [
+        "/generated/b/2024/q23-1.png"
+      ],
+      "explanation": "23. A deck of playing cards originally contained 52 cards. Vicki loses some of these. When\nshe deals the cards she has left equally between four people, she has three cards left over.\nWhen she deals them equally between six people, she has one card left over. Which of\nthe following could be the number of cards Vicki lost?\n(A) 2\n(B) 10\n(C) 11\n(D) 17\n(E) 21\nAlternative 1\nFor each option, consider how many cards would be left. Option A corresponds to 50\ncards left. Option B corresponds to 42 cards left. Option C corresponds to 41 cards left.\nOption D corresponds to 35 cards left. Option E corresponds to 31 cards left. We\nconsider each of these.\nWhen the remaining cards are divided by 4, the remainder is 3. Since 50 ÷ 4 = 12\nremainder 2, option A is eliminated. Since 42 ÷ 4 = 10 remainder 2, option B is\neliminated. Since 41 ÷ 4 = 10 remainder 1, option C is eliminated. Since 35 ÷ 4 = 8\nremainder 3, option D is a possible answer. Since 31 ÷ 4 = 7 remainder 3, option E is a\npossible answer.\nWhen the remaining cards are divided by 6, Vicki has one left over. Since 35 ÷ 6 = 5\nremainder 5, option D is eliminated. This leaves 31 ÷ 6 = 5 remainder 1, so option E is\nthe only correct answer,\nhence (E).\nAlternative 2\nThe number of cards left is 1 more than a multiple of 6 and 3 more than a multiple of 4.\nExamining multiples of 6, the possibilities that are also 3 more than a multiple of 4 are 7,\n19, 31 and 43. This corresponds to losing 45, 33, 21 and 9 cards. Of these, only 21 is\ngiven,\nhence (E)."
+    },
+    {
+      "number": 24,
+      "type": "choice",
+      "points": 5,
+      "answer": "B",
+      "images": [
+        "/generated/b/2024/q24-1.png"
+      ],
+      "explanation": "24. The area of this rectangle is 56 square centimetres.\nThe midpoints of BC and DC are joined to A and to\neach other, to form the shaded triangle shown. What\nis the area of this triangle in square centimetres?\nD\nA\nC\nB\n(A) 14\n(B) 21\n(C) 24\n(D) 25\n(E) 28\nJoin the midpoints of all 4 sides to divide the ABCD into 4 smaller congruent rectangles,\neach of area 56 ÷ 4 = 14 cm2:\nD\nA\nC\nB\nP\nQ\nR\nS\nO\nNow consider the areas of the 3 white triangles. Rectangle APRD has area 28 cm2 so\ntriangle ARD is half this, or 14 cm2. Similarly, triangle ABQ has area 14 cm2. Rectangle\nOQCR has area 14 cm2, so triangle QCR is half this, or 14 ÷ 2 = 7 cm2.\nThen triangle AQR has area 56 −14 −14 −7 = 21 cm2,\nhence (B)."
+    },
+    {
+      "number": 25,
+      "type": "choice",
+      "points": 5,
+      "answer": "C",
+      "images": [
+        "/generated/b/2024/q25-1.png",
+        "/generated/b/2024/q25-2.png"
+      ],
+      "explanation": "25. Kiko and 5 of her friends are seated around a\nrestaurant table.\nEach person introduces themself, telling\neveryone how many of the people at the table\nthey’ve previously met. Naturally, Kiko has\nmet all 5.\nCoincidentally, the other 5 have all met the same number as each other.\nWhich of the following is not a possibility for this number that all 5 of Kiko’s friends\nhave met?\nJason\nKiko\nJoanne\nMichael\nCameron\nBessie\n(A) 1\n(B) 3\n(C) 4\n(D) 5\n(E) All of (A) to (D) are possible.\nOn the diagram, join two people with a line if they know each other. Each line has two\nends, so the total number of ends for all lines is even. Kiko has 5 ends, and all 5 of her\nfriends have the same number of ends.\nIf the 5 friends have an even number of ends each, they have an even number between\nthem, and adding Kiko’s 5 ends makes an odd total, which is not possible. On the other\nhand, if they each have an odd number of ends, they have an odd number, and adding\nKiko’s 5 makes an even number, which is possible.\nThis means that 4 is not a possible number of ends on each of the 5 friends. The odd\npossibilities 1, 3 and 5 are all possible, as shown below.\nJa\nK\nJo\nM\nC\nB\n5 + 5 × 1 = 10 ends\nJa\nK\nJo\nM\nC\nB\n5 + 5 × 3 = 20 ends\nJa\nK\nJo\nM\nC\nB\n5 + 5 × 5 = 30 ends\nSo (C) is the only number that is not possible,\nhence (C).\nFor questions 26 to 30, shade the answer as a whole number from 0 to 999\nin the space provided on the answer sheet.\n问题26-30 的答案为0-999 之间的整数，请将答案填涂在答题卡对应区域。\nQuestions 26–30 are worth 6, 7, 8, 9 and 10 marks, respectively.\n第26-30 题分别为6, 7, 8, 9, 10 分。"
+    },
+    {
+      "number": 26,
+      "type": "integer",
+      "points": 6,
+      "answer": "270",
+      "images": [
+        "/generated/b/2024/q26-1.png"
+      ],
+      "explanation": "26. Jane has four doting grandparents who each separately tell her that they will help her\nwith her savings plans.\n• Granny Ava says, ‘Whatever you have when you come to me, I will add $10.’\n• Granny Beth says, ‘Whatever you have when you come to me, I will double it.’\n• Grampa Charles says, ‘Whatever you have when you come to me, I will halve your\nsavings but then add $50.’\n• Grampa Dave says, ‘Whatever you have when you come to me, I will double it and\nadd $5.’\nJane has saved $10 by herself. She plans to visit each grandparent once, in the order that\nmaximises the amount she has at the end. In dollars, what is this maximum amount?\nNo matter the order of the visits, the $10 Jane starts with is doubled twice and halved\nonce, becoming $20. The other amounts added are $5, $10 and $50. These end up being\nworth more if they are followed by doubling steps, and no halving steps. In particular,\nvisiting C first means that only the original $10 is halved, and the $50 added will later be\nquadrupled. After visiting C, Jane has $55.\nThe second visit is best to be A so that the $10 is quadrupled later. Jane then has $65.\nThe last two visits each double this $65, but it is better to visit D then B so that the $5\nis doubled once. In this order, Jane has $135, then $270,\nhence (270)."
+    },
+    {
+      "number": 27,
+      "type": "integer",
+      "points": 7,
+      "answer": "792",
+      "images": [
+        "/generated/b/2024/q27-1.png"
+      ],
+      "explanation": "27. The numbers 1 to 6 are arranged to form two 3-digit numbers that are then added\ntogether. What is the difference between the largest and smallest sums that can be\nobtained?\nThe largest sum which can be formed is 642 + 531 = 1173, by using the largest digits in\nthe larger place values. (Other examples with the same largest sum are possible, such as\n632 + 541 = 1173.) The smallest is 135 + 246 = 381. The difference between them is\n1173 −381 = 792,\nhence (792)."
+    },
+    {
+      "number": 28,
+      "type": "integer",
+      "points": 8,
+      "answer": "260",
+      "images": [
+        "/generated/b/2024/q28-1.png"
+      ],
+      "explanation": "28. Skip counting by 5, I write a list of 400 numbers that starts 5, 10, 15 and ends 1990,\n1995, 2000.\nHow many times do I write the digit ‘0’?\nEvery second multiple of 5 ends in 0. This gives 200 zeros in the units place.\nAmong the three- and four-digit numbers, there is a zero in the tens place for the\nnumbers 100, 105, 200, 205, . . . , 1900, 1905 and 2000. This adds 19 × 2 + 1 = 39 zeros.\nFinally, there are extra zeros in the hundreds place for the numbers 1000, 1005, 1010,\n1015, . . . , 1090, 1095 and 2000. This gives another 2 × 10 + 1 = 21 zeros.\nTherefore there are 200 + 39 + 21 = 260 zeros in total,\nhence (260)."
+    },
+    {
+      "number": 29,
+      "type": "integer",
+      "points": 9,
+      "answer": "58",
+      "images": [
+        "/generated/b/2024/q29-1.png"
+      ],
+      "explanation": "29. Starting with the number 2024, a second number is calculated by squaring each digit and\nadding these squares together: 22 + 02 + 22 + 42 = 24. The third number is then\ncalculated by adding the squares of the digits of the second number. This continues until\nthe 999th number. What is the 999th number?\nThe first few numbers are 2024, 24, 20, 4, 16, 37, 58, 89, 145, 42, 20, . . .. So the 3rd number\nis the same as the 11th number. After this the sequence will cycle through these 8\nnumbers. Since 1000 is a multiple of 8, the 1000th number will be the same as the 8th\nnumber. So the 999th number will be the same as the 7th number, which is 58,\nhence (58)."
+    },
+    {
+      "number": 30,
+      "type": "integer",
+      "points": 10,
+      "answer": "60",
+      "images": [
+        "/generated/b/2024/q30-1.png"
+      ],
+      "explanation": "30. To cross a river, there are 13 stepping stones in a line, equally spaced 50 centimetres\napart.\nI would like to start at the first and finish at the last, and step on each stepping stone\nexactly once. I can take both 50 centimetre and 1 metre steps, both forwards and\nbackwards.\nHow many ways are there for me to cross the river?\nWe work through the cases for the number of stepping stones, until we find a pattern and\na rule.\nStones\nPossibilities\nCount\n2\n1\n3\n1\n4\n2\n5\n3\n6\n4\n7\n6\nIn this table, the possibilities are grouped by whether they start with a 50 cm step or a\n100 cm step. If I start with a 50 cm step, the number of ways to continue is the same as\nthe number of ways to cross with one stone fewer. If I start with a 100 cm step, the next\ntwo steps must be 50 cm back then 100 cm forward, and then the number of ways to\ncontinue is the same as the number of ways to cross with three stones fewer.\nThis tells us the pattern in these numbers: 1 + 3 = 4, 2 + 4 = 6 and the next one will be\n3 + 6 = 9. We continue this pattern:\nStones\nCount\n2\n1\n3\n1\n4\n2\n5\n1\n+\n2\n=\n3\n6\n1\n+\n3\n=\n4\n7\n2\n+\n4\n=\n6\n8\n3\n+\n6\n=\n9\n9\n4\n+\n9\n=\n13\n10\n6\n+\n13\n=\n19\n11\n9\n+\n19\n=\n28\n12\n13\n+\n28\n=\n41\n13\n19\n+\n41\n=\n60\nSo there are 60 ways to cross the river like this,\nhence (60)."
+    }
+  ]
+}

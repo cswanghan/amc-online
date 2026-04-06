@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMC Online · 管理</title>
+    <script src="auth-guard.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --cream: #faf8f5; --warm: #f3ede6; --rose: #c4a08a; --rose-light: #e8d5c8;
+            --rose-bg: #fdf5f0; --text: #3d3530; --text-light: #8a7e76; --accent: #b07d62;
+            --success: #6b9a7d; --error: #c47070;
+        }
+        body { font-family: 'Noto Serif SC', serif; background: var(--cream); color: var(--text); }
+        .page { max-width: 800px; margin: 0 auto; padding: 40px 24px; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 6px; }
+        .sub { color: var(--text-light); font-size: 0.85rem; margin-bottom: 32px; }
+        .nav-row { display: flex; gap: 12px; margin-bottom: 28px; }
+        .nav-link {
+            color: var(--text-light); text-decoration: none; font-size: 0.85rem;
+            padding: 6px 16px; border: 1px solid var(--warm); border-radius: 14px;
+        }
+        .nav-link:hover { color: var(--accent); border-color: var(--rose); }
+
+        .section { margin-bottom: 36px; }
+        .section-title {
+            font-size: 0.8rem; color: var(--text-light); text-transform: uppercase;
+            letter-spacing: 2px; margin-bottom: 14px; padding-bottom: 8px;
+            border-bottom: 1px solid var(--warm);
+        }
+
+        .user-row {
+            background: white; border: 1px solid var(--warm); border-radius: 10px;
+            padding: 14px 18px; margin-bottom: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .user-info .name { font-weight: 600; }
+        .user-info .meta { font-size: 0.8rem; color: var(--text-light); margin-top: 2px; }
+        .user-actions { display: flex; gap: 8px; }
+        .action-btn {
+            padding: 6px 14px; border: none; border-radius: 14px; font-size: 0.8rem;
+            cursor: pointer; font-family: inherit; transition: all 0.15s;
+        }
+        .btn-approve { background: #edf5f0; color: #3d6b4f; }
+        .btn-approve:hover { background: #d4edda; }
+        .btn-reject { background: #fdf0f0; color: #8b4444; }
+        .btn-reject:hover { background: #f5d5d5; }
+
+        .invite-section { margin-top: 12px; }
+        .invite-form { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; }
+        .invite-form input {
+            padding: 8px 12px; border: 1px solid var(--warm); border-radius: 8px;
+            font-family: inherit; font-size: 0.85rem; width: 80px; background: var(--cream);
+        }
+        .invite-form button {
+            padding: 8px 16px; background: var(--accent); color: white; border: none;
+            border-radius: 14px; font-size: 0.85rem; cursor: pointer; font-family: inherit;
+        }
+
+        .code-list { }
+        .code-row {
+            background: white; border: 1px solid var(--warm); border-radius: 8px;
+            padding: 10px 14px; margin-bottom: 8px; font-size: 0.85rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .code-val { font-family: monospace; font-weight: 600; color: var(--accent); letter-spacing: 1px; }
+        .code-meta { color: var(--text-light); font-size: 0.8rem; }
+
+        .empty { color: var(--text-light); font-size: 0.85rem; padding: 20px; text-align: center; }
+        .error-msg { color: var(--error); font-size: 0.85rem; padding: 20px; text-align: center; }
+        .fb-card {
+            background: white; border: 1px solid var(--warm); border-radius: 10px;
+            padding: 14px 18px; margin-bottom: 10px;
+        }
+        .fb-card .fb-header {
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;
+        }
+        .fb-card .fb-user { font-weight: 600; }
+        .fb-card .fb-badge {
+            font-size: 0.72rem; padding: 2px 10px; border-radius: 10px;
+        }
+        .fb-badge-suggestion { background: #eef3ff; color: #4a6fa5; }
+        .fb-badge-praise { background: #edf5f0; color: #3d6b4f; }
+        .fb-badge-bug { background: #fdf0f0; color: #8b4444; }
+        .fb-card .fb-body { font-size: 0.88rem; line-height: 1.7; color: var(--text); }
+        .fb-card .fb-time { font-size: 0.78rem; color: var(--text-light); margin-top: 6px; }
+        .fb-pager { display: flex; justify-content: center; gap: 8px; margin-top: 16px; }
+        .fb-pager button {
+            padding: 6px 14px; border: 1px solid var(--warm); border-radius: 10px;
+            background: none; font-family: inherit; font-size: 0.82rem; cursor: pointer;
+            color: var(--text-light);
+        }
+        .fb-pager button:hover { border-color: var(--rose); color: var(--accent); }
+        .fb-pager button:disabled { opacity: 0.4; cursor: not-allowed; }
+        .status-tabs { display: flex; gap: 0; margin-bottom: 16px; border-bottom: 1px solid var(--warm); }
+        .st-tab {
+            padding: 8px 20px; font-size: 0.85rem; color: var(--text-light);
+            cursor: pointer; border-bottom: 2px solid transparent;
+        }
+        .st-tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+
+        /* UX Analytics */
+        .ux-period-tabs {
+            display: flex; gap: 8px; margin-bottom: 16px;
+        }
+        .ux-period-tab {
+            padding: 5px 14px; border: 1px solid var(--warm); border-radius: 14px;
+            font-size: 0.8rem; color: var(--text-light); cursor: pointer; background: none;
+            font-family: inherit;
+        }
+        .ux-period-tab.active { background: var(--accent); color: white; border-color: var(--accent); }
+
+        .ux-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+        @media (max-width: 600px) { .ux-grid { grid-template-columns: 1fr; } }
+        .ux-panel {
+            background: white; border: 1px solid var(--warm); border-radius: 10px;
+            padding: 16px 18px;
+        }
+        .ux-panel-title { font-weight: 600; font-size: 0.88rem; margin-bottom: 12px; }
+        .ux-panel-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 5px 0; font-size: 0.82rem;
+        }
+        .ux-panel-row .ux-label { color: var(--text); }
+        .ux-panel-row .ux-sub { color: var(--text-light); font-size: 0.75rem; }
+        .ux-panel-row .ux-count {
+            font-weight: 700; color: var(--accent); font-size: 0.9rem;
+            min-width: 32px; text-align: right;
+        }
+
+        /* Funnel */
+        .funnel-step { margin-bottom: 10px; }
+        .funnel-header { display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 3px; }
+        .funnel-header .pct { color: var(--text-light); }
+        .funnel-bar { height: 8px; background: var(--warm); border-radius: 4px; overflow: hidden; }
+        .funnel-bar .fill { height: 100%; background: var(--accent); border-radius: 4px; transition: width 0.3s; }
+
+        /* Summary cards */
+        .summary-row {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px; margin-bottom: 18px;
+        }
+        .summary-card {
+            background: white; border: 1px solid var(--warm); border-radius: 10px;
+            padding: 14px 16px; text-align: center;
+        }
+        .summary-card .num {
+            font-size: 1.4rem; font-weight: 700; color: var(--accent);
+            font-family: 'Playfair Display', serif;
+        }
+        .summary-card .label { font-size: 0.75rem; color: var(--text-light); margin-top: 2px; }
+
+        /* Daily chart */
+        .daily-bar-chart { margin-bottom: 20px; }
+        .daily-row {
+            display: flex; align-items: center; gap: 10px; margin-bottom: 6px; font-size: 0.8rem;
+        }
+        .daily-row .date { width: 70px; color: var(--text-light); text-align: right; flex-shrink: 0; }
+        .daily-row .bar-wrap { flex: 1; height: 22px; background: var(--warm); border-radius: 6px; overflow: hidden; position: relative; }
+        .daily-row .bar {
+            height: 100%; background: var(--rose-light); border-radius: 6px;
+            display: flex; align-items: center; padding-left: 8px;
+            font-size: 0.72rem; color: var(--text); font-weight: 600; min-width: fit-content;
+        }
+        .daily-row .meta { width: 120px; font-size: 0.75rem; color: var(--text-light); flex-shrink: 0; }
+
+        /* Activity cards */
+        .activity-card {
+            background: white; border: 1px solid var(--warm); border-radius: 10px;
+            padding: 16px 18px; margin-bottom: 10px;
+        }
+        .activity-card .card-header {
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;
+        }
+        .activity-card .name { font-weight: 600; }
+        .activity-card .role-badge {
+            font-size: 0.75rem; padding: 2px 10px; border-radius: 10px;
+            background: var(--rose-bg); color: var(--accent);
+        }
+        .activity-card .stats {
+            display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.82rem; color: var(--text-light);
+        }
+        .activity-card .stat-val { font-weight: 600; color: var(--text); }
+        .activity-card .no-quiz { font-size: 0.82rem; color: var(--text-light); font-style: italic; }
+        .accuracy-bar {
+            display: inline-block; width: 60px; height: 6px; background: var(--warm);
+            border-radius: 3px; vertical-align: middle; margin-left: 4px; overflow: hidden;
+        }
+        .accuracy-bar .fill { height: 100%; border-radius: 3px; }
+    </style>
+</head>
+<body>
+<div class="page">
+    <h1>管理后台</h1>
+    <p class="sub" id="welcomeText">管理员</p>
+
+    <div class="nav-row">
+        <a href="index.html" class="nav-link">← 首页</a>
+        <a href="javascript:logout()" class="nav-link">退出登录</a>
+    </div>
+
+    <div class="section" id="adminSection" style="display:none;">
+        <div class="section-title">用户管理</div>
+        <div class="status-tabs">
+            <div class="st-tab active" onclick="loadUsers('pending')">待审核</div>
+            <div class="st-tab" onclick="loadUsers('approved')">已通过</div>
+            <div class="st-tab" onclick="loadUsers('rejected')">已拒绝</div>
+            <div class="st-tab" onclick="loadActivity()">数据分析</div>
+            <div class="st-tab" onclick="loadUX(7)">UX 分析</div>
+            <div class="st-tab" onclick="loadFeedback(1)">用户反馈</div>
+        </div>
+        <div id="userList"><div class="empty">加载中...</div></div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">邀请码</div>
+        <div class="invite-form">
+            <span style="font-size:0.85rem;">使用次数</span>
+            <input type="number" id="maxUses" value="5" min="1" max="50">
+            <span style="font-size:0.85rem;">有效天数</span>
+            <input type="number" id="expDays" value="7" min="1" max="90">
+            <button onclick="createInvite()">生成邀请码</button>
+        </div>
+        <div id="codeList"><div class="empty">加载中...</div></div>
+    </div>
+</div>
+
+<script>
+    const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+    document.getElementById('welcomeText').textContent = `${user.username || ''} · ${user.role === 'admin' ? '管理员' : '用户'}`;
+
+    if (user.role === 'admin') {
+        document.getElementById('adminSection').style.display = 'block';
+        loadUsers('pending');
+    }
+    loadInvites();
+
+    async function api(path, opts = {}) {
+        try {
+            const r = await fetch(path, {
+                ...opts,
+                headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json', ...opts.headers },
+            });
+            if (r.status === 401) { localStorage.clear(); window.location.href = 'login.html'; return null; }
+
+            const text = await r.text();
+            try {
+                return JSON.parse(text);
+            } catch {
+                throw new Error(`服务端返回非 JSON (${r.status}): ${text.slice(0, 120)}`);
+            }
+        } catch (err) {
+            if (err.message.startsWith('服务端')) throw err;
+            throw new Error('网络错误: ' + err.message);
+        }
+    }
+
+    function setTab(label) {
+        document.querySelectorAll('.st-tab').forEach(t =>
+            t.classList.toggle('active', t.textContent === label));
+    }
+
+    function showError(container, msg) {
+        document.getElementById(container).innerHTML = `<div class="error-msg">${escapeHtml(msg)}</div>`;
+    }
+
+    async function loadUsers(status) {
+        setTab({pending:'待审核',approved:'已通过',rejected:'已拒绝'}[status]);
+        const list = document.getElementById('userList');
+        list.innerHTML = '<div class="empty">加载中...</div>';
+
+        try {
+            const data = await api(`/api/admin/users?status=${status}`);
+            if (!data?.users?.length) {
+                list.innerHTML = '<div class="empty">暂无数据</div>';
+                return;
+            }
+
+            list.innerHTML = data.users.map(u => `
+                <div class="user-row">
+                    <div class="user-info">
+                        <div class="name">${escapeHtml(u.username)}</div>
+                        <div class="meta">${u.email || '无邮箱'} · ${u.phone || '无手机号'} · ${u.created_at?.slice(0,10) || ''}</div>
+                    </div>
+                    ${status === 'pending' ? `
+                    <div class="user-actions">
+                        <button class="action-btn btn-approve" onclick="approveUser(${u.id}, 'approve')">通过</button>
+                        <button class="action-btn btn-reject" onclick="approveUser(${u.id}, 'reject')">拒绝</button>
+                    </div>` : ''}
+                </div>
+            `).join('');
+        } catch (e) {
+            showError('userList', e.message);
+        }
+    }
+
+    async function loadActivity() {
+        setTab('数据分析');
+        const list = document.getElementById('userList');
+        list.innerHTML = '<div class="empty">加载中...</div>';
+
+        try {
+            const data = await api('/api/admin/activity');
+            if (!data) return;
+
+            let html = '';
+
+            // Summary cards
+            const s = data.summary || {};
+            html += `<div class="summary-row">
+                <div class="summary-card"><div class="num">${s.totalUsers || 0}</div><div class="label">注册用户</div></div>
+                <div class="summary-card"><div class="num">${s.activeUsers || 0}</div><div class="label">活跃用户</div></div>
+                <div class="summary-card"><div class="num">${s.totalSessions || 0}</div><div class="label">总做题次数</div></div>
+                <div class="summary-card"><div class="num">${s.platformAvgScore || 0}</div><div class="label">平台均分</div></div>
+                <div class="summary-card"><div class="num">${s.platformAccuracy || 0}%</div><div class="label">平台正确率</div></div>
+            </div>`;
+
+            // Daily bar chart
+            const daily = data.daily || [];
+            if (daily.length) {
+                const maxSessions = Math.max(...daily.map(d => d.sessions), 1);
+                html += '<div class="daily-bar-chart">';
+                daily.forEach(d => {
+                    const pct = Math.max((d.sessions / maxSessions) * 100, 8);
+                    html += `<div class="daily-row">
+                        <span class="date">${d.date?.slice(5) || ''}</span>
+                        <div class="bar-wrap"><div class="bar" style="width:${pct}%">${d.sessions} 次</div></div>
+                        <span class="meta">${d.users} 人 · 均分 ${d.avg_score}</span>
+                    </div>`;
+                });
+                html += '</div>';
+            }
+
+            // Per-user cards
+            if (data.users?.length) {
+                html += data.users.map(u => {
+                    if (!u.total_quizzes) {
+                        return `<div class="activity-card">
+                            <div class="card-header">
+                                <span class="name">${escapeHtml(u.username)}</span>
+                                <span class="role-badge">${u.role === 'admin' ? '管理员' : '用户'}</span>
+                            </div>
+                            <div class="no-quiz">注册于 ${u.registered_at?.slice(0,10) || '—'}，尚未做题</div>
+                        </div>`;
+                    }
+                    const accuracy = u.total_questions > 0 ? Math.round(u.total_correct / u.total_questions * 100) : 0;
+                    const barColor = accuracy >= 70 ? 'var(--success)' : accuracy >= 40 ? 'var(--accent)' : 'var(--error)';
+                    return `<div class="activity-card">
+                        <div class="card-header">
+                            <span class="name">${escapeHtml(u.username)}</span>
+                            <span class="role-badge">${u.role === 'admin' ? '管理员' : '用户'}</span>
+                        </div>
+                        <div class="stats">
+                            <span>做题 <span class="stat-val">${u.total_quizzes}</span> 次</span>
+                            <span>均分 <span class="stat-val">${u.avg_score ?? '-'}</span></span>
+                            <span>最高 <span class="stat-val">${u.best_score ?? '-'}</span></span>
+                            <span>正确率 <span class="stat-val">${accuracy}%</span>
+                                <span class="accuracy-bar"><span class="fill" style="width:${accuracy}%;background:${barColor}"></span></span>
+                            </span>
+                            <span>级别 <span class="stat-val">${u.levels_practiced}</span></span>
+                            <span>最近 <span class="stat-val">${u.last_quiz_at?.slice(0, 10) || '-'}</span></span>
+                        </div>
+                    </div>`;
+                }).join('');
+            }
+
+            list.innerHTML = html || '<div class="empty">暂无数据</div>';
+        } catch (e) {
+            showError('userList', e.message);
+        }
+    }
+
+    async function approveUser(id, action) {
+        try {
+            await api('/api/admin/approve', { method: 'POST', body: JSON.stringify({ userId: id, action }) });
+            loadUsers('pending');
+        } catch (e) {
+            alert('操作失败: ' + e.message);
+        }
+    }
+
+    async function loadInvites() {
+        try {
+            const data = await api('/api/invite/mine');
+            const list = document.getElementById('codeList');
+
+            if (!data?.codes?.length) {
+                list.innerHTML = '<div class="empty">还没有邀请码</div>';
+                return;
+            }
+
+            list.innerHTML = data.codes.map(c => {
+                const expired = new Date(c.expires_at) < new Date();
+                return `
+                <div class="code-row" style="${expired ? 'opacity:0.5' : ''}">
+                    <span class="code-val">${c.code}</span>
+                    <span class="code-meta">${c.used_count}/${c.max_uses} 已用 · ${expired ? '已过期' : '有效至 ' + c.expires_at.slice(0,10)}</span>
+                </div>`;
+            }).join('');
+        } catch (e) {
+            document.getElementById('codeList').innerHTML = `<div class="error-msg">${escapeHtml(e.message)}</div>`;
+        }
+    }
+
+    async function createInvite() {
+        try {
+            const maxUses = parseInt(document.getElementById('maxUses').value) || 5;
+            const expiresInDays = parseInt(document.getElementById('expDays').value) || 7;
+            await api('/api/invite/create', { method: 'POST', body: JSON.stringify({ maxUses, expiresInDays }) });
+            loadInvites();
+        } catch (e) {
+            alert('生成失败: ' + e.message);
+        }
+    }
+
+    // === UX Analytics ===
+    const frictionLabels = {
+        low_engagement_bounce: '低参与快速离开',
+        js_error: '前端脚本错误',
+        promise_rejection: '异步异常',
+        page_load_slow: '页面加载过慢',
+        auth_login_failure: '登录失败',
+        auth_register_failure: '注册失败',
+        quiz_in_progress_leave: '做题中途离开',
+        quiz_submit_failed: '提交答卷失败',
+    };
+
+    async function loadUX(days) {
+        setTab('UX 分析');
+        const list = document.getElementById('userList');
+        list.innerHTML = '<div class="empty">加载中...</div>';
+
+        try {
+            const data = await api(`/api/admin/ux-summary?days=${days}`);
+            if (!data) return;
+            const o = data.overview || {};
+            const a = data.auth || {};
+            const q = data.quiz || {};
+            const loginRate = a.loginAttempts > 0 ? Math.round(a.loginSuccess / a.loginAttempts * 100) : 0;
+
+            let html = '';
+
+            // Period tabs
+            html += '<div class="ux-period-tabs">';
+            [3,7,14,30].forEach(d => {
+                html += `<button class="ux-period-tab ${d === days ? 'active' : ''}" onclick="loadUX(${d})">近 ${d} 天</button>`;
+            });
+            html += '</div>';
+
+            // Overview cards
+            html += `<div class="summary-row">
+                <div class="summary-card">
+                    <div class="num">${o.pageViews}</div><div class="label">页面浏览</div>
+                    <div style="font-size:0.72rem;color:var(--text-light);margin-top:2px">活跃会话 ${o.activeSessions}</div>
+                </div>
+                <div class="summary-card">
+                    <div class="num">${o.avgDurationSeconds}s</div><div class="label">平均停留</div>
+                    <div style="font-size:0.72rem;color:var(--text-light);margin-top:2px">低参与跳出 ${o.bounces}</div>
+                </div>
+                <div class="summary-card">
+                    <div class="num">${o.errors}</div><div class="label">错误事件</div>
+                    <div style="font-size:0.72rem;color:var(--text-light);margin-top:2px">脚本 / 接口 / 加载</div>
+                </div>
+                <div class="summary-card">
+                    <div class="num">${loginRate}%</div><div class="label">登录成功率</div>
+                    <div style="font-size:0.72rem;color:var(--text-light);margin-top:2px">${a.loginSuccess} / ${a.loginAttempts}</div>
+                </div>
+            </div>`;
+
+            // Quiz stats row
+            html += `<div class="summary-row">
+                <div class="summary-card">
+                    <div class="num">${q.starts}</div><div class="label">做题启动</div>
+                    <div style="font-size:0.72rem;color:var(--text-light);margin-top:2px">提交成功 ${q.submitSuccess}</div>
+                </div>
+                <div class="summary-card">
+                    <div class="num">${q.saveHistorySuccess}</div><div class="label">历史保存</div>
+                    <div style="font-size:0.72rem;color:var(--text-light);margin-top:2px">提交失败 ${q.submitFailed}</div>
+                </div>
+                <div class="summary-card">
+                    <div class="num">${q.inProgressLeave}</div><div class="label">中途离开</div>
+                    <div style="font-size:0.72rem;color:var(--text-light);margin-top:2px">做题放弃</div>
+                </div>
+                <div class="summary-card">
+                    <div class="num">${a.registerSuccess}</div><div class="label">注册成功</div>
+                    <div style="font-size:0.72rem;color:var(--text-light);margin-top:2px">失败 ${a.registerFailure}</div>
+                </div>
+            </div>`;
+
+            // Two-column: pages + friction
+            html += '<div class="ux-grid">';
+
+            // Top pages
+            const pages = data.pages || [];
+            if (pages.length) {
+                html += '<div class="ux-panel"><div class="ux-panel-title">高访问页面</div>';
+                pages.forEach(p => {
+                    html += `<div class="ux-panel-row">
+                        <div>
+                            <div class="ux-label">${escapeHtml(p.pagePath)}</div>
+                            <div class="ux-sub">平均停留 ${Math.round(p.avgDurationSeconds)}s · 跳出 ${p.bounceCount}</div>
+                        </div>
+                        <div class="ux-count">${p.views}</div>
+                    </div>`;
+                });
+                html += '</div>';
+            }
+
+            // Friction
+            const friction = data.friction || [];
+            if (friction.length) {
+                html += '<div class="ux-panel"><div class="ux-panel-title">高摩擦事件</div>';
+                friction.forEach(f => {
+                    html += `<div class="ux-panel-row">
+                        <span class="ux-label">${frictionLabels[f.eventName] || f.eventName}</span>
+                        <span class="ux-count">${f.total}</span>
+                    </div>`;
+                });
+                html += '</div>';
+            }
+
+            html += '</div>';
+
+            // Quiz funnel
+            const funnel = data.quizFunnel || [];
+            if (funnel.length && funnel[0].count > 0) {
+                const maxCount = funnel[0].count;
+                html += '<div class="ux-panel" style="margin-top:12px"><div class="ux-panel-title">测验转化漏斗</div>';
+                funnel.forEach((step, i) => {
+                    const pct = i === 0 ? 100 : (funnel[0].count > 0 ? Math.round(step.count / funnel[0].count * 100) : 0);
+                    const barPct = maxCount > 0 ? Math.max(step.count / maxCount * 100, 2) : 0;
+                    html += `<div class="funnel-step">
+                        <div class="funnel-header">
+                            <span>${step.label}</span>
+                            <span class="pct">${step.count} · ${pct}%</span>
+                        </div>
+                        <div class="funnel-bar"><div class="fill" style="width:${barPct}%"></div></div>
+                    </div>`;
+                });
+                html += '</div>';
+            }
+
+            list.innerHTML = html || '<div class="empty">暂无分析数据，等待用户访问产生事件</div>';
+        } catch (e) {
+            showError('userList', e.message);
+        }
+    }
+
+    const fbTypeLabels = { suggestion: '建议', praise: '表扬', bug: '问题' };
+    const fbTypeCls = { suggestion: 'fb-badge-suggestion', praise: 'fb-badge-praise', bug: 'fb-badge-bug' };
+
+    async function loadFeedback(page = 1) {
+        setTab('用户反馈');
+        const list = document.getElementById('userList');
+        list.innerHTML = '<div class="empty">加载中...</div>';
+
+        try {
+            const data = await api(`/api/admin/feedback?page=${page}`);
+            if (!data?.feedback?.length) {
+                list.innerHTML = '<div class="empty">暂无反馈</div>';
+                return;
+            }
+
+            let html = data.feedback.map(f => `
+                <div class="fb-card">
+                    <div class="fb-header">
+                        <span class="fb-user">${escapeHtml(f.username || '匿名')}</span>
+                        <span class="fb-badge ${fbTypeCls[f.type] || ''}">${fbTypeLabels[f.type] || f.type}</span>
+                    </div>
+                    <div class="fb-body">${escapeHtml(f.content)}</div>
+                    <div class="fb-time">${f.created_at?.slice(0, 16).replace('T', ' ') || ''}</div>
+                </div>
+            `).join('');
+
+            if (data.pages > 1) {
+                html += `<div class="fb-pager">
+                    <button ${page <= 1 ? 'disabled' : ''} onclick="loadFeedback(${page - 1})">上一页</button>
+                    <span style="line-height:32px;font-size:0.82rem;color:var(--text-light)">${page} / ${data.pages}</span>
+                    <button ${page >= data.pages ? 'disabled' : ''} onclick="loadFeedback(${page + 1})">下一页</button>
+                </div>`;
+            }
+
+            list.innerHTML = html;
+        } catch (e) {
+            showError('userList', e.message);
+        }
+    }
+
+    function escapeHtml(s) {
+        const d = document.createElement('div');
+        d.textContent = s;
+        return d.innerHTML;
+    }
+
+    function logout() {
+        localStorage.clear();
+        window.location.href = 'login.html';
+    }
+</script>
+</body>
+</html>

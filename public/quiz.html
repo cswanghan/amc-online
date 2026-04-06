@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMC Practice · 在线练习</title>
+    <script src="analytics.js"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #f5efe8;
+            --panel: #fffaf4;
+            --line: rgba(90, 58, 36, 0.14);
+            --text: #2e251f;
+            --muted: #76695d;
+            --accent: #9d4e28;
+            --accent-dark: #7f3a1a;
+            --accent-soft: rgba(157, 78, 40, 0.08);
+            --ok: #2f7d5a;
+            --ok-soft: #ebf7f1;
+            --bad: #b74b4b;
+            --bad-soft: #fdf0f0;
+            --shadow: 0 20px 60px rgba(55, 31, 18, 0.09);
+        }
+        body {
+            min-height: 100vh;
+            font-family: "Georgia", "STSong", serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top right, rgba(157, 78, 40, 0.14), transparent 22%),
+                linear-gradient(180deg, #fcf8f4 0%, var(--bg) 100%);
+        }
+        .page {
+            width: min(1160px, calc(100vw - 32px));
+            margin: 0 auto;
+            padding: 28px 0 52px;
+        }
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .back-link {
+            display: inline-flex;
+            text-decoration: none;
+            color: var(--muted);
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 8px 14px;
+            background: rgba(255,255,255,0.76);
+            font-size: 0.85rem;
+        }
+        .back-link:hover { color: var(--accent); }
+        .heading h1 { font-size: clamp(2rem, 4vw, 3rem); }
+        .heading p {
+            margin-top: 8px;
+            color: var(--muted);
+            line-height: 1.8;
+            max-width: 760px;
+            font-size: 0.93rem;
+        }
+        .hidden { display: none !important; }
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .tab {
+            padding: 10px 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,0.78);
+            color: var(--muted);
+            cursor: pointer;
+            font: inherit;
+        }
+        .tab.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+        .notice {
+            background: linear-gradient(135deg, rgba(157, 78, 40, 0.1), rgba(157, 78, 40, 0.04));
+            border: 1px solid rgba(157, 78, 40, 0.16);
+            border-radius: 24px;
+            padding: 22px 24px;
+            margin-bottom: 18px;
+        }
+        .notice strong {
+            display: block;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .notice p {
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 0.9rem;
+        }
+        .selector-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+        .selector-card,
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 26px;
+            box-shadow: var(--shadow);
+        }
+        .selector-card {
+            padding: 22px 20px;
+            display: grid;
+            gap: 12px;
+        }
+        .selector-card strong {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+        .selector-card .meta,
+        .selector-card .desc,
+        .panel p,
+        .panel li {
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 0.88rem;
+        }
+        .badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .badge {
+            display: inline-flex;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.75rem;
+        }
+        .selector-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .btn, .link-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            border-radius: 14px;
+            padding: 10px 14px;
+            font-size: 0.85rem;
+            border: 1px solid var(--line);
+            background: white;
+            color: var(--text);
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .btn.primary, .link-btn.primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            border-color: var(--accent);
+            color: white;
+        }
+        .btn.secondary {
+            background: transparent;
+        }
+        .btn.disabled, .link-btn.disabled {
+            opacity: 0.45;
+            pointer-events: none;
+        }
+        .quiz-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 320px;
+            gap: 18px;
+        }
+        .panel {
+            padding: 22px;
+        }
+        .question-meta {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
+        .chip {
+            display: inline-flex;
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.76rem;
+        }
+        .question-title {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        .images {
+            display: grid;
+            gap: 14px;
+            margin-top: 18px;
+        }
+        .images img {
+            width: 100%;
+            display: block;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: white;
+        }
+        .answer-block {
+            display: grid;
+            gap: 12px;
+            margin-top: 18px;
+        }
+        .choice-grid {
+            display: grid;
+            gap: 10px;
+        }
+        .choice {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 12px 14px;
+            background: white;
+            cursor: pointer;
+        }
+        .choice.selected {
+            border-color: var(--accent);
+            background: var(--accent-soft);
+        }
+        .choice.correct {
+            border-color: var(--ok);
+            background: var(--ok-soft);
+        }
+        .choice.wrong {
+            border-color: var(--bad);
+            background: var(--bad-soft);
+        }
+        .choice-bubble {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid var(--line);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .choice.selected .choice-bubble {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: white;
+        }
+        .integer-input {
+            width: 180px;
+            max-width: 100%;
+            padding: 12px 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: white;
+            font: inherit;
+            font-size: 1rem;
+        }
+        .integer-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .feedback {
+            border-radius: 16px;
+            padding: 14px 16px;
+            font-size: 0.88rem;
+            line-height: 1.8;
+        }
+        .feedback.ok {
+            background: var(--ok-soft);
+            color: var(--ok);
+            border: 1px solid rgba(47, 125, 90, 0.18);
+        }
+        .feedback.bad {
+            background: var(--bad-soft);
+            color: var(--bad);
+            border: 1px solid rgba(183, 75, 75, 0.16);
+        }
+        .explanation {
+            margin-top: 16px;
+            padding: 16px;
+            border-radius: 18px;
+            background: #f9f4ee;
+            border: 1px solid var(--line);
+            white-space: pre-wrap;
+            line-height: 1.8;
+            font-size: 0.86rem;
+            color: var(--muted);
+        }
+        .sidebar {
+            display: grid;
+            gap: 16px;
+            align-content: start;
+        }
+        .status-card {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+            padding: 18px;
+        }
+        .timer {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+        .status-card p {
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 0.84rem;
+        }
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 8px;
+            margin-top: 14px;
+        }
+        .nav-cell {
+            aspect-ratio: 1;
+            border-radius: 50%;
+            border: 1px solid var(--line);
+            background: white;
+            cursor: pointer;
+            font: inherit;
+            color: var(--muted);
+        }
+        .nav-cell.current {
+            border-color: var(--accent);
+            color: var(--accent);
+            font-weight: 700;
+        }
+        .nav-cell.answered {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+        .result-card {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            box-shadow: var(--shadow);
+            padding: 28px;
+            text-align: center;
+        }
+        .result-score {
+            font-size: 3rem;
+            color: var(--accent);
+            margin: 12px 0 6px;
+        }
+        .result-sub {
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 0.9rem;
+        }
+        .result-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        @media (max-width: 920px) {
+            .selector-grid, .quiz-layout { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="topbar">
+            <div class="heading">
+                <a class="back-link" href="index.html">← 返回首页</a>
+                <h1>AMC 在线练习</h1>
+                <p id="pageLead">选择层级与年份，进入已生成题集的在线练习。未就绪年份会继续保留 PDF 浏览入口。</p>
+            </div>
+        </div>
+
+        <div class="tabs" id="levelTabs">
+            <button class="tab active" data-level="a">AMC A · 3-4 年级</button>
+            <button class="tab" data-level="b">AMC B · 5-6 年级</button>
+            <button class="tab" data-level="c">AMC C · 7-8 年级</button>
+        </div>
+
+        <section id="selectorView">
+            <div class="notice" id="selectorNotice">
+                <strong>读取题库中</strong>
+                <p>正在检查哪些年份已经具备逐题题图和答案 JSON。</p>
+            </div>
+            <div class="selector-grid" id="selectorGrid">
+                <div class="selector-card">
+                    <strong>读取中</strong>
+                    <div class="desc">正在加载年份状态。</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quizView" class="hidden">
+            <div class="quiz-layout">
+                <div class="panel">
+                    <div class="question-meta" id="questionMeta"></div>
+                    <div class="question-title" id="questionTitle">题目 1</div>
+                    <p id="questionDesc">请根据题图作答。</p>
+                    <div class="images" id="questionImages"></div>
+                    <div class="answer-block" id="answerBlock"></div>
+                    <div id="feedbackHost"></div>
+                    <div id="explanationHost"></div>
+                    <div class="result-actions" style="justify-content:flex-start; margin-top:18px;">
+                        <button class="btn secondary" id="prevBtn">上一题</button>
+                        <button class="btn secondary" id="nextBtn">下一题</button>
+                        <button class="btn primary" id="submitBtn">提交答卷</button>
+                    </div>
+                </div>
+
+                <aside class="sidebar">
+                    <div class="status-card">
+                        <div class="timer" id="timerValue">60:00</div>
+                        <p id="progressText">已答 0 / 0</p>
+                    </div>
+                    <div class="status-card">
+                        <p id="quizSummary">加载题集信息中。</p>
+                        <div class="nav-grid" id="navGrid"></div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section id="resultView" class="hidden">
+            <div class="result-card">
+                <h2>完成本套练习</h2>
+                <div class="result-score" id="resultScore">0</div>
+                <div class="result-sub" id="resultSummary">正在计算成绩。</div>
+                <div class="result-actions">
+                    <button class="btn primary" id="reviewBtn">查看解析</button>
+                    <button class="btn secondary" id="restartBtn">重新开始</button>
+                    <a class="link-btn" id="paperLink" href="papers.html">打开真题</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const state = {
+            manifest: null,
+            currentLevel: new URLSearchParams(location.search).get("level") || "a",
+            selectedYear: Number(new URLSearchParams(location.search).get("year") || 0) || null,
+            questionSet: null,
+            currentIndex: 0,
+            answers: {},
+            reviewMode: false,
+            timerHandle: null,
+            deadline: null,
+            lastScore: null,
+        };
+
+        function currentLevelData() {
+            return state.manifest?.levels?.find((item) => item.id === state.currentLevel) || null;
+        }
+
+        function currentYearEntry() {
+            const level = currentLevelData();
+            return level?.years?.find((item) => item.year === state.selectedYear) || null;
+        }
+
+        function currentQuestion() {
+            return state.questionSet?.questions?.[state.currentIndex] || null;
+        }
+
+        function setView(name) {
+            document.getElementById("selectorView").classList.toggle("hidden", name !== "selector");
+            document.getElementById("quizView").classList.toggle("hidden", name !== "quiz");
+            document.getElementById("resultView").classList.toggle("hidden", name !== "result");
+        }
+
+        function renderTabs() {
+            document.querySelectorAll(".tab").forEach((tab) => {
+                tab.classList.toggle("active", tab.dataset.level === state.currentLevel);
+            });
+        }
+
+        function renderSelector() {
+            const level = currentLevelData();
+            const notice = document.getElementById("selectorNotice");
+            const host = document.getElementById("selectorGrid");
+
+            if (!level) {
+                notice.innerHTML = "<strong>未找到层级数据</strong><p>请先运行题库构建脚本。</p>";
+                host.innerHTML = "";
+                return;
+            }
+
+            const ready = level.years.filter((item) => item.quizReady).length;
+            notice.innerHTML = `
+                <strong>${level.label} · ${level.grade}</strong>
+                <p>当前层级共 ${level.years.length} 个年份，已完成 ${ready} 套在线题集。未完成年份保留 PDF 真题浏览入口。</p>
+            `;
+
+            host.innerHTML = level.years.map((year) => `
+                <article class="selector-card">
+                    <strong>${year.year}</strong>
+                    <div class="meta">${level.label}</div>
+                    <div class="badges">
+                        <span class="badge">${year.paper ? "有试卷" : "无试卷"}</span>
+                        <span class="badge">${year.answer ? "有答案" : "无答案"}</span>
+                        <span class="badge">${year.quizReady ? "题集已生成" : "等待切题"}</span>
+                    </div>
+                    <div class="desc">${year.note || "当前年份尚未备注。"}</div>
+                    <div class="selector-actions">
+                        <button class="btn primary ${year.quizReady ? "" : "disabled"}" data-action="start" data-year="${year.year}">开始练习</button>
+                        <a class="link-btn" href="papers.html?level=${state.currentLevel}">查看真题</a>
+                        <a class="link-btn ${year.quizReady ? "" : "disabled"}" href="${year.questionDataUrl || "#"}" target="_blank" rel="noreferrer">题目 JSON</a>
+                    </div>
+                </article>
+            `).join("");
+        }
+
+        function choiceLetters() {
+            return ["A", "B", "C", "D", "E"];
+        }
+
+        function renderQuestion() {
+            const question = currentQuestion();
+            if (!question) return;
+
+            document.getElementById("questionMeta").innerHTML = [
+                `<span class="chip">${state.questionSet.level.toUpperCase()} · ${state.questionSet.year}</span>`,
+                `<span class="chip">第 ${question.number} 题</span>`,
+                `<span class="chip">${question.points} 分</span>`,
+                `<span class="chip">${question.type === "choice" ? "选择题" : "整数题"}</span>`
+            ].join("");
+            document.getElementById("questionTitle").textContent = `题目 ${question.number}`;
+            document.getElementById("questionDesc").textContent =
+                question.type === "choice" ? "请根据题图选择 A-E 中的正确答案。" : "请输入 0-999 之间的整数答案。";
+
+            document.getElementById("questionImages").innerHTML = question.images.map((src, index) => `
+                <img src="${src}" alt="题目 ${question.number} - 图 ${index + 1}">
+            `).join("");
+
+            const currentAnswer = state.answers[question.number] ?? "";
+            const inReview = state.reviewMode;
+            let answerHtml = "";
+            if (question.type === "choice") {
+                answerHtml = `<div class="choice-grid">` + choiceLetters().map((letter) => {
+                    const selected = currentAnswer === letter;
+                    let className = "choice";
+                    if (selected) className += " selected";
+                    if (inReview && letter === question.answer) className += " correct";
+                    if (inReview && selected && letter !== question.answer) className += " wrong";
+                    return `
+                        <button class="${className}" data-choice="${letter}" ${inReview ? "disabled" : ""}>
+                            <span class="choice-bubble">${letter}</span>
+                            <span>${letter}</span>
+                        </button>
+                    `;
+                }).join("") + `</div>`;
+            } else {
+                answerHtml = `
+                    <label>
+                        <input class="integer-input" id="integerInput" type="text" inputmode="numeric" maxlength="3"
+                            value="${currentAnswer}" ${inReview ? "disabled" : ""} placeholder="例如 270">
+                    </label>
+                `;
+            }
+            document.getElementById("answerBlock").innerHTML = answerHtml;
+
+            const feedbackHost = document.getElementById("feedbackHost");
+            const explanationHost = document.getElementById("explanationHost");
+            feedbackHost.innerHTML = "";
+            explanationHost.innerHTML = "";
+            if (inReview) {
+                const isRight = normalizeAnswer(currentAnswer, question.type) === normalizeAnswer(question.answer, question.type);
+                feedbackHost.innerHTML = `
+                    <div class="feedback ${isRight ? "ok" : "bad"}">
+                        你的答案：${currentAnswer || "未作答"}<br>
+                        正确答案：${question.answer}
+                    </div>
+                `;
+                explanationHost.innerHTML = `<div class="explanation">${escapeHtml(question.explanation)}</div>`;
+            }
+
+            renderNavGrid();
+            renderStatusText();
+            document.getElementById("prevBtn").disabled = state.currentIndex === 0;
+            document.getElementById("nextBtn").disabled = state.currentIndex === state.questionSet.questions.length - 1;
+            document.getElementById("submitBtn").classList.toggle("hidden", state.reviewMode);
+            document.getElementById("quizSummary").textContent =
+                `${state.questionSet.level.toUpperCase()} ${state.questionSet.year} · 共 ${state.questionSet.totalQuestions} 题 · 总分 ${state.questionSet.totalScore}`;
+        }
+
+        function renderNavGrid() {
+            const host = document.getElementById("navGrid");
+            host.innerHTML = state.questionSet.questions.map((question, index) => {
+                const answered = !!state.answers[question.number];
+                const classes = [
+                    "nav-cell",
+                    answered ? "answered" : "",
+                    index === state.currentIndex ? "current" : "",
+                ].filter(Boolean).join(" ");
+                return `<button class="${classes}" data-index="${index}">${question.number}</button>`;
+            }).join("");
+        }
+
+        function renderStatusText() {
+            const answeredCount = Object.values(state.answers).filter(Boolean).length;
+            document.getElementById("progressText").textContent = `已答 ${answeredCount} / ${state.questionSet.totalQuestions}`;
+        }
+
+        function normalizeAnswer(value, type) {
+            const text = String(value || "").trim().toUpperCase();
+            if (type === "integer") {
+                const digits = text.replace(/[^\d]/g, "");
+                return digits;
+            }
+            return text;
+        }
+
+        function updateAnswer(value) {
+            const question = currentQuestion();
+            if (!question || state.reviewMode) return;
+            state.answers[question.number] = normalizeAnswer(value, question.type);
+            renderNavGrid();
+            renderStatusText();
+        }
+
+        function moveTo(index) {
+            if (!state.questionSet) return;
+            state.currentIndex = Math.max(0, Math.min(index, state.questionSet.questions.length - 1));
+            renderQuestion();
+        }
+
+        function startTimer() {
+            clearInterval(state.timerHandle);
+            state.deadline = Date.now() + state.questionSet.durationMinutes * 60 * 1000;
+            state.timerHandle = setInterval(() => {
+                const remain = Math.max(0, state.deadline - Date.now());
+                const totalSeconds = Math.floor(remain / 1000);
+                const minutes = Math.floor(totalSeconds / 60);
+                const seconds = totalSeconds % 60;
+                document.getElementById("timerValue").textContent =
+                    `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+                if (remain <= 0) {
+                    clearInterval(state.timerHandle);
+                    submitQuiz();
+                }
+            }, 1000);
+            document.getElementById("timerValue").textContent = "60:00";
+        }
+
+        function computeResult() {
+            let score = 0;
+            let correct = 0;
+            const details = state.questionSet.questions.map((question) => {
+                const userAnswer = normalizeAnswer(state.answers[question.number] || "", question.type);
+                const right = userAnswer === normalizeAnswer(question.answer, question.type);
+                if (right) {
+                    score += question.points;
+                    correct += 1;
+                }
+                return {
+                    question: question.number,
+                    answer: userAnswer,
+                    correct: question.answer,
+                    isRight: right,
+                    points: question.points,
+                };
+            });
+            return { score, correct, details };
+        }
+
+        async function saveResult(result) {
+            const token = localStorage.getItem("token");
+            if (!token) return;
+            try {
+                await fetch("/api/quiz/submit", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        level: state.questionSet.level,
+                        year: state.questionSet.year,
+                        duration: Math.max(0, Math.round((state.questionSet.durationMinutes * 60 * 1000 - (state.deadline - Date.now())) / 1000)),
+                        score: result.score,
+                        answers: result.details,
+                    }),
+                });
+            } catch (error) {
+                console.error("saveResult failed", error);
+            }
+        }
+
+        async function submitQuiz() {
+            if (state.reviewMode) return;
+            clearInterval(state.timerHandle);
+            const result = computeResult();
+            state.lastScore = result;
+            state.reviewMode = true;
+            document.getElementById("resultScore").textContent = `${result.score}`;
+            document.getElementById("resultSummary").textContent =
+                `答对 ${result.correct} / ${state.questionSet.totalQuestions} 题，得分 ${result.score} / ${state.questionSet.totalScore}。`;
+            document.getElementById("paperLink").href = `papers.html?level=${state.currentLevel}`;
+            setView("result");
+            renderQuestion();
+            saveResult(result);
+            window.AMCAnalytics?.track("quiz_submit_success", {
+                meta: {
+                    level: state.questionSet.level,
+                    year: state.questionSet.year,
+                    score: result.score,
+                    correct: result.correct
+                }
+            });
+        }
+
+        async function loadQuestionSet(yearEntry) {
+            const response = await fetch(yearEntry.questionDataUrl);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            state.questionSet = await response.json();
+            state.currentIndex = 0;
+            state.answers = {};
+            state.reviewMode = false;
+            startTimer();
+            setView("quiz");
+            renderQuestion();
+            window.AMCAnalytics?.track("quiz_start", {
+                meta: { level: state.questionSet.level, year: state.questionSet.year, total: state.questionSet.totalQuestions }
+            });
+        }
+
+        function escapeHtml(text) {
+            return String(text)
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;");
+        }
+
+        async function loadManifest() {
+            const response = await fetch("data/index.json");
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            state.manifest = await response.json();
+            renderTabs();
+            renderSelector();
+            setView("selector");
+
+            if (state.selectedYear) {
+                const yearEntry = currentYearEntry();
+                if (yearEntry?.quizReady) {
+                    loadQuestionSet(yearEntry).catch((error) => {
+                        console.error(error);
+                        setView("selector");
+                    });
+                }
+            }
+        }
+
+        document.getElementById("levelTabs").addEventListener("click", (event) => {
+            const button = event.target.closest(".tab");
+            if (!button) return;
+            clearInterval(state.timerHandle);
+            state.currentLevel = button.dataset.level;
+            state.selectedYear = null;
+            state.questionSet = null;
+            state.reviewMode = false;
+            state.answers = {};
+            history.replaceState(null, "", `quiz.html?level=${state.currentLevel}`);
+            renderTabs();
+            renderSelector();
+            setView("selector");
+        });
+
+        document.getElementById("selectorGrid").addEventListener("click", (event) => {
+            const button = event.target.closest('[data-action="start"]');
+            if (!button || button.classList.contains("disabled")) return;
+            const year = Number(button.dataset.year);
+            state.selectedYear = year;
+            history.replaceState(null, "", `quiz.html?level=${state.currentLevel}&year=${year}`);
+            const yearEntry = currentYearEntry();
+            if (!yearEntry?.quizReady) return;
+            loadQuestionSet(yearEntry).catch((error) => {
+                console.error(error);
+                alert(`题集加载失败：${error.message}`);
+            });
+        });
+
+        document.getElementById("answerBlock").addEventListener("click", (event) => {
+            const button = event.target.closest("[data-choice]");
+            if (!button) return;
+            updateAnswer(button.dataset.choice);
+            renderQuestion();
+        });
+
+        document.getElementById("answerBlock").addEventListener("input", (event) => {
+            const input = event.target.closest("#integerInput");
+            if (!input) return;
+            input.value = input.value.replace(/[^\d]/g, "").slice(0, 3);
+            updateAnswer(input.value);
+        });
+
+        document.getElementById("navGrid").addEventListener("click", (event) => {
+            const button = event.target.closest("[data-index]");
+            if (!button) return;
+            moveTo(Number(button.dataset.index));
+        });
+
+        document.getElementById("prevBtn").addEventListener("click", () => moveTo(state.currentIndex - 1));
+        document.getElementById("nextBtn").addEventListener("click", () => moveTo(state.currentIndex + 1));
+        document.getElementById("submitBtn").addEventListener("click", submitQuiz);
+        document.getElementById("reviewBtn").addEventListener("click", () => {
+            setView("quiz");
+            renderQuestion();
+        });
+        document.getElementById("restartBtn").addEventListener("click", () => {
+            const yearEntry = currentYearEntry();
+            if (!yearEntry?.quizReady) return;
+            loadQuestionSet(yearEntry);
+        });
+
+        loadManifest().catch((error) => {
+            document.getElementById("selectorNotice").innerHTML = `
+                <strong>加载失败</strong>
+                <p>${error.message}。请先运行 <code>npm run build:library</code>，以及生成题集脚本。</p>
+            `;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMC Online · Australian Mathematics Competition</title>
+    <script src="analytics.js"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #f6f0e8;
+            --panel: rgba(255, 251, 247, 0.84);
+            --panel-solid: #fffaf5;
+            --line: rgba(109, 72, 45, 0.14);
+            --text: #2f261f;
+            --muted: #756659;
+            --accent: #a14f2a;
+            --accent-deep: #7d3518;
+            --shadow: 0 24px 80px rgba(68, 40, 20, 0.12);
+        }
+        body {
+            min-height: 100vh;
+            font-family: "Georgia", "STSong", serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(161, 79, 42, 0.14), transparent 28%),
+                radial-gradient(circle at right 20%, rgba(222, 185, 156, 0.2), transparent 24%),
+                linear-gradient(180deg, #fbf7f2 0%, var(--bg) 100%);
+        }
+        .page {
+            width: min(1180px, calc(100vw - 32px));
+            margin: 0 auto;
+            padding: 28px 0 56px;
+        }
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+        .brand-kicker {
+            font-size: 0.76rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .brand h1 {
+            margin-top: 8px;
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            line-height: 0.95;
+        }
+        .brand p {
+            margin-top: 10px;
+            max-width: 620px;
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+        .top-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .pill {
+            text-decoration: none;
+            color: var(--muted);
+            padding: 10px 16px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: rgba(255,255,255,0.64);
+            font-size: 0.86rem;
+        }
+        .pill:hover { color: var(--accent); border-color: rgba(161, 79, 42, 0.35); }
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+            gap: 22px;
+            margin-bottom: 22px;
+        }
+        .hero-main, .hero-side, .card {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            backdrop-filter: blur(18px);
+            box-shadow: var(--shadow);
+        }
+        .hero-main {
+            border-radius: 34px;
+            padding: 34px 32px;
+        }
+        .hero-side {
+            border-radius: 28px;
+            padding: 24px;
+            display: grid;
+            gap: 18px;
+            align-content: start;
+        }
+        .level-tabs {
+            display: inline-flex;
+            padding: 6px;
+            gap: 6px;
+            border-radius: 999px;
+            background: rgba(161, 79, 42, 0.08);
+            margin-bottom: 24px;
+        }
+        .level-tab {
+            border: none;
+            background: transparent;
+            color: var(--muted);
+            padding: 10px 18px;
+            border-radius: 999px;
+            cursor: pointer;
+            font: inherit;
+        }
+        .level-tab.active {
+            background: white;
+            color: var(--accent);
+            box-shadow: 0 6px 18px rgba(98, 56, 29, 0.12);
+            font-weight: 700;
+        }
+        .hero-main h2 {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1;
+            margin-bottom: 16px;
+            max-width: 10ch;
+        }
+        .hero-main .lead {
+            color: var(--muted);
+            line-height: 1.9;
+            max-width: 58ch;
+            font-size: 0.95rem;
+        }
+        .level-meta {
+            margin: 18px 0 22px;
+            color: var(--muted);
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .meta-chip {
+            display: inline-flex;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(161, 79, 42, 0.08);
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 22px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 0.92rem;
+        }
+        .button.primary {
+            color: white;
+            background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+        }
+        .button.secondary {
+            color: var(--text);
+            background: white;
+            border: 1px solid var(--line);
+        }
+        .hero-side h3 {
+            font-size: 1.2rem;
+        }
+        .hero-side p,
+        .hero-side li {
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 0.9rem;
+        }
+        .hero-side ul {
+            display: grid;
+            gap: 8px;
+            padding-left: 18px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+        .card {
+            border-radius: 26px;
+            padding: 26px 24px;
+            text-decoration: none;
+            color: inherit;
+        }
+        .card-kicker {
+            font-size: 0.74rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+        .card-title {
+            font-size: 1.55rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .card-desc {
+            color: var(--muted);
+            line-height: 1.8;
+            min-height: 4.8em;
+            font-size: 0.9rem;
+        }
+        .card-meta {
+            margin-top: 16px;
+            color: var(--accent);
+            font-size: 0.82rem;
+        }
+        .section {
+            margin-top: 10px;
+        }
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+        .section-head h3 {
+            font-size: 1.1rem;
+        }
+        .section-head p {
+            color: var(--muted);
+            font-size: 0.84rem;
+        }
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+        .status-card {
+            border-radius: 22px;
+            background: var(--panel-solid);
+            border: 1px solid var(--line);
+            padding: 20px 18px;
+        }
+        .status-card strong {
+            display: block;
+            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .status-card p {
+            color: var(--muted);
+            font-size: 0.84rem;
+            line-height: 1.7;
+        }
+        .footer {
+            margin-top: 26px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+        @media (max-width: 940px) {
+            .hero { grid-template-columns: 1fr; }
+            .grid, .status-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="topbar">
+            <div class="brand">
+                <div class="brand-kicker">Australian Mathematics Competition</div>
+                <h1>AMC Online</h1>
+                <p>
+                    基于澳大利亚 AMC 真题构建的在线练习站。当前已完成 A/B/C 三个层级的题库清洗与试卷浏览入口，
+                    下一步会把题图切割、答案校验和逐题练习接入到同一套练习流程里。
+                </p>
+            </div>
+            <div class="top-links">
+                <a class="pill" href="papers.html">真题浏览</a>
+                <a class="pill" href="quiz.html">在线练习</a>
+                <a class="pill" href="login.html">登录 / 注册</a>
+            </div>
+        </div>
+
+        <section class="hero">
+            <div class="hero-main">
+                <div class="level-tabs" id="levelTabs">
+                    <button class="level-tab active" data-level="a">AMC A</button>
+                    <button class="level-tab" data-level="b">AMC B</button>
+                    <button class="level-tab" data-level="c">AMC C</button>
+                </div>
+                <h2 id="heroTitle">3-4 年级的历年 AMC 真题</h2>
+                <p class="lead" id="heroLead">
+                    适合小学中年段。以原始 PDF 试卷为题源，后续在线练习会按题号切图，支持选择题与整数题分开作答。
+                </p>
+                <div class="level-meta" id="heroMeta"></div>
+                <div class="hero-actions">
+                    <a class="button primary" id="heroBrowse" href="papers.html?level=a">进入真题库</a>
+                    <a class="button secondary" id="heroQuiz" href="quiz.html?level=a">查看练习状态</a>
+                </div>
+            </div>
+            <aside class="hero-side">
+                <div>
+                    <h3>当前进度</h3>
+                    <p id="librarySummary">正在读取题库索引...</p>
+                </div>
+                <div>
+                    <h3>题型结构</h3>
+                    <ul>
+                        <li>第 1-25 题为五选一选择题</li>
+                        <li>第 26-30 题为 0-999 整数填空题</li>
+                        <li>分值按 3 / 4 / 5 / 6-10 分递进</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>近期目标</h3>
+                    <p>先打通 PDF 浏览和题库索引，再逐步生成逐题题图 JSON，优先覆盖 2020-2025 年。</p>
+                </div>
+            </aside>
+        </section>
+
+        <section class="grid">
+            <a class="card" href="papers.html">
+                <div class="card-kicker">Library</div>
+                <div class="card-title">历年真题</div>
+                <div class="card-desc">按 A/B/C 层级和年份浏览原卷、答案与解析。当前页面直接消费脚本生成的题库索引。</div>
+                <div class="card-meta">Browse papers →</div>
+            </a>
+            <a class="card" href="quiz.html">
+                <div class="card-kicker">Practice</div>
+                <div class="card-title">在线练习</div>
+                <div class="card-desc">已切换为 AMC 题型模型。当前会显示每个年份的数据准备状态，供后续题图 JSON 接入。</div>
+                <div class="card-meta">Check readiness →</div>
+            </a>
+            <a class="card" href="analysis.html">
+                <div class="card-kicker">Analytics</div>
+                <div class="card-title">学习诊断</div>
+                <div class="card-desc">沿用现有账号、记录与统计能力，后续会按 AMC 分值段和题型生成错题分析与趋势图。</div>
+                <div class="card-meta">View dashboard →</div>
+            </a>
+        </section>
+
+        <section class="section">
+            <div class="section-head">
+                <h3>层级状态</h3>
+                <p>数据来自 <code>/data/index.json</code></p>
+            </div>
+            <div class="status-grid" id="statusGrid">
+                <div class="status-card"><strong>读取中</strong><p>正在加载 AMC 题库 manifest。</p></div>
+            </div>
+        </section>
+
+        <div class="footer">AMC Online · built on Cloudflare Pages · current stage: library first</div>
+    </div>
+
+    <script>
+        const levelConfig = {
+            a: {
+                short: "AMC A",
+                title: "3-4 年级的历年 AMC 真题",
+                lead: "适合小学中年段。以原始 PDF 试卷为题源，后续在线练习会按题号切图，支持选择题与整数题分开作答。",
+                grade: "School Years 3-4",
+            },
+            b: {
+                short: "AMC B",
+                title: "5-6 年级的历年 AMC 真题",
+                lead: "适合小学高年段。这个层级最适合作为第一批在线化目标，会优先补齐题图切割、分值计算与答案校验。",
+                grade: "School Years 5-6",
+            },
+            c: {
+                short: "AMC C",
+                title: "7-8 年级的历年 AMC 真题",
+                lead: "适合初中阶段。后续会和 A/B 共享同一套练习引擎，但保留按层级区分的题库、成绩和错题视图。",
+                grade: "School Years 7-8",
+            }
+        };
+
+        const state = {
+            currentLevel: "a",
+            manifest: null,
+        };
+
+        function renderHero() {
+            const config = levelConfig[state.currentLevel];
+            const levelData = state.manifest?.levels?.find((item) => item.id === state.currentLevel);
+            const yearCount = levelData?.years?.length || 0;
+            const quizReadyCount = (levelData?.years || []).filter((year) => year.quizReady).length;
+
+            document.getElementById("heroTitle").textContent = config.title;
+            document.getElementById("heroLead").textContent = config.lead;
+            document.getElementById("heroBrowse").href = `papers.html?level=${state.currentLevel}`;
+            document.getElementById("heroQuiz").href = `quiz.html?level=${state.currentLevel}`;
+            document.getElementById("heroMeta").innerHTML = [
+                `<span class="meta-chip">${config.short}</span>`,
+                `<span class="meta-chip">${config.grade}</span>`,
+                `<span class="meta-chip">${yearCount} 年份</span>`,
+                `<span class="meta-chip">${quizReadyCount} 套可在线练习</span>`
+            ].join("");
+
+            document.querySelectorAll(".level-tab").forEach((button) => {
+                button.classList.toggle("active", button.dataset.level === state.currentLevel);
+            });
+        }
+
+        function renderStatusCards() {
+            const host = document.getElementById("statusGrid");
+            const levels = state.manifest?.levels || [];
+            if (!levels.length) {
+                host.innerHTML = `<div class="status-card"><strong>暂无数据</strong><p>请先运行 <code>npm run build:library</code> 生成题库索引。</p></div>`;
+                return;
+            }
+
+            host.innerHTML = levels.map((level) => {
+                const answers = level.years.filter((year) => year.answer).length;
+                const ready = level.years.filter((year) => year.quizReady).length;
+                return `
+                    <div class="status-card">
+                        <strong>${level.label}</strong>
+                        <p>${level.grade}</p>
+                        <p>试卷 ${level.years.length} 套，带答案 ${answers} 套，在线题图数据 ${ready} 套。</p>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        async function loadManifest() {
+            try {
+                const response = await fetch("data/index.json");
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                state.manifest = await response.json();
+                document.getElementById("librarySummary").textContent =
+                    `已发现 ${state.manifest.stats.papers} 份试卷、${state.manifest.stats.answers} 份答案资产，覆盖 ${state.manifest.stats.levels} 个层级。`;
+            } catch (error) {
+                document.getElementById("librarySummary").textContent =
+                    "尚未发现题库索引。先运行 npm run build:library，再刷新页面。";
+            }
+
+            renderHero();
+            renderStatusCards();
+        }
+
+        document.getElementById("levelTabs").addEventListener("click", (event) => {
+            const button = event.target.closest(".level-tab");
+            if (!button) return;
+            state.currentLevel = button.dataset.level;
+            renderHero();
+            window.AMCAnalytics?.track("home_level_switch", { meta: { level: state.currentLevel } });
+        });
+
+        loadManifest();
+    </script>
+</body>
+</html>

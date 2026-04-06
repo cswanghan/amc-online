@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMC Papers · 真题浏览</title>
+    <script src="analytics.js"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #f7f2eb;
+            --panel: #fffaf5;
+            --line: rgba(98, 64, 41, 0.12);
+            --text: #2d241e;
+            --muted: #77685d;
+            --accent: #9f4c24;
+            --shadow: 0 16px 48px rgba(60, 36, 20, 0.09);
+        }
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top, rgba(159, 76, 36, 0.12), transparent 22%),
+                linear-gradient(180deg, #fcf9f5 0%, var(--bg) 100%);
+            color: var(--text);
+            font-family: "Georgia", "STSong", serif;
+        }
+        .page {
+            width: min(1120px, calc(100vw - 32px));
+            margin: 0 auto;
+            padding: 28px 0 48px;
+        }
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 22px;
+            flex-wrap: wrap;
+        }
+        .back {
+            text-decoration: none;
+            color: var(--muted);
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,0.74);
+            font-size: 0.85rem;
+        }
+        .back:hover { color: var(--accent); }
+        h1 { font-size: clamp(1.9rem, 4vw, 3rem); }
+        .sub { color: var(--muted); line-height: 1.8; font-size: 0.92rem; margin-top: 8px; }
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 24px 0 18px;
+        }
+        .tab {
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,0.72);
+            color: var(--muted);
+            padding: 10px 16px;
+            border-radius: 999px;
+            cursor: pointer;
+            font: inherit;
+        }
+        .tab.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .summary-card,
+        .year-card {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow);
+        }
+        .summary-card {
+            border-radius: 20px;
+            padding: 18px 16px;
+        }
+        .summary-card strong {
+            display: block;
+            color: var(--accent);
+            font-size: 1.4rem;
+        }
+        .summary-card span {
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+        .year-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+        .year-card {
+            border-radius: 24px;
+            padding: 20px;
+            display: grid;
+            gap: 12px;
+        }
+        .year-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+        }
+        .year-header strong {
+            font-size: 1.55rem;
+            color: var(--accent);
+        }
+        .year-header span {
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+        .status {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .chip {
+            display: inline-flex;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 0.76rem;
+            background: rgba(159, 76, 36, 0.08);
+            color: var(--accent);
+        }
+        .links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .link {
+            text-decoration: none;
+            color: var(--text);
+            background: white;
+            border: 1px solid var(--line);
+            padding: 10px 14px;
+            border-radius: 14px;
+            font-size: 0.86rem;
+        }
+        .link:hover { border-color: rgba(159, 76, 36, 0.3); color: var(--accent); }
+        .link.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .note {
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 0.84rem;
+        }
+        .empty {
+            padding: 28px;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            color: var(--muted);
+            text-align: center;
+        }
+        @media (max-width: 920px) {
+            .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .year-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="topbar">
+            <div>
+                <a class="back" href="index.html">← 返回首页</a>
+                <h1>AMC 真题浏览</h1>
+                <p class="sub">按层级和年份浏览原始试卷与答案解析。所有链接由题库构建脚本生成的 manifest 驱动。</p>
+            </div>
+        </div>
+
+        <div class="toolbar" id="tabs">
+            <button class="tab active" data-level="a">AMC A · 3-4 年级</button>
+            <button class="tab" data-level="b">AMC B · 5-6 年级</button>
+            <button class="tab" data-level="c">AMC C · 7-8 年级</button>
+        </div>
+
+        <section class="summary" id="summary">
+            <div class="summary-card"><strong>--</strong><span>试卷</span></div>
+            <div class="summary-card"><strong>--</strong><span>带答案</span></div>
+            <div class="summary-card"><strong>--</strong><span>可在线练习</span></div>
+            <div class="summary-card"><strong>--</strong><span>年份范围</span></div>
+        </section>
+
+        <section class="year-grid" id="yearGrid">
+            <div class="empty">正在读取题库索引...</div>
+        </section>
+    </div>
+
+    <script>
+        const state = {
+            currentLevel: new URLSearchParams(location.search).get("level") || "a",
+            manifest: null,
+        };
+
+        function levelData() {
+            return state.manifest?.levels?.find((item) => item.id === state.currentLevel) || null;
+        }
+
+        function renderTabs() {
+            document.querySelectorAll(".tab").forEach((tab) => {
+                tab.classList.toggle("active", tab.dataset.level === state.currentLevel);
+            });
+        }
+
+        function renderSummary() {
+            const level = levelData();
+            const host = document.getElementById("summary");
+            if (!level) {
+                host.innerHTML = `
+                    <div class="summary-card"><strong>0</strong><span>试卷</span></div>
+                    <div class="summary-card"><strong>0</strong><span>带答案</span></div>
+                    <div class="summary-card"><strong>0</strong><span>可在线练习</span></div>
+                    <div class="summary-card"><strong>--</strong><span>年份范围</span></div>
+                `;
+                return;
+            }
+
+            const answers = level.years.filter((year) => year.answer).length;
+            const ready = level.years.filter((year) => year.quizReady).length;
+            const minYear = level.years[level.years.length - 1]?.year || "--";
+            const maxYear = level.years[0]?.year || "--";
+
+            host.innerHTML = `
+                <div class="summary-card"><strong>${level.years.length}</strong><span>试卷</span></div>
+                <div class="summary-card"><strong>${answers}</strong><span>带答案</span></div>
+                <div class="summary-card"><strong>${ready}</strong><span>可在线练习</span></div>
+                <div class="summary-card"><strong>${minYear}-${maxYear}</strong><span>年份范围</span></div>
+            `;
+        }
+
+        function renderYears() {
+            const host = document.getElementById("yearGrid");
+            const level = levelData();
+            if (!level) {
+                host.innerHTML = `<div class="empty">未找到当前层级数据。先运行 <code>npm run build:library</code>。</div>`;
+                return;
+            }
+
+            host.innerHTML = level.years.map((year) => {
+                const status = [];
+                if (year.paper) status.push(`<span class="chip">试卷</span>`);
+                if (year.answer) status.push(`<span class="chip">答案 / 解析</span>`);
+                if (year.quizReady) status.push(`<span class="chip">在线练习已就绪</span>`);
+
+                return `
+                    <article class="year-card">
+                        <div class="year-header">
+                            <strong>${year.year}</strong>
+                            <span>${level.label}</span>
+                        </div>
+                        <div class="status">${status.join("") || `<span class="chip">仅索引</span>`}</div>
+                        <div class="links">
+                            <a class="link ${year.paper ? "" : "disabled"}" href="${year.paper?.url || "#"}" target="_blank" rel="noreferrer">打开试卷</a>
+                            <a class="link ${year.answer ? "" : "disabled"}" href="${year.answer?.url || "#"}" target="_blank" rel="noreferrer">打开答案</a>
+                            <a class="link ${year.quizReady ? "" : "disabled"}" href="${year.quizReady ? `quiz.html?level=${state.currentLevel}&year=${year.year}` : "#"}">进入练习</a>
+                        </div>
+                        <div class="note">${year.note || "当前年份已纳入索引，后续可继续补题图与逐题数据。"}</div>
+                    </article>
+                `;
+            }).join("");
+        }
+
+        async function loadManifest() {
+            try {
+                const response = await fetch("data/index.json");
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                state.manifest = await response.json();
+            } catch (error) {
+                document.getElementById("yearGrid").innerHTML =
+                    `<div class="empty">读取失败：${error.message}。请先运行 <code>npm run build:library</code>。</div>`;
+                return;
+            }
+
+            renderTabs();
+            renderSummary();
+            renderYears();
+        }
+
+        document.getElementById("tabs").addEventListener("click", (event) => {
+            const button = event.target.closest(".tab");
+            if (!button) return;
+            state.currentLevel = button.dataset.level;
+            history.replaceState(null, "", `papers.html?level=${state.currentLevel}`);
+            renderTabs();
+            renderSummary();
+            renderYears();
+            window.AMCAnalytics?.track("papers_level_switch", { meta: { level: state.currentLevel } });
+        });
+
+        loadManifest();
+    </script>
+</body>
+</html>

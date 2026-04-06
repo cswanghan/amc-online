@@ -1,0 +1,321 @@
+{
+  "competition": "Australian Mathematics Competition",
+  "level": "b",
+  "year": 2025,
+  "durationMinutes": 60,
+  "totalQuestions": 30,
+  "totalScore": 135,
+  "questions": [
+    {
+      "number": 1,
+      "type": "choice",
+      "points": 3,
+      "answer": "B",
+      "images": [
+        "/generated/b/2025/q01-1.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 2,
+      "type": "choice",
+      "points": 3,
+      "answer": "D",
+      "images": [
+        "/generated/b/2025/q02-1.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 3,
+      "type": "choice",
+      "points": 3,
+      "answer": "E",
+      "images": [
+        "/generated/b/2025/q03-1.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 4,
+      "type": "choice",
+      "points": 3,
+      "answer": "D",
+      "images": [
+        "/generated/b/2025/q04-1.png",
+        "/generated/b/2025/q04-2.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 5,
+      "type": "choice",
+      "points": 3,
+      "answer": "E",
+      "images": [
+        "/generated/b/2025/q05-1.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 6,
+      "type": "choice",
+      "points": 3,
+      "answer": "B",
+      "images": [
+        "/generated/b/2025/q06-1.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 7,
+      "type": "choice",
+      "points": 3,
+      "answer": "A",
+      "images": [
+        "/generated/b/2025/q07-1.png",
+        "/generated/b/2025/q07-2.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 8,
+      "type": "choice",
+      "points": 3,
+      "answer": "A",
+      "images": [
+        "/generated/b/2025/q08-1.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 9,
+      "type": "choice",
+      "points": 3,
+      "answer": "B",
+      "images": [
+        "/generated/b/2025/q09-1.png",
+        "/generated/b/2025/q09-2.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 10,
+      "type": "choice",
+      "points": 3,
+      "answer": "A",
+      "images": [
+        "/generated/b/2025/q10-1.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 11,
+      "type": "choice",
+      "points": 4,
+      "answer": "B",
+      "images": [
+        "/generated/b/2025/q11-1.png",
+        "/generated/b/2025/q11-2.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 12,
+      "type": "choice",
+      "points": 4,
+      "answer": "C",
+      "images": [
+        "/generated/b/2025/q12-1.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 13,
+      "type": "choice",
+      "points": 4,
+      "answer": "B",
+      "images": [
+        "/generated/b/2025/q13-1.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 14,
+      "type": "choice",
+      "points": 4,
+      "answer": "E",
+      "images": [
+        "/generated/b/2025/q14-1.png",
+        "/generated/b/2025/q14-2.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 15,
+      "type": "choice",
+      "points": 4,
+      "answer": "D",
+      "images": [
+        "/generated/b/2025/q15-1.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 16,
+      "type": "choice",
+      "points": 4,
+      "answer": "C",
+      "images": [
+        "/generated/b/2025/q16-1.png",
+        "/generated/b/2025/q16-2.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 17,
+      "type": "choice",
+      "points": 4,
+      "answer": "D",
+      "images": [
+        "/generated/b/2025/q17-1.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 18,
+      "type": "choice",
+      "points": 4,
+      "answer": "A",
+      "images": [
+        "/generated/b/2025/q18-1.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 19,
+      "type": "choice",
+      "points": 4,
+      "answer": "D",
+      "images": [
+        "/generated/b/2025/q19-1.png",
+        "/generated/b/2025/q19-2.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 20,
+      "type": "choice",
+      "points": 4,
+      "answer": "D",
+      "images": [
+        "/generated/b/2025/q20-1.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 21,
+      "type": "choice",
+      "points": 5,
+      "answer": "A",
+      "images": [
+        "/generated/b/2025/q21-1.png",
+        "/generated/b/2025/q21-2.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 22,
+      "type": "choice",
+      "points": 5,
+      "answer": "E",
+      "images": [
+        "/generated/b/2025/q22-1.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 23,
+      "type": "choice",
+      "points": 5,
+      "answer": "D",
+      "images": [
+        "/generated/b/2025/q23-1.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 24,
+      "type": "choice",
+      "points": 5,
+      "answer": "C",
+      "images": [
+        "/generated/b/2025/q24-1.png",
+        "/generated/b/2025/q24-2.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 25,
+      "type": "choice",
+      "points": 5,
+      "answer": "B",
+      "images": [
+        "/generated/b/2025/q25-1.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 26,
+      "type": "integer",
+      "points": 6,
+      "answer": "108",
+      "images": [
+        "/generated/b/2025/q26-1.png",
+        "/generated/b/2025/q26-2.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 27,
+      "type": "integer",
+      "points": 7,
+      "answer": "576",
+      "images": [
+        "/generated/b/2025/q27-1.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 28,
+      "type": "integer",
+      "points": 8,
+      "answer": "89",
+      "images": [
+        "/generated/b/2025/q28-1.png",
+        "/generated/b/2025/q28-2.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 29,
+      "type": "integer",
+      "points": 9,
+      "answer": "12",
+      "images": [
+        "/generated/b/2025/q29-1.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    },
+    {
+      "number": 30,
+      "type": "integer",
+      "points": 10,
+      "answer": "675",
+      "images": [
+        "/generated/b/2025/q30-1.png"
+      ],
+      "explanation": "Official answer list only. Detailed explanation is not yet available."
+    }
+  ]
+}

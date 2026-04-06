@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS feedback (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  username TEXT NOT NULL,
+  type TEXT NOT NULL DEFAULT 'suggestion',
+  content TEXT NOT NULL,
+  created_at TEXT NOT NULL
+);
