@@ -372,6 +372,60 @@
             flex-wrap: wrap;
             margin-top: 20px;
         }
+        .leave-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 980;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(31, 22, 16, 0.42);
+            backdrop-filter: blur(6px);
+        }
+        .leave-overlay.open {
+            display: flex;
+        }
+        .leave-dialog {
+            width: min(460px, 100%);
+            background: #fdfbf9;
+            border: 1px solid #e8ded4;
+            border-radius: 28px;
+            box-shadow: 0 24px 70px rgba(32, 19, 11, 0.18);
+            padding: 28px;
+        }
+        .leave-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            background: linear-gradient(135deg, rgba(157, 78, 40, 0.16), rgba(157, 78, 40, 0.05));
+            color: var(--accent);
+            font-size: 1.6rem;
+        }
+        .leave-dialog h3 {
+            font-size: 1.6rem;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+        .leave-dialog p {
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 0.92rem;
+        }
+        .leave-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+        .leave-actions .btn {
+            min-width: 132px;
+        }
         @media (max-width: 920px) {
             .selector-grid, .quiz-layout { grid-template-columns: 1fr; }
         }
@@ -450,6 +504,18 @@
         </section>
     </div>
 
+    <div class="leave-overlay" id="leaveOverlay" aria-hidden="true">
+        <div class="leave-dialog" role="dialog" aria-modal="true" aria-labelledby="leaveTitle">
+            <div class="leave-icon">↩</div>
+            <h3 id="leaveTitle">确认离开当前练习？</h3>
+            <p id="leaveMessage">当前练习尚未提交，离开后本次作答内容和计时进度都会丢失。</p>
+            <div class="leave-actions">
+                <button class="btn secondary" type="button" id="leaveStayBtn">继续做题</button>
+                <button class="btn primary" type="button" id="leaveConfirmBtn">确认离开</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         const state = {
             manifest: null,
@@ -463,6 +529,8 @@
             deadline: null,
             lastScore: null,
             allowPageLeave: false,
+            historyGuardReady: false,
+            pendingLeaveAction: null,
         };
 
         function currentLevelData() {
@@ -478,26 +546,61 @@
             return state.questionSet?.questions?.[state.currentIndex] || null;
         }
 
+        function currentQuizUrl() {
+            const params = new URLSearchParams();
+            params.set("level", state.currentLevel);
+            if (state.selectedYear) params.set("year", String(state.selectedYear));
+            return `quiz.html?${params.toString()}`;
+        }
+
         function hasActiveQuizSession() {
             return !!state.questionSet && !state.reviewMode && !document.getElementById("quizView").classList.contains("hidden");
-        }
-
-        function leaveQuizMessage() {
-            return "当前练习尚未提交，离开后本次作答和计时会丢失。确定要离开吗？";
-        }
-
-        function confirmLeaveActiveQuiz() {
-            return window.confirm(leaveQuizMessage());
         }
 
         function resetQuizRuntime() {
             clearInterval(state.timerHandle);
             state.timerHandle = null;
             state.deadline = null;
+            state.historyGuardReady = false;
         }
 
         function allowNavigationAway() {
             state.allowPageLeave = true;
+        }
+
+        function leaveOverlay() {
+            return document.getElementById("leaveOverlay");
+        }
+
+        function closeLeavePrompt() {
+            const overlay = leaveOverlay();
+            overlay.classList.remove("open");
+            overlay.setAttribute("aria-hidden", "true");
+            state.pendingLeaveAction = null;
+        }
+
+        function showLeavePrompt(action, message) {
+            const overlay = leaveOverlay();
+            document.getElementById("leaveMessage").textContent =
+                message || "当前练习尚未提交，离开后本次作答内容和计时进度都会丢失。";
+            state.pendingLeaveAction = action;
+            overlay.classList.add("open");
+            overlay.setAttribute("aria-hidden", "false");
+            document.getElementById("leaveConfirmBtn").focus();
+        }
+
+        function requestLeaveActiveQuiz(action, message) {
+            if (!hasActiveQuizSession()) {
+                action?.();
+                return;
+            }
+            showLeavePrompt(action, message);
+        }
+
+        function armHistoryGuard() {
+            if (state.historyGuardReady) return;
+            history.pushState({ quizGuard: true }, "", currentQuizUrl());
+            state.historyGuardReady = true;
         }
 
         function setView(name) {
@@ -800,6 +903,7 @@
             state.reviewMode = false;
             startTimer();
             setView("quiz");
+            armHistoryGuard();
             renderQuestion();
             window.AMCAnalytics?.track("quiz_start", {
                 meta: { level: state.questionSet.level, year: state.questionSet.year, total: state.questionSet.totalQuestions }
@@ -832,35 +936,70 @@
             }
         }
 
+        document.getElementById("leaveStayBtn").addEventListener("click", closeLeavePrompt);
+        document.getElementById("leaveConfirmBtn").addEventListener("click", () => {
+            const action = state.pendingLeaveAction;
+            closeLeavePrompt();
+            action?.();
+        });
+        leaveOverlay().addEventListener("click", (event) => {
+            if (event.target === leaveOverlay()) closeLeavePrompt();
+        });
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && leaveOverlay().classList.contains("open")) {
+                closeLeavePrompt();
+            }
+        });
+
         document.querySelector(".back-link").addEventListener("click", (event) => {
-            if (hasActiveQuizSession() && !confirmLeaveActiveQuiz()) {
-                event.preventDefault();
+            if (!hasActiveQuizSession()) {
+                allowNavigationAway();
+                resetQuizRuntime();
                 return;
             }
-            allowNavigationAway();
-            resetQuizRuntime();
+
+            event.preventDefault();
+            requestLeaveActiveQuiz(() => {
+                allowNavigationAway();
+                resetQuizRuntime();
+                location.href = event.currentTarget.href;
+            });
         });
 
         document.getElementById("levelTabs").addEventListener("click", (event) => {
             const button = event.target.closest(".tab");
             if (!button) return;
-            if (hasActiveQuizSession() && !confirmLeaveActiveQuiz()) return;
-            resetQuizRuntime();
-            state.currentLevel = button.dataset.level;
-            state.selectedYear = null;
-            state.questionSet = null;
-            state.reviewMode = false;
-            state.answers = {};
-            history.replaceState(null, "", `quiz.html?level=${state.currentLevel}`);
-            renderTabs();
-            renderSelector();
-            setView("selector");
+
+            const switchLevel = () => {
+                resetQuizRuntime();
+                state.currentLevel = button.dataset.level;
+                state.selectedYear = null;
+                state.questionSet = null;
+                state.reviewMode = false;
+                state.answers = {};
+                history.replaceState(null, "", `quiz.html?level=${state.currentLevel}`);
+                renderTabs();
+                renderSelector();
+                setView("selector");
+            };
+
+            if (hasActiveQuizSession()) {
+                requestLeaveActiveQuiz(switchLevel, "当前练习尚未提交，切换层级后本次作答内容会被清空。");
+                return;
+            }
+
+            switchLevel();
         });
 
         document.getElementById("selectorGrid").addEventListener("click", (event) => {
             const link = event.target.closest('a[href]');
-            if (link && hasActiveQuizSession() && !confirmLeaveActiveQuiz()) {
+            if (link && hasActiveQuizSession()) {
                 event.preventDefault();
+                requestLeaveActiveQuiz(() => {
+                    allowNavigationAway();
+                    resetQuizRuntime();
+                    location.href = link.href;
+                });
                 return;
             }
 
@@ -908,6 +1047,17 @@
             const yearEntry = currentYearEntry();
             if (!yearEntry?.quizReady) return;
             loadQuestionSet(yearEntry);
+        });
+
+        window.addEventListener("popstate", () => {
+            if (!hasActiveQuizSession() || state.allowPageLeave) return;
+            history.pushState({ quizGuard: true }, "", currentQuizUrl());
+            state.historyGuardReady = true;
+            showLeavePrompt(() => {
+                allowNavigationAway();
+                resetQuizRuntime();
+                history.back();
+            });
         });
 
         window.addEventListener("beforeunload", (event) => {
