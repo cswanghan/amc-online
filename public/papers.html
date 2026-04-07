@@ -199,6 +199,10 @@
             padding: 0;
         }
         .link:hover { border-color: rgba(159, 76, 36, 0.3); color: var(--accent); }
+        .link.loading {
+            opacity: 0.72;
+            cursor: wait;
+        }
         .link.disabled {
             position: relative;
             opacity: 0.58;
@@ -310,6 +314,7 @@
         const state = {
             currentLevel: new URLSearchParams(location.search).get("level") || "a",
             manifest: null,
+            openingResource: false,
         };
 
         function levelData() {
@@ -442,6 +447,24 @@
             return false;
         }
 
+        function setResourceOpening(button, opening) {
+            state.openingResource = opening;
+            document.querySelectorAll('[data-action="open-resource"]').forEach((item) => {
+                item.disabled = opening;
+                item.classList.toggle("loading", opening);
+            });
+
+            const label = button?.querySelector(".link-label");
+            if (!label) return;
+            if (opening) {
+                button.dataset.originalLabel = label.textContent || "";
+                label.textContent = "校验中...";
+            } else if (button.dataset.originalLabel) {
+                label.textContent = button.dataset.originalLabel;
+                delete button.dataset.originalLabel;
+            }
+        }
+
         document.getElementById("tabs").addEventListener("click", (event) => {
             const button = event.target.closest(".tab");
             if (!button) return;
@@ -454,9 +477,11 @@
         });
 
         document.getElementById("yearGrid").addEventListener("click", async (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
             const disabledLink = event.target.closest(".link.disabled");
             if (disabledLink) {
-                event.preventDefault();
                 const reason = disabledLink.dataset.disabledReason;
                 if (reason) alert(reason);
                 return;
@@ -464,20 +489,29 @@
 
             const button = event.target.closest('[data-action="open-resource"]');
             if (!button || button.classList.contains("disabled")) return;
+            if (state.openingResource) return;
 
             const targetUrl = button.dataset.url;
             if (!targetUrl) {
                 return;
             }
 
-            const loggedIn = await ensureActiveLogin();
-            if (!loggedIn) {
-                return;
-            }
+            setResourceOpening(button, true);
+            try {
+                const loggedIn = await ensureActiveLogin();
+                if (!loggedIn) {
+                    setResourceOpening(button, false);
+                    return;
+                }
 
-            const resourceTitle = `${button.dataset.year || ""} ${button.dataset.kind === "answer" ? "答案" : "试卷"}`.trim();
-            const viewerUrl = `viewer.html?resource=${encodeURIComponent(targetUrl)}&title=${encodeURIComponent(resourceTitle || "AMC 资源查看")}`;
-            location.href = viewerUrl;
+                const resourceTitle = `${button.dataset.year || ""} ${button.dataset.kind === "answer" ? "答案" : "试卷"}`.trim();
+                const viewerUrl = `viewer.html?resource=${encodeURIComponent(targetUrl)}&title=${encodeURIComponent(resourceTitle || "AMC 资源查看")}`;
+                location.assign(viewerUrl);
+            } catch (error) {
+                console.error("open resource failed", error);
+                alert("资源打开失败，请稍后再试。");
+                setResourceOpening(button, false);
+            }
         });
 
         loadManifest();
