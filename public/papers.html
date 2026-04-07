@@ -166,6 +166,9 @@
             gap: 10px;
         }
         .link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             text-decoration: none;
             color: var(--text);
             background: white;
@@ -175,10 +178,12 @@
             border-radius: 14px;
             font-size: 0.88rem;
             text-align: center;
+            line-height: 1.2;
         }
         button.link {
             cursor: pointer;
             font-family: inherit;
+            line-height: 1.2;
         }
         .link:hover { border-color: rgba(159, 76, 36, 0.3); color: var(--accent); }
         .link.disabled {
