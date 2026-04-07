@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AMC Online · Australian Mathematics Competition</title>
     <script src="analytics.js"></script>
+    <script src="auth-guard.js"></script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
@@ -64,6 +65,9 @@
             flex-wrap: wrap;
         }
         .pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             text-decoration: none;
             color: var(--muted);
             padding: 10px 16px;
@@ -71,6 +75,14 @@
             border-radius: 999px;
             background: rgba(255,255,255,0.64);
             font-size: 0.86rem;
+        }
+        .pill-button {
+            cursor: pointer;
+            font: inherit;
+        }
+        .pill-static {
+            color: var(--accent);
+            background: rgba(161, 79, 42, 0.08);
         }
         .pill:hover { color: var(--accent); border-color: rgba(161, 79, 42, 0.35); }
         .hero {
@@ -280,7 +292,7 @@
                     下一步会把题图切割、答案校验和逐题练习接入到同一套练习流程里。
                 </p>
             </div>
-            <div class="top-links">
+            <div class="top-links" id="topLinks">
                 <a class="pill" href="papers.html">真题浏览</a>
                 <a class="pill" href="quiz.html">在线练习</a>
                 <a class="pill" href="login.html">登录 / 注册</a>
@@ -373,7 +385,41 @@
         const state = {
             currentLevel: "a",
             manifest: null,
+            currentUser: null,
         };
+
+        function renderTopLinks() {
+            const host = document.getElementById("topLinks");
+            const user = state.currentUser;
+
+            const links = [
+                `<a class="pill" href="papers.html">真题浏览</a>`,
+                `<a class="pill" href="quiz.html">在线练习</a>`
+            ];
+
+            if (!user) {
+                links.push(`<a class="pill" href="login.html">登录 / 注册</a>`);
+                host.innerHTML = links.join("");
+                return;
+            }
+
+            links.push(`<span class="pill pill-static">${escapeHtml(user.username)}</span>`);
+            if (user.role === "admin") {
+                links.push(`<a class="pill" href="admin.html">管理后台</a>`);
+            } else {
+                links.push(`<a class="pill" href="analysis.html">学习诊断</a>`);
+            }
+            links.push(`<button class="pill pill-button" type="button" id="logoutBtn">退出登录</button>`);
+            host.innerHTML = links.join("");
+
+            document.getElementById("logoutBtn")?.addEventListener("click", () => {
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+                state.currentUser = null;
+                renderTopLinks();
+                window.location.reload();
+            });
+        }
 
         function renderHero() {
             const config = levelConfig[state.currentLevel];
@@ -395,6 +441,33 @@
             document.querySelectorAll(".level-tab").forEach((button) => {
                 button.classList.toggle("active", button.dataset.level === state.currentLevel);
             });
+        }
+
+        async function loadCurrentUser() {
+            const token = localStorage.getItem("token");
+            if (!token) {
+                state.currentUser = null;
+                renderTopLinks();
+                return;
+            }
+
+            try {
+                const response = await fetch("/api/auth/me", {
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const payload = await response.json();
+                state.currentUser = payload.user || null;
+                if (state.currentUser) {
+                    localStorage.setItem("user", JSON.stringify(state.currentUser));
+                }
+            } catch (error) {
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+                state.currentUser = null;
+            }
+
+            renderTopLinks();
         }
 
         async function loadManifest() {
@@ -420,6 +493,7 @@
             window.AMCAnalytics?.track("home_level_switch", { meta: { level: state.currentLevel } });
         });
 
+        loadCurrentUser();
         loadManifest();
     </script>
 </body>
