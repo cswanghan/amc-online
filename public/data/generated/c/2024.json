@@ -1,0 +1,312 @@
+{
+  "competition": "Australian Mathematics Competition",
+  "level": "c",
+  "year": 2024,
+  "durationMinutes": 60,
+  "totalQuestions": 30,
+  "totalScore": 135,
+  "questions": [
+    {
+      "number": 1,
+      "type": "choice",
+      "points": 3,
+      "answer": "A",
+      "images": [
+        "/generated/c/2024/q01-1.png"
+      ],
+      "explanation": "1.\nThe metal in an Australian 20 cent coin is one-quarter nickel, and\nthe rest is copper. What fraction is copper?\n(A) 3\n4\n(B) 1\n2\n(C) 1\n4\n(D) 4\n4\n(E) 0\nThe fraction that is copper is 1 −1\n4 = 3\n4,\nhence (A)."
+    },
+    {
+      "number": 2,
+      "type": "choice",
+      "points": 3,
+      "answer": "B",
+      "images": [
+        "/generated/c/2024/q02-1.png"
+      ],
+      "explanation": "2.\nOwen set the temperature dial on his oven as\nshown. What temperature is it set to?\n(A) 175 ◦C\n(B) 185 ◦C\n(C) 195 ◦C\n(D) 205 ◦C\n(E) 215 ◦C\nOFF\n100\n150\n200\n250\n◦C\nBetween 150 and 200 there are 5 intervals, so each interval represents 10 ◦C. The dial is\n31\n2 intervals above 150 ◦C which is therefore 185 ◦C,\nhence (B)."
+    },
+    {
+      "number": 3,
+      "type": "choice",
+      "points": 3,
+      "answer": "E",
+      "images": [
+        "/generated/c/2024/q03-1.png"
+      ],
+      "explanation": "3.\nIf the day before yesterday was Monday, then the day after tomorrow will be\n(A) Monday\n(B) Tuesday\n(C) Wednesday\n(D) Thursday\n(E) Friday\nIf the day before yesterday was Monday, then yesterday was Tuesday and today must be\nWednesday. So tomorrow is Thursday and the day after tomorrow is Friday,\nhence (E)."
+    },
+    {
+      "number": 4,
+      "type": "choice",
+      "points": 3,
+      "answer": "C",
+      "images": [
+        "/generated/c/2024/q04-1.png"
+      ],
+      "explanation": "4.\nThe value of\n2024\n2 + 0 + 2 + 4 is\n(A) 1\n(B) 126.5\n(C) 253\n(D) 506\n(E) 1012\nEvaluating,\n2024\n2 + 0 + 2 + 4 = 2024\n8\n= 253,\nhence (C)."
+    },
+    {
+      "number": 5,
+      "type": "choice",
+      "points": 3,
+      "answer": "D",
+      "images": [
+        "/generated/c/2024/q05-1.png"
+      ],
+      "explanation": "5.\nWhat is the value of x in the diagram?\n(A) 40\n(B) 50\n(C) 60\n(D) 70\n(E) 80\n80◦\n120◦\nx◦\nAlternative 1\nThe angles in a quadrilateral add to 360◦, so x = 360 −90 −80 −120 = 70,\nhence (D).\nAlternative 2\nWith another vertical line added, the cointerior angle of 100◦can be found, and hence\nthe 20◦angle shown.\n80◦\n100◦\n20◦\nx◦\nFinally x◦= 180◦−90◦−20◦= 70◦,\nhence (D)."
+    },
+    {
+      "number": 6,
+      "type": "choice",
+      "points": 3,
+      "answer": "D",
+      "images": [
+        "/generated/c/2024/q06-1.png"
+      ],
+      "explanation": "6.\nThe area of the triangle shown is 36 m2. What is the\nlength h?\n(A) 2 m\n(B) 4 m\n(C) 4.5 m\n(D) 8 m\n(E) 16 m\n9 m\nh\nUsing the formula for the area of a triangle A = 1\n2bh,\n1\n2bh = A\n1\n2 × 9 × h = 36\n9 × h = 72\nh = 8\nhence (D)."
+    },
+    {
+      "number": 7,
+      "type": "choice",
+      "points": 3,
+      "answer": "C",
+      "images": [
+        "/generated/c/2024/q07-1.png"
+      ],
+      "explanation": "7.\nWhat is the difference between 3 × (4 + 2) and (3 × 4) + 2?\n(A) 0\n(B) 2\n(C) 4\n(D) 6\n(E) 8\nEvaluating, 3 × (4 + 2) = 3 × 6 = 18 and (3 × 4) + 2 = 12 + 2 = 14. Then 18 −14 = 4,\nhence (C)."
+    },
+    {
+      "number": 8,
+      "type": "choice",
+      "points": 3,
+      "answer": "E",
+      "images": [
+        "/generated/c/2024/q08-1.png"
+      ],
+      "explanation": "8.\nWhat number must be divided by 100 to get 0.2?\n(A) 0.002\n(B) 0.02\n(C) 0.2\n(D) 2\n(E) 20\nLet x be the number. Then x ÷ 100 = 0.2 so x = 100 × 0.2 = 20,\nhence (E)."
+    },
+    {
+      "number": 9,
+      "type": "choice",
+      "points": 3,
+      "answer": "B",
+      "images": [
+        "/generated/c/2024/q09-1.png"
+      ],
+      "explanation": "9.\nThe average of 2024 and an unknown number is 21\n2. What is the unknown number?\n(A) 2019\n(B) −2019\n(C) 2029\n(D) −2029\n(E) −2024\nThe two numbers add to 2 × (21\n2) = 5 so the unknown number is 5 −2024 = −2019,\nhence (B)."
+    },
+    {
+      "number": 10,
+      "type": "choice",
+      "points": 3,
+      "answer": "D",
+      "images": [
+        "/generated/c/2024/q10-1.png",
+        "/generated/c/2024/q10-2.png"
+      ],
+      "explanation": "10. The Balga is a grass tree found in south-western Australia.\nBalgas grow between 1 and 2 centimetres taller each year.\nApproximately how old is a Balga that is 4 metres tall?\n(A) 10 years\n(B) 30 years\n(C) 60 years\n(D) 300 years\n(E) 1000 years\nEach 100 years, a Balga will grow between 1 and 2 metres. To reach 4 metres will take\nbetween 4 centuries, at 1 metre per century, or 2 centuries, at 2 metres per century. Of\nthe answers given, 300 years is the best approximation,\nhence (D).\nQuestions 11 to 20, 4 marks each\n11-20 题，每题4 分"
+    },
+    {
+      "number": 11,
+      "type": "choice",
+      "points": 4,
+      "answer": "A",
+      "images": [
+        "/generated/c/2024/q11-1.png"
+      ],
+      "explanation": "11. Danilo’s pasta recipe requires one 60-gram egg for each 100 grams of flour, and no other\ningredients. To make 800 grams of pasta, how many eggs does he need?\n(A) 5\n(B) 6\n(C) 7\n(D) 8\n(E) 9\nSuppose that one serve of pasta requires one 60 gram egg and 100 grams of flour, which\nis a total of 160 grams of pasta. Then 800 grams of pasta amounts to 800 ÷ 160 = 5\nserves. Since each serve requires one egg, 5 eggs are needed,\nhence (A)."
+    },
+    {
+      "number": 12,
+      "type": "choice",
+      "points": 4,
+      "answer": "C",
+      "images": [
+        "/generated/c/2024/q12-1.png"
+      ],
+      "explanation": "12. What is the area of the shape drawn in the\ngrid?\n(A) 7\n(B) 8\n(C) 9\n(D) 10\n(E) 11\nAlternative 1\nCounting grid squares, the area is 2 × 3 + 1 × 3 = 9,\nhence (C).\nAlternative 2\nThe central parallelogram has area bh = 2 × 3 = 6. Each triangle has area\n1\n2bh = 1\n2 × 3 × 1 = 3\n2. The total shaded area is 6 + 2 × 3\n2 = 9,\nhence (C)."
+    },
+    {
+      "number": 13,
+      "type": "choice",
+      "points": 4,
+      "answer": "E",
+      "images": [
+        "/generated/c/2024/q13-1.png"
+      ],
+      "explanation": "13. The isosceles triangle ABC is divided into three smaller\nisosceles triangles as shown.\nWhat is the value, in degrees, of ∠ABC?\n(A) 50\n(B) 55\n(C) 60\n(D) 65\n(E) 70\n|\n|\nB\nC\nA\n80◦\nAlternative 1\nThe unlabelled angles in the lower isosceles triangle are each 180 −80\n2\n= 50 degrees. The\nobtuse angles in the upper two triangles are each 360 −80\n2\n= 140 degrees, so the other\nangles of these two triangles are each 180 −140\n2\n= 20 degrees. Combining these,\n∠ABC = 50 + 20 = 70 degrees,\nhence (E).\nAlternative 2\nAs in Alternative 1, the acute angles of the upper two isosceles triangles are each 20◦. So\n∠BAC = 20◦+ 20◦= 40◦. Angles ABC and ACB are both 180 −40\n2\n= 70◦,\nhence (E)."
+    },
+    {
+      "number": 14,
+      "type": "choice",
+      "points": 4,
+      "answer": "C",
+      "images": [
+        "/generated/c/2024/q14-1.png"
+      ],
+      "explanation": "14. We have two water tanks for bushfire emergencies. The 10 kL\ntank is 80% full and the 40 kL tank is 30% full. Regulations\nstate that we must have at least 30 kL available.\nHow much more water do we need to add to our tanks?\n10 kL\n40 kL\n(A) 0 kL\n(B) 5 kL\n(C) 10 kL\n(D) 15 kL\n(E) 20 kL\nThe amount of water currently stored is 80\n100 × 10 + 30\n100 × 40 = 8 + 12 = 20 kilolitres. So\nanother 10 kL is required to make 30 kL,\nhence (C)."
+    },
+    {
+      "number": 15,
+      "type": "choice",
+      "points": 4,
+      "answer": "B",
+      "images": [
+        "/generated/c/2024/q15-1.png"
+      ],
+      "explanation": "15. I have a pad of 100 sticky notes. Each note is a\n75 mm × 75 mm square.\nUsing most of the pad, I completely cover all the faces of a\ncube. None of the notes folds over an edge of the cube.\nWhat is the largest the side length of the cube could be?\n(A) 22.5 cm\n(B) 30 cm\n(C) 45 cm\n(D) 60 cm\n(E) 75 cm\nSTICK-EE NOTES\n100 self-stick notes\nyellow 75 mm × 75 mm\nSince 100 ÷ 6 is between 16 and 17, one possibility is to place 16 sticky notes on every\nface in a 4 × 4 grid of notes. This can cover a cube of side length 300 mm = 30 cm.\nNo more is possible, since at least one face will have 16 or fewer sticky notes, and these\ncan, at most, exactly cover one face of a 300 mm cube,\nhence (B)."
+    },
+    {
+      "number": 16,
+      "type": "choice",
+      "points": 4,
+      "answer": "A",
+      "images": [
+        "/generated/c/2024/q16-1.png"
+      ],
+      "explanation": "16. In this square, all rows and columns have the same sum.\nFind the average of A, B, C and D.\n(A) 7\n(B) 8\n(C) 9\n(D) 10\n(E) 11\nD\n7\nC\nX\n5\nY\nA\n11\nB\nThe second column adds to 11 + 5 + 7 = 23 so this is the sum of each row and each\ncolumn. Then A + 11 + B = 23 so that A + B = 12. Similarly, X + Y = 18 and\nC + D = 16. (For instance, A = B = 6, C = D = 8 and X = Y = 9 is one way to\ncomplete the grid.) Then the average of A, B, C and D is\n(A + B + C + D) ÷ 4 = 28 ÷ 4 = 7,\nhence (A)."
+    },
+    {
+      "number": 17,
+      "type": "choice",
+      "points": 4,
+      "answer": "E",
+      "images": [
+        "/generated/c/2024/q17-1.png"
+      ],
+      "explanation": "17. In this puzzle, the numbers from 1 to 8 are to be placed\nin the 8 circles. For each of the 3 squares, the sum of\nthe 4 numbers on the corners must be 20.\nWith 5 and 7 placed as in the diagram, what number\ngoes in the middle circle?\n(A) 1\n(B) 2\n(C) 3\n(D) 4\n(E) 6\n5\n?\n7\nAlternative 1\nIn the bottom square, we know 5 + 7 = 12 so the other two numbers add to 20 −12 = 8.\nSince 5 and 7 are already used, these two numbers must be 2 and 6, and there are two\ncases — the middle number is either 2 or 6.\nIf the middle number was 2, then the right square has 2 + 5 = 7 so the other two\nnumbers add to 20 −7 = 13. However, 13 can only be made as 5 + 8 or 6 + 7 and 5 and 7\nare already used. So the middle number can’t be 2.\n2\n5\n9\n7\n6\n1\n4\n3\nIf the middle number is 6, the bottom number is 2, and we can\nplace 3 and 4 in the top left and 1 and 9 in the top right. This is the\nonly solution, so the middle number must be 6. One possibility for the\ncomplete puzzle is shown,\nhence (E).\nAlternative 2\nTry placing 1 in the middle, so that 2 + 3 + 4 + 6 + 8 = 23 is unused. However, we have\ntargets of 12 on the left, 14 on the right and 7 at the bottom, for a total of 33.\nWith 2 in the middle, 1+3+4+6+8 = 22 is unused and the targets are 11+13+6 = 30.\nEvery extra 1 in the middle decreases the unused total by 1 and decreases the total target\nby 3. This narrows the gap by 2. They are both equal to 18 when the middle number is\n6. With 6 in the middle, the rest of the grid is easily filled in, as in the earlier solution,\nhence (E).\nAlternative 3\nThe 8 numbers add to 36, but the 3 squares add to 60. The extra 24 is from counting the\nnumbers 5 and 7 a second time and from counting the middle number 3 times. So twice\nthe middle number is 24 −5 −7 = 12 and the middle number is 6,\nhence (E)."
+    },
+    {
+      "number": 18,
+      "type": "choice",
+      "points": 4,
+      "answer": "C",
+      "images": [
+        "/generated/c/2024/q18-1.png"
+      ],
+      "explanation": "18. A regular hexagon made from yellow cardboard has a thick black\nstripe painted across it. The hexagon is cut up into six equilateral\ntriangles and the pieces are mixed up. This diagram shows one of\nthe pieces in its original position.\nThe other five pieces are shown in options (A) to (E).\nWhich piece was in the position marked with the X?\nX\n(A)\n(B)\n(C)\n(D)\n(E)\nAlternative 1\nContinuing the top edge of the black stripe to the right as shown in the first diagram, the\ntop two pieces must be (E) and (B). Only piece (D) has a small yellow corner, which\nmatches the top of the stripe as shown in the second diagram. The third diagram shows\nwhere the remaining pieces fit.\nB\nE\nX\nB\nE\nD\nX\nB\nE\nA\nC\nD\n,\nhence (C).\nAlternative 2\nThe lower-left triangle has a fully black edge, so must be (A). The lower-right triangle\nhas an edge that is slightly less than half black, which can only be (C). So triangle (C)\ngoes in position X,\nhence (C)."
+    },
+    {
+      "number": 19,
+      "type": "choice",
+      "points": 4,
+      "answer": "D",
+      "images": [
+        "/generated/c/2024/q19-1.png"
+      ],
+      "explanation": "19. A three-digit number has all digits nonzero. These digits are multiplied together and\nthen this product is subtracted from the original number. What is the largest possible\nvalue of this difference?\n(A) 890\n(B) 901\n(C) 909\n(D) 910\n(E) 990\nLet N be the three-digit number, P the product of its digits and D = N −P. Examples\nlike N = 911 show that the biggest possible D is between 900 and 999, so both D and N\nwill begin with 9. Write N = 900 + 10b + c where b and c are nonzero digits. Then\nP = 9bc and D = 900 + 10b + c −9bc = 900 + 10b −c(9b −1).\nFor any nonzero b, 9b −1 > 0 so that D is greatest when c = 1. Then D = 901 + b which\nhas maximum value 910 when b = 9 and n = 991,\nhence (D)."
+    },
+    {
+      "number": 20,
+      "type": "choice",
+      "points": 4,
+      "answer": "B",
+      "images": [
+        "/generated/c/2024/q20-1.png"
+      ],
+      "explanation": "20. A piece of wire of length 50 cm is bent into the shape shown, where each bend in the wire\nforms a right angle. The three internal sections of the bent wire are each the same\nlength, x cm. What is the value of x?\n26 cm\nx\nx\nx\n(A) 4\n(B) 6\n(C) 8\n(D) 10\n(E) 12\nAlternative 1\nThe length of the sum of the two end sections of the bent wire is 26 + x because the\nbottom section starts x back from the top section. Hence the total length of the bent\nwire is 26 + 4x = 50 giving 4x = 24 so x = 6,\nhence (B).\nAlternative 2\nBend the wire further as indicated by the dotted lines.\nx\nx\nx\n26 cm\nThe doubled-up part of the wire is 50 −26 = 24 cm, so that x = 24 ÷ 4 = 6 cm,\nhence (B).\nQuestions 21 to 25, 5 marks each\n21-25 题，每题5 分"
+    },
+    {
+      "number": 21,
+      "type": "choice",
+      "points": 5,
+      "answer": "D",
+      "images": [
+        "/generated/c/2024/q21-1.png"
+      ],
+      "explanation": "21. Amisha is wrapping a present for her little brother. The present is in a box measuring\n9 cm × 9 cm × 13 cm and the sheet of wrapping paper is 40 cm × 25 cm. She wraps the\npresent as tightly as possible, as shown.\n25\n40\n13\n9\n9\nWhat percentage of the wrapping paper is no longer visible from any angle?\n(A) 25%\n(B) 30%\n(C) 33%\n(D) 37%\n(E) 42%\nThe area of wrapping paper that is visible from the outside is the same as the total area\nof the six faces of the box. This is the total surface area of the box. There are two square\nfaces with area 9 × 9 = 81 cm2 and four rectangular faces with area 9 × 13 = 117 cm2. So\nthis total area is\n2 × 81 + 4 × 117 = 630 cm2\nThe full area of the wrapping paper is 40 × 25 = 1000 cm2. Therefore the percentage of\nwrapping paper which is visible is\n630\n1000 × 100% = 63%\nThe remaining 37% is not visible,\nhence (D)."
+    },
+    {
+      "number": 22,
+      "type": "choice",
+      "points": 5,
+      "answer": "B",
+      "images": [
+        "/generated/c/2024/q22-1.png"
+      ],
+      "explanation": "22. A long line of ping-pong balls numbered 1, 2, 3, . . . is sitting in order in a tilted chute, as\nshown below.\nXavier, Yasmin and Zebedee take turns removing balls from the chute. When a ball is\nremoved, the rest roll down to fill the gap. When Zebedee has taken his ball, it is Xavier’s\nturn again and they continue in the same order for as long as there are balls remaining.\nXavier always takes the second available ball.\nYasmin always takes the third available ball.\nZebedee always takes the first available ball.\nWhich statement is true?\n9\n8\n7\n6\n5\n4\n3\n2\n1\n(A) Xavier takes ball 48.\n(B) Yasmin takes ball 49.\n(C) Zebedee takes ball 50.\n(D) Yasmin takes ball 51.\n(E) Xavier takes ball 52.\nXavier takes the second ball, which is number 2. Yasmin then takes the third ball from\nthe remaining list 1, 3, 4, . . . , which is number 4. Zebedee then takes the first ball, which\nis number 1. This leaves the list 3, 5, 6, . . .\nWe can tabulate the choices as shown below, crossing off each number in the first row as\nit is removed. After the first four rounds we have the following:\nList\n̸1\n̸2\n̸3\n̸4\n̸5\n̸6\n̸7\n̸8\n̸9\n̸10\n̸11\n12\n̸13\n14\n· · ·\nX\n2\n5\n8\n11\n· · ·\nY\n4\n7\n10\n13\n· · ·\nZ\n1\n3\n6\n9\n· · ·\nWith the exception of Zebedee taking 1 and then 3 in the first two rounds, the pattern of\ntaking every third number continues for all players. In particular, Zebedee takes all\nmultiples of 3, so we can predict that he will take 48 and the table will continue as\nfollows:\nList\n· · ·\n̸48\n̸49\n̸50\n̸51\n̸52\n̸53\n· · ·\nX\n50\n53\nY\n49\n52\nZ\n48\n51\nSo the only true statement is that Yasmin takes ball 49,\nhence (B)."
+    },
+    {
+      "number": 23,
+      "type": "choice",
+      "points": 5,
+      "answer": "C",
+      "images": [
+        "/generated/c/2024/q23-1.png"
+      ],
+      "explanation": "23. To make the stamps easier to pull apart, sheets of postage\nstamps have rows of holes punched into them.\nIn the sheet shown, each stamp has 7 holes along the top and\nbottom edges, 9 holes along the sides and 1 more at each corner.\nHoles are included around all four edges of the sheet so the\nborders can be torn off as well.\nThe full sheet has 20 stamps arranged in 4 rows of 5. How many\nholes are there altogether?\n(A) 320\n(B) 391\n(C) 421\n(D) 451\n(E) 640\n60c\n60c\nAUSTRALIA\nAUSTRALIA\n60c\n60c\n60\n60\nAUSTRAL\nAUSTRAL\n60\n60\nAlternative 1\nBreak up the perforations for each stamp into four parts as shown on the left: the yellow\nhook shape of 7 + 1 + 9 = 17 holes, the blue base strip of 1 + 7 = 8 holes, the pink side\nstrip of 1 + 9 = 10 holes and the green corner with 1 hole.\n60c\n60c\nAUSTRALIA\nAUSTRALIA\nTo avoid double counting overlapping edges, the entire sheet can be accounted for by the\narrangement shown on the right: 20 yellow hooks (one per stamp), 5 blue base strips, 4\npink side strips and 1 green corner.\nSo the total number of holes is\n(20 × 17) + (5 × 8) + (4 × 10) + 1 = 421,\nhence (C).\nAlternative 2\nThere are 6 columns of holes and 5 rows of holes, each with 41 holes. Counting this as\n41 × 11 = 451, we have double-counted 6 × 5 = 30 corner holes that are in both a row and\na column. Subtracting to compensate for double-counting, there are 451 −30 = 421 holes,\nhence (C)."
+    },
+    {
+      "number": 24,
+      "type": "choice",
+      "points": 5,
+      "answer": "C",
+      "images": [
+        "/generated/c/2024/q24-1.png"
+      ],
+      "explanation": "24. Sally arranges the numbers from 1 to 8 in a circle and then calculates the sum of each set\nof 3 adjacent numbers. She would like an arrangement in which the smallest of these\nsums is as large as possible. If she chooses such an arrangement, what will this smallest\nsum be?\n(A) 10\n(B) 11\n(C) 12\n(D) 13\n(E) 14\nLet the smallest of the sums of three adjacent numbers be x.\n1\n7\n4\n3\n8\n2\n5\n6\n14\n12\n14\n15\n13\n15\n13\n12\nThen adding from the number 1 around the circle and back to\n1 adds 9 numbers in a row, so this value is at least 3x. However\nthese 9 numbers add to 1 + 1 + 2 + 3 + · · · + 8 = 37. Hence\n37 ⩾3x so that 121\n3 ⩾x and since x is a whole number, x ⩽12.\nOnce it is known that 12 has a chance of being the largest mini-\nmum, it is straightforward to find one of the many arrangements\nwhere all sums of 3 adjacent numbers (shown in blue) are 12 or\nmore, such as the arrangement shown. This confirms that the\nsmallest possible sum of 3 adjacent numbers is 12,\nhence (C)."
+    },
+    {
+      "number": 25,
+      "type": "choice",
+      "points": 5,
+      "answer": "B",
+      "images": [
+        "/generated/c/2024/q25-1.png",
+        "/generated/c/2024/q25-2.png"
+      ],
+      "explanation": "25. A totally even number is a positive integer in which all the digits are even. The list of all\ntotally even numbers begins as follows:\n2, 4, 6, 8, 20, 22, 24, 26, 28, 40, . . .\nThe number 40 is in the 10th position in this list. In which position is the totally even\nnumber 2024?\n(A) 57\n(B) 132\n(C) 257\n(D) 512\n(E) 1012\nThe units digit cycles though the 5 even digits: 2, 4, 6, 8, 0, 2, 4, 6, . . .. To make the cycle\nclearer, temporarily start with the number 0, so that the cycles finishes after the 5th,\n10th, . . . position, and the tens digit increases there as well.\nEvery 5 positions, the tens digit increases in the same cycle of even digits, taking 25\npositions to cycle. Likewise the hundreds digit increases every 25 positions, for a cycle of\n125 positions and the thousands digit increases every 125 positions. So the list up to\n2024 is\n0, 2, 4, . . . , 888\n|\n{z\n}\n125\n, 2000, 2002, . . . , 2008\n|\n{z\n}\n5\n, 2020, 2022, 2024\n|\n{z\n}\n3\nwhich has 2024 in position 133. Without the initial 0, 2024 is in position 132,\nhence (B).\nFor questions 26 to 30, shade the answer as an integer from 0 to 999\nin the space provided on the answer sheet.\n问题26-30 的答案为0-999 之间的整数，请将答案填涂在答题卡对应区域。\nQuestions 26–30 are worth 6, 7, 8, 9 and 10 marks, respectively.\n第26-30 题分别为6, 7, 8, 9, 10 分。"
+    },
+    {
+      "number": 26,
+      "type": "integer",
+      "points": 6,
+      "answer": "761",
+      "images": [
+        "/generated/c/2024/q26-1.png"
+      ],
+      "explanation": "26. Ringo has 5 cards with the numbers 2, 3, 4, 5 and\n6 on them. He wrote a list of all possible two-digit\nnumbers that can be made with these cards.\nFind the sum of all numbers in his list that are\nnot prime.\n2\n3\n4\n5\n6\nAlternative 1\nWe first consider the sum of all possible numbers, including primes. The numbers in the\nlist are\n23, 24, 25, 26, 32, 34, 35, 36, 42, 43, 45, 46, 52, 53, 54, 56, 62, 63, 64, 65\nEach digit occurs in the units position 4 times, so the units digits add to\n4 × (2 + 3 + 4 + 5 + 6) = 80. Similarly the tens digits add to 80, so that the total of all 20\nnumbers is 80 + 800 = 880.\nThe only primes in the list are 23, 43 and 53, which add to 119. So the required sum is\n880 −119 = 761,\nhence (761).\nAlternative 2\nThere are 5 × 4 = 20 choices of tens digit then ones digit. These 20 numbers can be\narranged into 10 pairs, each adding to 88:\n88 = 23 + 65 = 24 + 64 = · · ·\nThese 10 pairs add to 10 × 88 = 880.\nAs in Alternative 1, subtracting the three primes gives 880 −119 = 761,\nhence (761)."
+    },
+    {
+      "number": 27,
+      "type": "integer",
+      "points": 7,
+      "answer": "840",
+      "images": [
+        "/generated/c/2024/q27-1.png"
+      ],
+      "explanation": "27. A farmer, Jenni, grows oranges and grapefruit. At her last harvest she picked 120\ngrapefruit and a number of oranges. However, one-tenth of all grapefruit look like\noranges and one-tenth of all oranges look like grapefruit. Overall, one-fifth of all fruits\nlook like grapefruit.\nHow many oranges did Jenni harvest?\nOf the 120 grapefruit she picks, 12 look like oranges, so 108 look like grapefruit.\nSuppose Jenni picks 10x oranges. Then 9x look like oranges and x look like grapefruit.\nOf the 120 + 10x fruit picked, one fifth look like grapefruit, which is 24 + 2x. This is also\nequal to 108 + x. Solving,\n24 + 2x = 108 + x\nx = 108 −24 = 84\nSo the number of oranges picked is 10x = 840,\nhence (840)."
+    },
+    {
+      "number": 28,
+      "type": "integer",
+      "points": 8,
+      "answer": "674",
+      "images": [
+        "/generated/c/2024/q28-1.png"
+      ],
+      "explanation": "28. A rectangular piece of paper would lose 999 cm2 of area if a 3 cm wide border was\ntrimmed from all four sides. If instead the trimmed border was 2 cm wide, what area, in\nsquare centimetres, would be lost?\nAlternative 1\nLet the dimensions of the rectangle be x cm × y cm. When the 3 cm border is trimmed,\nthe width and height both reduce by 6 cm. So the area lost, in square centimetres, is\nxy −(x −6)(y −6) = xy −(xy −6x −6y + 36) = 6(x + y) −36.\nSetting this area equal to 999 and solving shows that x + y = 1035\n6\n= 345\n2 .\nIf the border is 2 cm wide instead, the width and height both reduce by 2 cm. So the area\nlost, in square centimetres, is\nxy −(x −4)(y −4) = 4(x + y) −16 = 4 × 345\n2 −16 = 2 × 345 −16 = 674\nhence (674).\nAlternative 2\nTrim the border 1 cm at a time, creating a sequence of border trimmings. Each can be\nmade up of 4 rectangles, each 1 cm wide, and each rectangle loses 2 cm length from one to\nthe next. So the borders’ areas are 3 numbers in arithmetic progression with difference\n−8. Since they sum to 999, their average is 333, which is the middle number.\nConsequently, the borders are 341, 333 and 325 cm2. If only the outer two are removed,\nthis would be 341 + 333 = 674 cm2,\nhence (674).\nAlternative 3\n+\n+\n+\n= 999 cm2\n= 24 cm2\n+\n+\n= 999 −24 = 975 cm2\n=\n=\n= 975 ÷ 3\n= 325 cm2\n+\n+\n= 999 −325 = 674 cm2\nhence (674)."
+    },
+    {
+      "number": 29,
+      "type": "integer",
+      "points": 9,
+      "answer": "20",
+      "images": [
+        "/generated/c/2024/q29-1.png"
+      ],
+      "explanation": "29. Rodney builds increasingly large shapes out of unit rods. The smallest uses six rods and\neach larger shape adds a layer of hexagons around the previous shape.\nStarting with 2000 rods, Rodney builds a single shape like this, as large as possible. How\nmany rods will he have left over?\nAlternative 1\nSuppose the shape has N hexagons on each side. Consider first the horizontal rods,\ncounted in vertical columns. These columns go\n(N + 1) + (N + 2) + · · · + (2N −1)\n|\n{z\n}\nN−1\n+(2N) + (2N −1) + · · · + (N + 1))\n|\n{z\n}\nN−1\nwhich we rearrange by making pairs that add to 3N, like (N + 1) + (2N −1) = 3N,\n(N + 2) + (2N −2) = 3N and so on, giving that the number of horizontal rods is\n3N + 3N + · · · + 3N\n|\n{z\n}\nN−1\n+(2N) = (N −1)(3N) + 2N = 3N 2 −N\nThere are two other directions, but these have the same number of rods, making a total\nof 9N 2 −3N rods. Estimating, 2000 ≈9N 2 −3N ≈9N 2 so that\nN ≈√2000 ÷ 9 ≈\n√\n225 = 15. So we test N near 15:\nN\n14\n15\n16\n9N 2 −3N\n1722\n1980\n2256\nSo the greatest N could be is 15, and then there are 2000 −1980 = 20 rods left,\nhence (20).\nAlternative 2\nIn shape number n, let R ≈2000 be the number of rods and H the number of hexagons.\nThere are B = 6(2n −1) = 12n −6 rods around the boundary and R −B non-boundary\nrods. Counting 6 rods around each hexagon counts every boundary rod once and every\nnon-boundary rod twice. So 6H = B + 2(R −B) = 2R −B = 2R −12n + 6 and then\nR = 3H + 6n −3.\nBy considering concentric layers of hexagons,\nH = 1 + 6 + 12 + · · · + 6(n −1)\n= 1 + 6 ×\n\u00001 + 2 + · · · + (n −1)\n\u0001\n= 1 + 6 × n(n −1)\n2\n= 3n2 −3n + 1\n⇒R = 3H + 6n −3 = 3(3n2 −3n + 1) + 6n −3\n= 9n2 −3n\nThen 9n2 −3n −R = 0 where R ⩽2000. We solve this quadratic for n > 0:\n9n2 −3n −R = 0\nn = 1\n18\n\u0010\n3 +\n√\n9 + 36R\n\u0011\n⩽1\n6 + 1\n18\n√\n36 × 2025\n= 1\n6 + 6 × 45\n18\n= 15 + 1\n6\nThis suggests that n = 15 is possible. Checking, the number of rods when n = 15 is\n3n(3n −1) = 45 × 44 = 1980 rods, which is possible. The next shape has n = 16 and\nrequires 48 × 47 > 452 = 2025 rods, which is too many.\nSo the largest shape has 15 hexagons on each side. It requires 1980 rods and has\n2000 −1980 = 44 rods left over,\nhence (20)."
+    },
+    {
+      "number": 30,
+      "type": "integer",
+      "points": 10,
+      "answer": "107",
+      "images": [
+        "/generated/c/2024/q30-1.png"
+      ],
+      "explanation": "30. Tim uses plug-in timers to automate his indoor plant lighting.\nEach timer has a plug on the back, a socket on the front, and a\nmotorised dial that rotates once for every 24 hours that the plug\nhas power.\nWhen the time on the dial is between 9:00 and 17:00, the timer\nswitch is on, so that any power on the plug is switched through\nto the socket.\nFor fun, he plugs together three of his timers, all set to time\n0:00, with a lamp plugged into the front socket. How many\nhours until the lamp turns on?\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n0\n1\n2\n3\n4\n5\n6\n18\n19\n20\n21\n22\n23\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n0\n1\n2\n3\n4\n5\n6\n18\n19\n20\n21\n22\n23\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n0\n1\n2\n3\n4\n5\n6\n18\n19\n20\n21\n22\n23\nCall the timers A, B, C from front to back.\nThe lamp will turn on when timer A has received 9 hours of power, and is starting its\n10th hour.\nFor this, timer B will have delivered 8 hours on its first rotation, then 1 hour on its\nsecond rotation. That is, it will have completed one rotation, and be showing 10:00. This\nmeans it has received 34 hours of power, and just be starting its 35th hour.\nFor timer C to deliver 34 hours of power, it will have completed 4 rotations, which will\ndeliver 32 hours of power, and then another 2 hours between when it shows 9:00 and\nwhen it shows 11:00. Since C is receiving power continuously, this will be 4 days and 11\nhours after the power was first switched on.\nThis diagram summarises what happens over 5 days:\nTimer C:\n9\n8\n7\n9\n8\n7\n9\n8\n7\n9\n8\n7\n9\n8\n7\nTimer B:\n8\n1\n7\n1\n7\n8\n1\n7\nTimer A:\n7\n1\n1\n7\nThe time it takes for the lamp to turn on is 4 × 24 + 11 = 107 hours,\nhence (107)."
+    }
+  ]
+}

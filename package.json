@@ -8,7 +8,9 @@
     "deploy": "npx wrangler pages deploy public",
     "build:library": "python3 scripts/build_amc_library.py",
     "check:library": "python3 scripts/build_amc_library.py --no-copy",
+    "generate:2024a": "python3 scripts/generate_amc_questions.py --level a --year 2024 && python3 scripts/build_amc_library.py",
     "generate:2024b": "python3 scripts/generate_amc_questions.py --level b --year 2024 && python3 scripts/build_amc_library.py",
+    "generate:2024c": "python3 scripts/generate_amc_questions.py --level c --year 2024 && python3 scripts/build_amc_library.py",
     "generate:2025": "python3 scripts/generate_amc_questions.py --level a --year 2025 && python3 scripts/generate_amc_questions.py --level b --year 2025 && python3 scripts/generate_amc_questions.py --level c --year 2025 && python3 scripts/build_amc_library.py",
     "generate:ready": "python3 scripts/generate_ready_sets.py"
   },

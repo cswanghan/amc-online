@@ -1,0 +1,311 @@
+{
+  "competition": "Australian Mathematics Competition",
+  "level": "a",
+  "year": 2024,
+  "durationMinutes": 60,
+  "totalQuestions": 30,
+  "totalScore": 135,
+  "questions": [
+    {
+      "number": 1,
+      "type": "choice",
+      "points": 3,
+      "answer": "D",
+      "images": [
+        "/generated/a/2024/q01-1.png"
+      ],
+      "explanation": "1.\nWhat is the value of the digit 7 in the number 57021?\n(A) 7\n(B) 70\n(C) 700\n(D) 7000\n(E) 70 000\nThe digit 7 is in the fourth place value from the right, which is the thousands place.\nTherefore, the value of the digit 7 is 7000,\nhence (D)."
+    },
+    {
+      "number": 2,
+      "type": "choice",
+      "points": 3,
+      "answer": "D",
+      "images": [
+        "/generated/a/2024/q02-1.png"
+      ],
+      "explanation": "2.\nWhich one of these numbers is closest to 365?\n(A) 265\n(B) 356\n(C) 361\n(D) 368\n(E) 375\nSince the given numbers are in order, we only need to look at 361, which is 4 less than\n365, and 368, which is 3 more than 365. So 368 is closest,\nhence (D)."
+    },
+    {
+      "number": 3,
+      "type": "choice",
+      "points": 3,
+      "answer": "A",
+      "images": [
+        "/generated/a/2024/q03-1.png"
+      ],
+      "explanation": "3.\nWhich pattern has exactly 8 dots?\n(A)\n(B)\n(C)\n(D)\n(E)\nOnly the first pattern (A) has 8 dots,\nhence (A)."
+    },
+    {
+      "number": 4,
+      "type": "choice",
+      "points": 3,
+      "answer": "C",
+      "images": [
+        "/generated/a/2024/q04-1.png"
+      ],
+      "explanation": "4.\nMarlie was born in 2016. In which year will she turn 14?\n(A) 2026\n(B) 2028\n(C) 2030\n(D) 2032\n(E) 2034\nSince 2016 + 14 = 2030, she will turn 14 in 2030,\nhence (C)."
+    },
+    {
+      "number": 5,
+      "type": "choice",
+      "points": 3,
+      "answer": "D",
+      "images": [
+        "/generated/a/2024/q05-1.png"
+      ],
+      "explanation": "5.\nKarl cuts out this cardboard shape then folds it along the\nlines to make a box.\nWhat does the box look like?\n(A)\n(B)\n(C)\n(D)\n(E)\nThe three rectangles in the net must wrap around to form the three sides of a triangular\nprism, and then the two triangles are the ends,\nhence (D)."
+    },
+    {
+      "number": 6,
+      "type": "choice",
+      "points": 3,
+      "answer": "B",
+      "images": [
+        "/generated/a/2024/q06-1.png"
+      ],
+      "explanation": "6.\nSam has arranged some cupcakes in equal rows on\nher kitchen table.\nTo work out how to pack them for the party, she\nplaces a box over a number of them, as shown.\nHow many are covered by the box?\n(A) 24\n(B) 28\n(C) 32\n(D) 45\n(E) 81\nCounting cupcakes along each side, the covered cupcakes are 4 rows of 7, so 4 × 7 = 28\ncupcakes are covered,\nhence (B)."
+    },
+    {
+      "number": 7,
+      "type": "choice",
+      "points": 3,
+      "answer": "B",
+      "images": [
+        "/generated/a/2024/q07-1.png"
+      ],
+      "explanation": "7.\nIn the word MATHS, which letter has the most lines of symmetry?\n(A) A\n(B) H\n(C) M\n(D) S\n(E) T\nThe letter S has zero lines of symmetry. The letters M, A & T all have one vertical line\nof symmetry. The letter H has two lines of symmetry, horizontal and vertical,\nhence (B)."
+    },
+    {
+      "number": 8,
+      "type": "choice",
+      "points": 3,
+      "answer": "E",
+      "images": [
+        "/generated/a/2024/q08-1.png"
+      ],
+      "explanation": "8.\nWhich one of these clock faces shows 10 minutes past 5?\n(A)\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11 12\n(B)\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11 12\n(C)\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11 12\n(D)\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11 12\n(E)\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11 12\nTo have 10 minutes past the hour, the minutes hand should be on the digit 2. The hours\nhand will be slightly past 5,\nhence (E)."
+    },
+    {
+      "number": 9,
+      "type": "choice",
+      "points": 3,
+      "answer": "C",
+      "images": [
+        "/generated/a/2024/q09-1.png"
+      ],
+      "explanation": "9.\nEvan set the temperature dial on his oven as shown.\nWhat temperature is it set to?\n(A) 155 ◦C\n(C) 180 ◦C\n(B) 170 ◦C\n(D) 220 ◦C\n(E) 230 ◦C\nOFF\n100\n150\n200\n250\n◦C\nBetween 150 and 200 there are 5 intervals, so each interval represents 10 ◦C. The dial is\nset 3 intervals above 150 ◦C which is therefore 180 ◦C,\nhence (C)."
+    },
+    {
+      "number": 10,
+      "type": "choice",
+      "points": 3,
+      "answer": "B",
+      "images": [
+        "/generated/a/2024/q10-1.png"
+      ],
+      "explanation": "10. If I choose one of these cards at random, which of the following am I least likely to\nget?\n(A) A four\n(B) A seven\n(C) A spade ♠\n(D) A heart ♥\n(E) A diamond ♦\n♦\n♦\n♦\n♦\n♦\n♦\n♦\n7\n♦\n7\n♦\n♠\n♠\n♠\n♠\n♠\n5\n♠\n5\n♠\n♣\n♣\n♣\n♣\n4\n♣\n4\n♣\nJ\n♥\nJ\n♥\n♥\n♥\n♥\n♥\n♥\n♥\n6\n♥\n6\n♥\n♦\n♦\n♦\n♦\n♦\n♦\n6\n♦\n6\n♦\n♣\nA\n♣\nA\n♣\nJ\n♠\nJ\n♠\n♠\n♠\n♠\n♠\n4\n♠\n4\n♠\nK\n♦\nK\n♦\n♥\n♥\n♥\n♥\n♥\n♥\n♥\n7\n♥\n7\n♥\n♦\n♦\n♦\n♦\n4\n♦\n4\n♦\nFor each of spades, diamonds, hearts and fours, there are 3 cards. However, there are\nonly 2 sevens. So I am least likely to get a seven,\nhence (B).\nQuestions 11 to 20, 4 marks each\n11-20 题，每题4 分"
+    },
+    {
+      "number": 11,
+      "type": "choice",
+      "points": 4,
+      "answer": "A",
+      "images": [
+        "/generated/a/2024/q11-1.png"
+      ],
+      "explanation": "11. In this puzzle, every row and every column must contain the\nnumbers 1, 3 and 5, once each.\nIf I solve the puzzle then multiply the numbers in the two\nshaded boxes, what is the answer?\n(A) 1\n(B) 3\n(C) 5\n(D) 15\n(E) 25\n3\n5\nThe first column can’t be 3, 5, 1 so it must be 3, 1, 5.\n3\n1\n5\n1\n5\n3\n5\n3\n1\nSimilarly, the second row must be 1, 5, 3.\nThe lower right cell can’t be 3 or 5, so must be 1.\nSo both shaded cells are 1, and 1 × 1 = 1,\nhence (A)."
+    },
+    {
+      "number": 12,
+      "type": "choice",
+      "points": 4,
+      "answer": "E",
+      "images": [
+        "/generated/a/2024/q12-1.png"
+      ],
+      "explanation": "12. Gabe has this birthday chart on his classroom wall. It shows how\nmany people in the class were born in each season.\nThe number for Summer has been rubbed off but Gabe knows that\nmore people were born in Summer than in any other season.\nWhat is the smallest possible number of people in the class?\nSummer\nAutumn\n5\nWinter\n8\nSpring\n7\n(A) 20\n(B) 21\n(C) 25\n(D) 28\n(E) 29\nIf more people were born in Summer than in any other season, then at least 9 people\nwere born in Summer. This means that the smallest number of people in the class is\n9 + 5 + 8 + 7 = 29,\nhence (E)."
+    },
+    {
+      "number": 13,
+      "type": "choice",
+      "points": 4,
+      "answer": "C",
+      "images": [
+        "/generated/a/2024/q13-1.png"
+      ],
+      "explanation": "13. Nullah’s local park has six fountains and many\npaths, as this map shows. His run through the\npark always follows the paths that lead forward\nand he always passes exactly two fountains.\nHow many different ways are there for Nullah to pass exactly two fountains in the park?\nEntry\nExit\nU\nY\nV\nW\nZ\nX\n(A) 2\n(B) 3\n(C) 4\n(D) 5\n(E) 6\nIf Nullah first runs to fountain U, then only fountain V can be next.\nIf Nullah first runs to W, then only X can be next.\nIf Nullah first runs to Y, then either X or Z can be next.\nThese are the only 4 possibilities,\nhence (C)."
+    },
+    {
+      "number": 14,
+      "type": "choice",
+      "points": 4,
+      "answer": "D",
+      "images": [
+        "/generated/a/2024/q14-1.png"
+      ],
+      "explanation": "14. Justine has some balls, rods and bricks.\nTwo rods and one brick weigh the same as 10 balls.\nFour rods and one brick weigh the same as 14 balls.\nHow many balls weigh the same as one brick?\n(A) 3\n(B) 4\n(C) 5\n(D) 6\n(E) 7\nAlternative 1\nTwo extra rods requires 4 balls to balance, so each rod weighs the same as 2 balls.\nThen two rods and one brick weigh the same as 4 balls and one brick. This also weighs\nthe same as 10 balls.\nSo one brick weighs the same as 6 balls,\nhence (D).\nAlternative 2\nDoubling the first amount, 4 rods plus 2 bricks weigh the same as 20 balls. This is 1 brick\nmore, and 6 balls more than the second amount. So 1 brick weighs the same as 6 balls,\nhence (D)."
+    },
+    {
+      "number": 15,
+      "type": "choice",
+      "points": 4,
+      "answer": "A",
+      "images": [
+        "/generated/a/2024/q15-1.png"
+      ],
+      "explanation": "15. The cube pictured has six different faces.\nWhich of the following is not a possible picture of this\ncube?\n×\n□\n⃝\n(A)\n×\n⃝\n□\n(B)\n⃝\n□\n.\n(C)\n×\n⃝\n.\n(D)\n⃝\n×\n□\n(E)\n□\n⃝\n×\nPictures (D) and (E) are possible by rotating the diagram of the cube by 120◦\nanticlockwise and clockwise, respectively. Picture (A) shows the same faces, but the\norder of the red-blue-green faces is clockwise in the question and anticlockwise in (A). So\n(A) is not possible. The other two options are possible: (B) by having the red face\ndownwards and (C) by having the green face downwards. Consequently the only picture\nthat is not possible is (A),\nhence (A)."
+    },
+    {
+      "number": 16,
+      "type": "choice",
+      "points": 4,
+      "answer": "E",
+      "images": [
+        "/generated/a/2024/q16-1.png"
+      ],
+      "explanation": "16. Coco is making a hanging mobile from coathangers.\nStarting with 1 coathanger in the first layer, she hangs 2\ncoathangers in the second layer, 1 at each end of the first,\nas shown.\nShe works along each layer following the same pattern, so\nthat every coathanger has 2 new coathangers hanging from\nit.\nCoco stops when she has finished 6 layers. How many coathangers are in her mobile?\n(A) Between 20 and 30\n(B) Between 30 and 40\n(C) Between 40 and 50\n(D) Between 50 and 60\n(E) Between 60 and 70\nSince she hangs 2 coat hangers to the ends of each one in the layer above, the total\nnumber of coat hangers in each layer doubles at each stage. So in the first 6 layers the\nnumbers of coat hangers are\n1, 2, 4, 8, 16, 32\nand adding these together gives 63 in all,\nhence (E)."
+    },
+    {
+      "number": 17,
+      "type": "choice",
+      "points": 4,
+      "answer": "D",
+      "images": [
+        "/generated/a/2024/q17-1.png"
+      ],
+      "explanation": "17. A shop has a special deal where you can buy two different items and get the cheaper item\nat half price. Roberta bought two of these items, and paid $16. Which two items did she\nbuy?\nMagazines\n$6 each\nGift cards\n$12 each\n`\n`\n`\n`\n`\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\nS\nS\nS\nS\nS\nS\nS\nS\nS\nS\nS\n8\n8\n8\n8\n8\n8\n8\n8\n8\n8\n8\n3\n3\n3\n3\n3\n3\n3\n3\n3\n3\n3\n5\n5\n5\n5\n5\n5\n5\n5\n5\n5\n5\nBooks\n$10 each\nThe Hobbit\nFellowship of the Ring\nReturn of the King\nThe Two Towers\nCreative Woodwork\nPalaeontology\nMaths Puzzles\nBirthday cards\n$4 each\n1\nYOU’RE\n2\nYOU’RE\n3\nYOU’RE\n4\nYOU’RE\n5\nYOU’RE\n6\nYOU’RE\n7\nYOU’RE\n8\nYOU’RE\nWrapping paper\n$8 each\n(A) A birthday card and a magazine\n(B) A gift card and a birthday card\n(C) A book and a roll of wrapping paper\n(D) A gift card and a roll of wrapping paper\n(E) A magazine and a roll of wrapping paper\nSince Roberta paid $16, she spent more than $8 on the most expensive item, which is\neither a book or a gift card. If her expensive item was a $10 book, then she spent $6 on\nher other item at half price. But then her cheaper item would have cost $12, which does\nnot work. So her expensive item can’t have been a book.\nIf her expensive item was a $12 gift card, she spent $4 on the other item, which must\nhave been priced at $8, which is the wrapping paper. So Roberta bought a gift card and\na roll of wrapping paper,\nhence (D)."
+    },
+    {
+      "number": 18,
+      "type": "choice",
+      "points": 4,
+      "answer": "C",
+      "images": [
+        "/generated/a/2024/q18-1.png"
+      ],
+      "explanation": "18. Lubna likes oranges and apples, but not bananas. Bhavna likes apples and bananas, but\nnot oranges. Preeti likes oranges and bananas, but not apples.\nTheir father has 6 oranges, 4 apples and 2 bananas and gives each girl 4 pieces of fruit\nthat she likes. What is the smallest number of oranges that he can give to Lubna?\n(A) 0\n(B) 1\n(C) 2\n(D) 3\n(E) 4\nSince Bhavna dislikes oranges, and Preeti receives at most 4 oranges, Lubna must receive\nat least 2 oranges.\nIf Lubna receives exactly 2 oranges, then she also receives 2 apples. Also Preeti receives 4\noranges and finally Bhavna receives 2 apples and 2 bananas. This complete solution\nconfirms that the minimum number of oranges that Lubna receives is 2,\nhence (C)."
+    },
+    {
+      "number": 19,
+      "type": "choice",
+      "points": 4,
+      "answer": "E",
+      "images": [
+        "/generated/a/2024/q19-1.png"
+      ],
+      "explanation": "19. A simple jigsaw puzzle has four pieces labelled W, X, Y and Z, shown here face up.\nW\nX\nY\nZ\nWhen the puzzle is completed, which of the following pieces are not next to each other?\n(A) W and Y\n(B) W and Z\n(C) X and Y\n(D) X and Z\n(E) Y and Z\nStart with W in the bottom-left corner and consider the piece to its right. To make the\nstraight edge along the bottom, this piece can only be X or Y (either one rotated\nanticlockwise by 90◦). If it is X, then Z must be placed above the W as shown in the first\ndiagram. But then Y cannot fit in the top-right corner (another Z piece would be needed\nto complete the puzzle).\nW\nX\nZ\nY\nW\nY\nZ\nX\nSo the piece to the right of W must be Y and the second diagram shows how the puzzle\ncan be completed. Of the pairs listed, only Z and Y are in opposite corners,\nhence (E)."
+    },
+    {
+      "number": 20,
+      "type": "choice",
+      "points": 4,
+      "answer": "D",
+      "images": [
+        "/generated/a/2024/q20-1.png"
+      ],
+      "explanation": "20. Minnie and Max each have a set of 4 cards numbered 1 to\n4. Minnie arranges her cards into two 2-digit numbers and\nadds the 2-digit numbers to get a total. She chooses her\nnumbers to make her total as small as possible.\nMax does the same, except that his total is as large as\npossible.\nWhat is the difference between Minnie’s total and Max’s\ntotal?\n(A) 18\n(B) 29\n(C) 32\n(D) 36\n(E) 55\n1\n2\n3\n4\n1\n2\n3\n4\nMinnie makes her numbers smallest by putting the smaller digits in the 10s position and\nthe larger digits in the ones position. She will have either 13 + 24 = 37 or 14 + 23 = 37.\nMax makes his numbers largest by putting the larger digits in the 10s position and the\nsmaller digits in the ones position, giving either 31 + 42 = 73 or 32 + 41 = 73.\nThe difference between their two totals is 73 −37 = 36,\nhence (D).\nQuestions 21 to 25, 5 marks each\n21-25 题，每题5 分"
+    },
+    {
+      "number": 21,
+      "type": "choice",
+      "points": 5,
+      "answer": "B",
+      "images": [
+        "/generated/a/2024/q21-1.png"
+      ],
+      "explanation": "21. A box of chocolates weighs 416 g. The box contains 13 identical chocolates. After 4\nchocolates are eaten, the box weighs 332 g.\nWhat is the weight of the empty box?\n(A) 128 g\n(B) 143 g\n(C) 204 g\n(D) 248 g\n(E) 288 g\nThe weight of four chocolates is 416 −332 = 84. Therefore one chocolate weighs\n84 ÷ 4 = 21 g. All 13 chocolates weigh 21 × 13 = 273 g. The box weighs 416 −273 = 143 g,\nhence (B)."
+    },
+    {
+      "number": 22,
+      "type": "choice",
+      "points": 5,
+      "answer": "E",
+      "images": [
+        "/generated/a/2024/q22-1.png"
+      ],
+      "explanation": "22. Troy makes a list of 6 numbers by writing down a starting number then writing the next 5\ncounting numbers, going up in steps of 1. When he adds them, the total is less than 100.\nHe increases each number by 1, and the new total is greater than 100.\nWhat is this new total?\n(A) 101\n(B) 102\n(C) 103\n(D) 104\n(E) 105\nConsider the smallest case: 1 + 2 + 3 + 4 + 5 + 6 = 21. The next case will be\n2 + 3 + 4 + 5 + 6 + 7 = 27 since all 6 numbers have been increased by 1. The next will be\n27 + 6 = 33, then 33 + 6 = 39 and so on. So when you add six consecutive numbers\ntogether, you will always get 21 plus a multiple of 6.\nNearest to 100 are 21 + 78 = 99 and 21 + 84 = 105, which can be found to be\n14 + 15 + 16 + 17 + 18 + 19 = 99 and 15 + 16 + 17 + 18 + 19 + 20 = 105,\nhence (E)."
+    },
+    {
+      "number": 23,
+      "type": "choice",
+      "points": 5,
+      "answer": "C",
+      "images": [
+        "/generated/a/2024/q23-1.png"
+      ],
+      "explanation": "23. A regular hexagon made from yellow cardboard has a thick black\nstripe painted across it. The hexagon is cut up into six equilateral\ntriangles and the pieces are mixed up. This diagram shows one of\nthe pieces in its original position.\nThe other five pieces are shown in options (A) to (E).\nWhich piece was in the position marked with the X?\nX\n(A)\n(B)\n(C)\n(D)\n(E)\nAlternative 1\nContinuing the top edge of the black stripe to the right as shown in the first diagram, the\ntop two pieces must be (E) and (B). Only piece (D) has a small yellow corner, which\nmatches the top of the stripe as shown in the second diagram. The third diagram shows\nwhere the remaining pieces fit.\nB\nE\nX\nB\nE\nD\nX\nB\nE\nA\nC\nD\n,\nhence (C).\nAlternative 2\nThe lower-left triangle has a fully black edge, so must be (A). The lower-right triangle\nhas an edge that is slightly less than half black, which can only be (C). So triangle (C)\ngoes in position X,\nhence (C)."
+    },
+    {
+      "number": 24,
+      "type": "choice",
+      "points": 5,
+      "answer": "E",
+      "images": [
+        "/generated/a/2024/q24-1.png"
+      ],
+      "explanation": "24. In this puzzle, the numbers from 1 to 8 are to be placed\nin the 8 circles. For each of the 3 squares, the sum of\nthe 4 numbers on the corners must be 20.\nWith 5 and 7 placed as in the diagram, what number\ngoes in the middle circle?\n(A) 1\n(B) 2\n(C) 3\n(D) 4\n(E) 6\n5\n?\n7\nAlternative 1\nIn the bottom square, we know 5 + 7 = 12 so the other two numbers add to 20 −12 = 8.\nSince 5 and 7 are already used, these two numbers must be 2 and 6, and there are two\ncases — the middle number is either 2 or 6.\nIf the middle number was 2, then the right square has 2 + 5 = 7 so the other two\nnumbers add to 20 −7 = 13. However, 13 can only be made as 5 + 8 or 6 + 7 and 5 and 7\nare already used. So the middle number can’t be 2.\n2\n5\n9\n7\n6\n1\n4\n3\nIf the middle number is 6, the bottom number is 2, and we can\nplace 3 and 4 in the top left and 1 and 9 in the top right. This is the\nonly solution, so the middle number must be 6. One possibility for the\ncomplete puzzle is shown,\nhence (E).\nAlternative 2\nTry placing 1 in the middle, so that 2 + 3 + 4 + 6 + 8 = 23 is unused. However, we have\ntargets of 12 on the left, 14 on the right and 7 at the bottom, for a total of 33.\nWith 2 in the middle, 1+3+4+6+8 = 22 is unused and the targets are 11+13+6 = 30.\nEvery extra 1 in the middle decreases the unused total by 1 and decreases the total target\nby 3. This narrows the gap by 2. They are both equal to 18 when the middle number is\n6. With 6 in the middle, the rest of the grid is easily filled in, as in the earlier solution,\nhence (E).\nAlternative 3\nThe 8 numbers add to 36, but the 3 squares add to 60. The extra 24 is from counting the\nnumbers 5 and 7 a second time and from counting the middle number 3 times. So twice\nthe middle number is 24 −5 −7 = 12 and the middle number is 6,\nhence (E)."
+    },
+    {
+      "number": 25,
+      "type": "choice",
+      "points": 5,
+      "answer": "D",
+      "images": [
+        "/generated/a/2024/q25-1.png",
+        "/generated/a/2024/q25-2.png"
+      ],
+      "explanation": "25. The stairs in Bernard’s building are numbered 1, 2, 3, . . . When he climbs them, he\nalways starts by taking them two at a time, as shown below on the left. After doing this\n10 times, he is tired and he takes the next 10 stairs one at a time. Then he goes back to\n10 double steps, then 10 single steps, and so on.\n1\n2\n3\n4\n5\n6\nstart\n?\n?\n?\n?\n?\n?\ntired\nWhich of the following numbers will Bernard not step on?\n(A) 27\n(B) 51\n(C) 66\n(D) 79\n(E) 87\nThe table shows the numbers up to 90 that Bernard steps on. The ‘evens’ type is when\nhe has enough energy to take them two at a time. The ‘all’ type is when he is tired and\ntakes them one at a time. There are 10 numbers in the list in each row.\nType\nNumbers\nevens\n2, 4, . . . , 20\nall\n21, 22, . . . , 30\nevens\n32, 34, . . . , 50\nall\n51, 52, . . . , 60\nevens\n62, 64, . . . , 80\nall\n81, 82, . . . , 90\nNumbers 27, 51, 66 and 87 are accounted for in the 2nd, 4th, 5th and 6th rows\nrespectively. But 79 cannot be in the 5th row because it is not an even number,\nhence (D).\nFor questions 26 to 30, shade the answer as a whole number from 0 to 999\nin the space provided on the answer sheet.\n问题26-30 的答案为0-999 之间的整数，请将答案填涂在答题卡对应区域。\nQuestions 26–30 are worth 6, 7, 8, 9 and 10 marks, respectively.\n第26-30 题分别为6, 7, 8, 9, 10 分。"
+    },
+    {
+      "number": 26,
+      "type": "integer",
+      "points": 6,
+      "answer": "21",
+      "images": [
+        "/generated/a/2024/q26-1.png"
+      ],
+      "explanation": "26. Alex, Brady, Casey and Drew all share the same birthday, but are different ages. Their\ndad makes them a cake each, and on each cake puts birthday candles matching their ages.\n• Alex’s cake has 6 times as many candles as Brady’s cake.\n• Alex’s cake has 3 times as many candles as Casey’s cake.\n• Alex’s cake has 4 times as many candles as Drew’s cake.\nAfter the cakes are eaten, the candles are gathered up and counted. What is the smallest\nthe total number of candles could be?\nAlex’s age must be a multiple of 6, a multiple of 3 and a multiple of 4. The smallest\nAlex’s age could be is 12 = 6 × 2 = 3 × 4 = 4 × 3. Then Brady is 2, Casey is 4 and Drew\nis 3.\nThe total number of candles is 12 + 2 + 4 + 3 = 21,\nhence (21)."
+    },
+    {
+      "number": 27,
+      "type": "integer",
+      "points": 7,
+      "answer": "18",
+      "images": [
+        "/generated/a/2024/q27-1.png"
+      ],
+      "explanation": "27. The Dread Pirate Alistair uses this map to find\nsome buried treasure. On the map, the symbol\nshows dangerous territory that he must\navoid.\nEach move Alistair makes is either 1 square up\nor 1 square to the right.\nOne of the ways to the treasure is shown.\nIn how many different ways can he get to the\ntreasure?\nBeginning at the Dread Pirate Alistair’s starting location, add in the number of possible\nways he could travel to each square, given he only moves up or to the right. Note that\nthe number of ways to get to a given square is equal to the sum of the number of ways to\nget to the square to its left and the number of ways to get to the square directly\nunderneath it.\n0\n8\n8 13 18\n4\n8\n5\n5\n1\n4\n4\n4\n5\n1\n3\n0\n1\n1\n2\n1\n2\n1\n1\n1\n1\n1\n1\nTherefore, there are 13 + 5 = 18 ways that Alistair could have travelled to the treasure,\nhence (18)."
+    },
+    {
+      "number": 28,
+      "type": "integer",
+      "points": 8,
+      "answer": "517",
+      "images": [
+        "/generated/a/2024/q28-1.png"
+      ],
+      "explanation": "28. Sami dropped his schoolbag and his ruler broke into three pieces. The two end pieces are\nshown.\n0\n1\n2\n3\n4\n5\n25\n26\n27\n28\n29\n30\n0\n1\n2\n3\n4\n5\n6\n7\n23\n24\n25\n26\n27\n28\n29\n30\nWhat do all the numbers on the middle piece add up to?\nThe numbers on the middle piece can be paired into 30s: 6 + 24 up to 22 + 8, with an\nextra 7 that isn’t paired. There are 17 pairs, so that total is 17 × 30 + 7 = 510 + 7 = 517,\nhence (517)."
+    },
+    {
+      "number": 29,
+      "type": "integer",
+      "points": 9,
+      "answer": "28",
+      "images": [
+        "/generated/a/2024/q29-1.png"
+      ],
+      "explanation": "29. The numbers 2 to 9 are to be placed in these 8 circles so\nthat each row and each column adds to the same total.\nThe numbers in the 4 shaded circles are then added.\nWhat is the largest possible total of these 4 numbers?\nThe total of all numbers used is 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 = 44 = 4 × 11. The total of\nall four indicated lines is also a multiple of 4. Consequently the 4 shaded numbers, which\nare counted twice in this second total, must be a multiple of 4.\nThe total in the 4 shaded circles is at most 6 + 7 + 8 + 9 = 30, but to be a multiple of 4,\n28 is the most. Then the total of the 4 lines is 28 + 44 = 72 so that each line adds to 18.\nTry 4 + 7 + 8 + 9 = 28 in the 4 shaded circles, but 8 + 9 can’t be on a common line, so we\nplace 8 and 9 diagonally, and then fill in the remainder using arithmetic:\n5\n2\n3\n6\n4\n9\n7\n8\nSince the total is at most 28, and 28 can be found, it is the largest possible total,\nhence (28)."
+    },
+    {
+      "number": 30,
+      "type": "integer",
+      "points": 10,
+      "answer": "260",
+      "images": [
+        "/generated/a/2024/q30-1.png"
+      ],
+      "explanation": "30. Skip counting by 5, I write a list of 400 numbers that starts 5, 10, 15 and ends 1990,\n1995, 2000.\nHow many times do I write the digit ‘0’?\nEvery second multiple of 5 ends in 0. This gives 200 zeros in the units place.\nAmong the three- and four-digit numbers, there is a zero in the tens place for the\nnumbers 100, 105, 200, 205, . . . , 1900, 1905 and 2000. This adds 19 × 2 + 1 = 39 zeros.\nFinally, there are extra zeros in the hundreds place for the numbers 1000, 1005, 1010,\n1015, . . . , 1090, 1095 and 2000. This gives another 2 × 10 + 1 = 21 zeros.\nTherefore there are 200 + 39 + 21 = 260 zeros in total,\nhence (260)."
+    }
+  ]
+}

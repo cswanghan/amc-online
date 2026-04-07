@@ -1,12 +1,12 @@
 {
   "competition": "Australian Mathematics Competition",
-  "generatedAt": "2026-04-06T23:23:29.058425+00:00",
+  "generatedAt": "2026-04-07T00:51:49.540042+00:00",
   "sourceRoot": "extracted/澳大利亚AMC",
   "stats": {
     "levels": 3,
     "papers": 57,
     "answers": 21,
-    "quizReady": 4
+    "quizReady": 6
   },
   "levels": [
     {
@@ -50,9 +50,9 @@
             "2024A 答案解析.pdf",
             "2024A试卷.pdf"
           ],
-          "quizReady": false,
-          "questionDataUrl": null,
-          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+          "quizReady": true,
+          "questionDataUrl": "/data/generated/a/2024.json",
+          "note": "已生成题目 JSON，可接入正式练习流程。"
         },
         {
           "year": 2023,
@@ -704,9 +704,9 @@
             "2024C 答案解析.pdf",
             "2024C 试卷.pdf"
           ],
-          "quizReady": false,
-          "questionDataUrl": null,
-          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+          "quizReady": true,
+          "questionDataUrl": "/data/generated/c/2024.json",
+          "note": "已生成题目 JSON，可接入正式练习流程。"
         },
         {
           "year": 2023,

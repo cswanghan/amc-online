@@ -60,8 +60,8 @@ def question_type(number: int) -> str:
     return "choice" if number <= 25 else "integer"
 
 
-def list_markers(doc: fitz.Document) -> list[Marker]:
-    markers: list[Marker] = []
+def list_markers(doc: fitz.Document, expected_total: int | None = None) -> list[Marker]:
+    raw_markers: list[Marker] = []
     seen: set[tuple[int, int]] = set()
 
     for page_index in range(doc.page_count):
@@ -85,9 +85,22 @@ def list_markers(doc: fitz.Document) -> list[Marker]:
                     continue
                 seen.add(key)
                 page_markers.append(Marker(number=number, page_index=page_index, y=float(y0)))
-        markers.extend(sorted(page_markers, key=lambda item: item.y))
+        raw_markers.extend(sorted(page_markers, key=lambda item: item.y))
 
-    markers.sort(key=lambda item: (item.page_index, item.y, item.number))
+    raw_markers.sort(key=lambda item: (item.page_index, item.y, item.number))
+    if expected_total is None:
+        return raw_markers
+
+    markers: list[Marker] = []
+    expected_number = 1
+    for marker in raw_markers:
+        if marker.number != expected_number:
+            continue
+        markers.append(marker)
+        expected_number += 1
+        if expected_number > expected_total:
+            break
+
     return markers
 
 
@@ -205,9 +218,9 @@ def build_question_set(level: str, year: int) -> dict:
 
     paper_doc = fitz.open(paper_path)
     answer_doc = fitz.open(answer_path)
-    paper_markers = list_markers(paper_doc)
+    paper_markers = list_markers(paper_doc, expected_total=30)
     answer_list_mode = is_answer_list_document(answer_doc)
-    answer_markers = [] if answer_list_mode else list_markers(answer_doc)
+    answer_markers = [] if answer_list_mode else list_markers(answer_doc, expected_total=30)
     answer_list_answers = parse_answer_list(answer_doc, level) if answer_list_mode else {}
 
     if len(paper_markers) != 30:

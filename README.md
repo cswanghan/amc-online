@@ -63,15 +63,29 @@ npm run check:library
 
 当前已打通的在线题集：
 
+- `AMC-A 2024`
 - `AMC-A 2025`
 - `AMC-B 2024`
 - `AMC-B 2025`
+- `AMC-C 2024`
 - `AMC-C 2025`
+
+单独生成 `AMC-A 2024`：
+
+```bash
+npm run generate:2024a
+```
 
 单独生成 `AMC-B 2024`：
 
 ```bash
 npm run generate:2024b
+```
+
+单独生成 `AMC-C 2024`：
+
+```bash
+npm run generate:2024c
 ```
 
 批量生成当前所有可练题集：
