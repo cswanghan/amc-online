@@ -318,20 +318,20 @@
             </div>
             <aside class="hero-side">
                 <div>
-                    <h3>当前进度</h3>
+                    <h3>你现在可以做什么</h3>
                     <p id="librarySummary">正在读取题库索引...</p>
                 </div>
                 <div>
-                    <h3>题型结构</h3>
+                    <h3>答题规则</h3>
                     <ul>
-                        <li>第 1-25 题为五选一选择题</li>
-                        <li>第 26-30 题为 0-999 整数填空题</li>
-                        <li>分值按 3 / 4 / 5 / 6-10 分递进</li>
+                        <li>每套共 30 题，限时 60 分钟</li>
+                        <li>第 1-25 题是五选一选择题</li>
+                        <li>第 26-30 题是 0-999 整数填空题</li>
                     </ul>
                 </div>
                 <div>
-                    <h3>近期目标</h3>
-                    <p>继续补齐 2024A、2024C 以及更早年份的在线题集，同时把成绩分析从基础统计扩展到按层级和题号诊断。</p>
+                    <h3>使用说明</h3>
+                    <p>先按层级进入真题库或在线练习。登录后可以下载试卷与答案、提交答卷并查看成绩；普通用户下载和练习各限 5 次。</p>
                 </div>
             </aside>
         </section>
@@ -485,10 +485,10 @@
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 state.manifest = await response.json();
                 document.getElementById("librarySummary").textContent =
-                    `已发现 ${state.manifest.stats.papers} 份试卷、${state.manifest.stats.answers} 份答案资产，覆盖 ${state.manifest.stats.levels} 个层级。`;
+                    `当前已收录 ${state.manifest.stats.papers} 份试卷、${state.manifest.stats.answers} 份答案，覆盖 ${state.manifest.stats.levels} 个 AMC 层级。`;
             } catch (error) {
                 document.getElementById("librarySummary").textContent =
-                    "尚未发现题库索引。先运行 npm run build:library，再刷新页面。";
+                    "题库信息暂时加载失败，请稍后刷新页面重试。";
             }
 
             renderHero();
