@@ -98,27 +98,48 @@
         .year-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 16px;
+            gap: 18px;
         }
         .year-card {
-            border-radius: 24px;
-            padding: 20px;
+            border-radius: 28px;
+            padding: 22px;
             display: grid;
+            gap: 16px;
+            align-content: start;
+        }
+        .year-card.ready {
+            border-color: rgba(159, 76, 36, 0.18);
+        }
+        .year-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             gap: 12px;
         }
         .year-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            gap: 12px;
+            display: grid;
+            gap: 4px;
         }
         .year-header strong {
-            font-size: 1.55rem;
+            font-size: clamp(1.8rem, 2vw, 2.2rem);
+            line-height: 1;
             color: var(--accent);
         }
         .year-header span {
             color: var(--muted);
             font-size: 0.82rem;
+            line-height: 1.4;
+        }
+        .year-level {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(159, 76, 36, 0.08);
+            color: var(--accent);
+            font-size: 0.74rem;
+            white-space: nowrap;
         }
         .status {
             display: flex;
@@ -127,25 +148,33 @@
         }
         .chip {
             display: inline-flex;
-            padding: 4px 10px;
+            align-items: center;
+            padding: 5px 10px;
             border-radius: 999px;
-            font-size: 0.76rem;
+            font-size: 0.74rem;
+            line-height: 1;
             background: rgba(159, 76, 36, 0.08);
             color: var(--accent);
         }
+        .chip.ready {
+            background: rgba(55, 120, 84, 0.1);
+            color: #2f7d5a;
+        }
         .links {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 10px;
-            flex-wrap: wrap;
         }
         .link {
             text-decoration: none;
             color: var(--text);
             background: white;
             border: 1px solid var(--line);
-            padding: 10px 14px;
+            min-height: 44px;
+            padding: 10px 12px;
             border-radius: 14px;
-            font-size: 0.86rem;
+            font-size: 0.88rem;
+            text-align: center;
         }
         button.link {
             cursor: pointer;
@@ -160,6 +189,10 @@
             color: var(--muted);
             line-height: 1.7;
             font-size: 0.84rem;
+            min-height: 3.6em;
+        }
+        .note.ready {
+            color: #5f5348;
         }
         .empty {
             padding: 28px;
@@ -172,6 +205,11 @@
         @media (max-width: 920px) {
             .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
             .year-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 640px) {
+            .links {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -257,13 +295,16 @@
                 const status = [];
                 if (year.paper) status.push(`<span class="chip">试卷</span>`);
                 if (year.answer) status.push(`<span class="chip">答案 / 解析</span>`);
-                if (year.quizReady) status.push(`<span class="chip">在线练习已就绪</span>`);
+                if (year.quizReady) status.push(`<span class="chip ready">在线练习已就绪</span>`);
 
                 return `
-                    <article class="year-card">
-                        <div class="year-header">
-                            <strong>${year.year}</strong>
-                            <span>${level.label}</span>
+                    <article class="year-card ${year.quizReady ? "ready" : ""}">
+                        <div class="year-top">
+                            <div class="year-header">
+                                <strong>${year.year}</strong>
+                                <span>${level.grade}</span>
+                            </div>
+                            <span class="year-level">${level.label}</span>
                         </div>
                         <div class="status">${status.join("") || `<span class="chip">仅索引</span>`}</div>
                         <div class="links">
@@ -279,7 +320,9 @@
                             </button>
                             <a class="link ${year.quizReady ? "" : "disabled"}" href="${year.quizReady ? `quiz.html?level=${state.currentLevel}&year=${year.year}` : "#"}">进入练习</a>
                         </div>
-                        <div class="note">${year.note || "当前年份已纳入索引，后续可继续补题图与逐题数据。"}</div>
+                        <div class="note ${year.quizReady ? "ready" : ""}">
+                            ${year.quizReady ? "这套题已经可以直接在线作答、提交判题并查看解析。" : "当前提供试卷与答案浏览，在线练习题集还在整理中。"}
+                        </div>
                     </article>
                 `;
             }).join("");
