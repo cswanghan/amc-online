@@ -603,6 +603,23 @@
             state.historyGuardReady = true;
         }
 
+        function leaveToPreviousPage() {
+            allowNavigationAway();
+            resetQuizRuntime();
+
+            const fallbackUrl = document.referrer && document.referrer.startsWith(location.origin)
+                ? document.referrer
+                : `papers.html?level=${state.currentLevel}`;
+
+            const currentUrl = location.href;
+            history.go(-2);
+            setTimeout(() => {
+                if (location.href === currentUrl) {
+                    location.href = fallbackUrl;
+                }
+            }, 220);
+        }
+
         function setView(name) {
             document.getElementById("selectorView").classList.toggle("hidden", name !== "selector");
             document.getElementById("quizView").classList.toggle("hidden", name !== "quiz");
@@ -1053,11 +1070,7 @@
             if (!hasActiveQuizSession() || state.allowPageLeave) return;
             history.pushState({ quizGuard: true }, "", currentQuizUrl());
             state.historyGuardReady = true;
-            showLeavePrompt(() => {
-                allowNavigationAway();
-                resetQuizRuntime();
-                history.back();
-            });
+            showLeavePrompt(leaveToPreviousPage);
         });
 
         window.addEventListener("beforeunload", (event) => {
