@@ -969,6 +969,7 @@
         });
 
         document.querySelector(".back-link").addEventListener("click", (event) => {
+            const targetHref = event.currentTarget.href;
             if (!hasActiveQuizSession()) {
                 allowNavigationAway();
                 resetQuizRuntime();
@@ -979,7 +980,7 @@
             requestLeaveActiveQuiz(() => {
                 allowNavigationAway();
                 resetQuizRuntime();
-                location.href = event.currentTarget.href;
+                location.href = targetHref;
             });
         });
 
