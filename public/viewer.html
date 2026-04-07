@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMC 资源查看</title>
+    <script src="auth-guard.js"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #f7f2eb;
+            --panel: #fffaf5;
+            --line: rgba(98, 64, 41, 0.12);
+            --text: #2d241e;
+            --muted: #77685d;
+            --accent: #9f4c24;
+            --shadow: 0 16px 48px rgba(60, 36, 20, 0.09);
+        }
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top, rgba(159, 76, 36, 0.12), transparent 22%),
+                linear-gradient(180deg, #fcf9f5 0%, var(--bg) 100%);
+            color: var(--text);
+            font-family: "Georgia", "STSong", serif;
+        }
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            padding: 16px 20px;
+            background: rgba(255, 250, 245, 0.92);
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(12px);
+        }
+        .toolbar-title {
+            display: grid;
+            gap: 4px;
+        }
+        .toolbar-title h1 {
+            font-size: clamp(1.1rem, 2vw, 1.45rem);
+            color: var(--accent);
+        }
+        .toolbar-title p {
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+        .toolbar-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: white;
+            color: var(--text);
+            text-decoration: none;
+            font: inherit;
+            cursor: pointer;
+        }
+        .action:hover {
+            border-color: rgba(159, 76, 36, 0.3);
+            color: var(--accent);
+        }
+        .stage {
+            flex: 1;
+            padding: 20px;
+        }
+        .card {
+            width: min(100%, 960px);
+            margin: 0 auto;
+            padding: 24px;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        .card h2 {
+            font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .card p {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+        .viewer-frame {
+            width: 100%;
+            height: calc(100vh - 110px);
+            border: 0;
+            background: white;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+        }
+        .viewer-image {
+            display: block;
+            max-width: min(100%, 1100px);
+            margin: 0 auto;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            background: white;
+        }
+        .error {
+            display: grid;
+            gap: 14px;
+        }
+        @media (max-width: 720px) {
+            .toolbar {
+                padding: 14px 16px;
+            }
+            .stage {
+                padding: 16px;
+            }
+            .viewer-frame {
+                height: calc(100vh - 136px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header class="toolbar">
+            <div class="toolbar-title">
+                <h1 id="pageTitle">AMC 资源查看</h1>
+                <p id="pageDesc">正在校验登录态并加载资源。</p>
+            </div>
+            <div class="toolbar-actions" id="toolbarActions" hidden>
+                <a class="action" id="downloadLink" href="#" download>下载文件</a>
+                <a class="action" id="openRawLink" href="#" target="_blank" rel="noopener">新标签打开</a>
+            </div>
+        </header>
+        <main class="stage" id="stage">
+            <section class="card">
+                <h2>正在加载资源</h2>
+                <p>文件校验通过后会直接显示，如果文件较大，请稍等几秒。</p>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(location.search);
+        const resourceUrl = params.get("resource") || "";
+        const resourceTitle = params.get("title") || "AMC 资源查看";
+        const pageTitle = document.getElementById("pageTitle");
+        const pageDesc = document.getElementById("pageDesc");
+        const stage = document.getElementById("stage");
+        const toolbarActions = document.getElementById("toolbarActions");
+        const downloadLink = document.getElementById("downloadLink");
+        const openRawLink = document.getElementById("openRawLink");
+
+        document.title = resourceTitle;
+        pageTitle.textContent = resourceTitle;
+
+        function setError(message) {
+            pageDesc.textContent = "资源加载失败";
+            toolbarActions.hidden = true;
+            stage.innerHTML = `
+                <section class="card error">
+                    <h2>当前无法打开资源</h2>
+                    <p>${message}</p>
+                    <button class="action" type="button" id="closePage">关闭此页</button>
+                </section>
+            `;
+            document.getElementById("closePage").addEventListener("click", () => window.close());
+        }
+
+        function inferMimeType(url, contentType) {
+            const normalizedType = (contentType || "").toLowerCase();
+            if (normalizedType && normalizedType !== "application/octet-stream") {
+                return normalizedType;
+            }
+
+            const cleanUrl = url.split("?")[0].toLowerCase();
+            if (cleanUrl.endsWith(".pdf")) return "application/pdf";
+            if (cleanUrl.endsWith(".png")) return "image/png";
+            if (cleanUrl.endsWith(".jpg") || cleanUrl.endsWith(".jpeg")) return "image/jpeg";
+            if (cleanUrl.endsWith(".webp")) return "image/webp";
+            return normalizedType;
+        }
+
+        async function loadResource() {
+            if (!resourceUrl) {
+                setError("缺少资源地址参数。");
+                return;
+            }
+
+            const token = localStorage.getItem("token");
+            if (!token) {
+                window.requireLogin?.("登录后才能打开试卷或答案。普通用户最多可下载 5 次。");
+                setError("你还没有登录，请先登录后重新打开该资源。");
+                return;
+            }
+
+            const response = await fetch(resourceUrl, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            const payload = await response.clone().json().catch(() => ({}));
+            if (response.status === 401) {
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+                window.requireLogin?.("登录后才能打开试卷或答案。普通用户最多可下载 5 次。");
+                setError("登录状态已失效，请重新登录后再试。");
+                return;
+            }
+
+            if (!response.ok) {
+                setError(payload.error || "当前操作失败，请稍后再试。");
+                return;
+            }
+
+            const blob = await response.blob();
+            const filename = resourceUrl.split("/").pop() || "resource";
+            const contentType = inferMimeType(resourceUrl, response.headers.get("Content-Type") || blob.type || "");
+            const previewBlob = contentType && contentType !== blob.type
+                ? new Blob([blob], { type: contentType })
+                : blob;
+            const blobUrl = URL.createObjectURL(previewBlob);
+            const isImage = contentType.startsWith("image/");
+            const isPdf = contentType.includes("pdf");
+
+            pageDesc.textContent = isImage ? "图片资源已加载完成。" : "文档资源已加载完成。";
+            downloadLink.href = blobUrl;
+            downloadLink.download = filename;
+            openRawLink.href = blobUrl;
+            toolbarActions.hidden = false;
+
+            stage.innerHTML = isImage
+                ? `<img class="viewer-image" src="${blobUrl}" alt="${resourceTitle}">`
+                : isPdf
+                    ? `<embed class="viewer-frame" src="${blobUrl}#toolbar=1&navpanes=0" type="application/pdf">`
+                    : `<iframe class="viewer-frame" src="${blobUrl}" title="${resourceTitle}"></iframe>`;
+
+            window.addEventListener("beforeunload", () => {
+                setTimeout(() => URL.revokeObjectURL(blobUrl), 1_000);
+            }, { once: true });
+        }
+
+        loadResource().catch((error) => {
+            setError(error?.message || "发生未知错误，请稍后再试。");
+        });
+    </script>
+</body>
+</html>

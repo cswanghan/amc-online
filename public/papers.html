@@ -420,224 +420,6 @@
             renderYears();
         }
 
-        async function openProtectedResource(resourceUrl) {
-            const token = localStorage.getItem("token");
-            if (!token) {
-                window.requireLogin?.("登录后才能打开试卷或答案。普通用户最多可下载 5 次。");
-                return false;
-            }
-
-            const response = await fetch(resourceUrl, {
-                headers: {
-                    "Authorization": `Bearer ${token}`,
-                },
-            });
-
-            const payload = await response.clone().json().catch(() => ({}));
-            if (response.status === 401) {
-                localStorage.removeItem("token");
-                localStorage.removeItem("user");
-                window.requireLogin?.("登录后才能打开试卷或答案。普通用户最多可下载 5 次。");
-                return false;
-            }
-
-            if (!response.ok) {
-                alert(payload.error || "当前操作失败，请稍后再试。");
-                return false;
-            }
-
-            return {
-                blob: await response.blob(),
-                contentType: response.headers.get("Content-Type") || "",
-            };
-        }
-
-        function writePopupShell(popup, title) {
-            if (!popup) return;
-            popup.document.write(`
-                <!DOCTYPE html>
-                <html lang="zh-CN">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>${title}</title>
-                    <style>
-                        * { box-sizing: border-box; }
-                        body {
-                            margin: 0;
-                            min-height: 100vh;
-                            background: #f7f2eb;
-                            color: #2d241e;
-                            font-family: "Georgia", "STSong", serif;
-                        }
-                        .viewer-shell {
-                            min-height: 100vh;
-                            display: grid;
-                            place-items: center;
-                            padding: 24px;
-                        }
-                        .viewer-card {
-                            width: min(100%, 960px);
-                            padding: 20px 22px;
-                            border-radius: 24px;
-                            background: #fffaf5;
-                            border: 1px solid rgba(98, 64, 41, 0.12);
-                            box-shadow: 0 16px 48px rgba(60, 36, 20, 0.09);
-                            text-align: center;
-                            line-height: 1.7;
-                        }
-                        .viewer-card h2 {
-                            margin: 0 0 8px;
-                            color: #9f4c24;
-                            font-size: 1.5rem;
-                        }
-                        .viewer-card p {
-                            margin: 0;
-                            color: #77685d;
-                            font-size: 0.95rem;
-                        }
-                        .viewer-frame {
-                            width: 100vw;
-                            height: 100vh;
-                            border: 0;
-                            background: white;
-                        }
-                        .viewer-image {
-                            display: block;
-                            max-width: 100%;
-                            margin: 0 auto;
-                        }
-                        .viewer-actions {
-                            display: flex;
-                            justify-content: center;
-                            gap: 12px;
-                            padding: 16px;
-                            background: #fffaf5;
-                            border-bottom: 1px solid rgba(98, 64, 41, 0.12);
-                        }
-                        .viewer-actions a {
-                            display: inline-flex;
-                            align-items: center;
-                            justify-content: center;
-                            min-height: 42px;
-                            padding: 0 16px;
-                            border-radius: 999px;
-                            color: #2d241e;
-                            text-decoration: none;
-                            border: 1px solid rgba(98, 64, 41, 0.12);
-                            background: white;
-                        }
-                    </style>
-                </head>
-                <body>
-                    <div class="viewer-shell">
-                        <div class="viewer-card">
-                            <h2>正在加载资源</h2>
-                            <p>文件校验通过后会直接显示，如果较大请稍等几秒。</p>
-                        </div>
-                    </div>
-                </body>
-                </html>
-            `);
-            popup.document.close();
-        }
-
-        function renderResourcePopup(popup, resource, resourceUrl, title) {
-            const blobUrl = URL.createObjectURL(resource.blob);
-            const contentType = (resource.contentType || resource.blob.type || "").toLowerCase();
-            const isImage = contentType.startsWith("image/");
-            const downloadName = resourceUrl.split("/").pop() || "resource";
-
-            if (!popup) {
-                const fallback = document.createElement("a");
-                fallback.href = blobUrl;
-                fallback.target = "_blank";
-                fallback.rel = "noopener";
-                fallback.click();
-                setTimeout(() => URL.revokeObjectURL(blobUrl), 60_000);
-                return;
-            }
-
-            popup.document.open();
-            popup.document.write(`
-                <!DOCTYPE html>
-                <html lang="zh-CN">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>${title}</title>
-                    <style>
-                        * { box-sizing: border-box; }
-                        html, body {
-                            margin: 0;
-                            min-height: 100%;
-                            background: #f7f2eb;
-                            color: #2d241e;
-                            font-family: "Georgia", "STSong", serif;
-                        }
-                        body {
-                            min-height: 100vh;
-                            display: flex;
-                            flex-direction: column;
-                        }
-                        .viewer-actions {
-                            display: flex;
-                            justify-content: center;
-                            gap: 12px;
-                            padding: 14px 16px;
-                            background: #fffaf5;
-                            border-bottom: 1px solid rgba(98, 64, 41, 0.12);
-                        }
-                        .viewer-actions a {
-                            display: inline-flex;
-                            align-items: center;
-                            justify-content: center;
-                            min-height: 40px;
-                            padding: 0 16px;
-                            border-radius: 999px;
-                            color: #2d241e;
-                            text-decoration: none;
-                            border: 1px solid rgba(98, 64, 41, 0.12);
-                            background: white;
-                        }
-                        .viewer-body {
-                            flex: 1;
-                            padding: ${isImage ? "24px" : "0"};
-                        }
-                        .viewer-frame {
-                            display: block;
-                            width: 100%;
-                            height: calc(100vh - 69px);
-                            border: 0;
-                            background: white;
-                        }
-                        .viewer-image {
-                            display: block;
-                            max-width: 100%;
-                            margin: 0 auto;
-                            box-shadow: 0 16px 48px rgba(60, 36, 20, 0.09);
-                        }
-                    </style>
-                </head>
-                <body>
-                    <div class="viewer-actions">
-                        <a href="${blobUrl}" download="${downloadName}">下载文件</a>
-                        <a href="${blobUrl}" target="_blank" rel="noopener">新标签打开</a>
-                    </div>
-                    <div class="viewer-body">
-                        ${isImage
-                            ? `<img class="viewer-image" src="${blobUrl}" alt="${title}">`
-                            : `<iframe class="viewer-frame" src="${blobUrl}" title="${title}"></iframe>`}
-                    </div>
-                </body>
-                </html>
-            `);
-            popup.document.close();
-            popup.addEventListener("beforeunload", () => {
-                setTimeout(() => URL.revokeObjectURL(blobUrl), 1_000);
-            }, { once: true });
-        }
-
         document.getElementById("tabs").addEventListener("click", (event) => {
             const button = event.target.closest(".tab");
             if (!button) return;
@@ -661,22 +443,23 @@
             const button = event.target.closest('[data-action="open-resource"]');
             if (!button || button.classList.contains("disabled")) return;
 
-            const popup = window.open("", "_blank");
-            writePopupShell(popup, "AMC 资源加载中");
             const targetUrl = button.dataset.url;
             if (!targetUrl) {
-                popup?.close();
                 return;
             }
 
-            const resource = await openProtectedResource(targetUrl);
-            if (!resource) {
-                popup?.close();
+            const token = localStorage.getItem("token");
+            if (!token) {
+                window.requireLogin?.("登录后才能打开试卷或答案。普通用户最多可下载 5 次。");
                 return;
             }
 
             const resourceTitle = `${button.dataset.year || ""} ${button.dataset.kind === "answer" ? "答案" : "试卷"}`.trim();
-            renderResourcePopup(popup, resource, targetUrl, resourceTitle || "AMC 资源查看");
+            const viewerUrl = `viewer.html?resource=${encodeURIComponent(targetUrl)}&title=${encodeURIComponent(resourceTitle || "AMC 资源查看")}`;
+            const popup = window.open(viewerUrl, "_blank");
+            if (!popup) {
+                location.href = viewerUrl;
+            }
         });
 
         loadManifest();
