@@ -462,6 +462,7 @@
             timerHandle: null,
             deadline: null,
             lastScore: null,
+            allowPageLeave: false,
         };
 
         function currentLevelData() {
@@ -475,6 +476,28 @@
 
         function currentQuestion() {
             return state.questionSet?.questions?.[state.currentIndex] || null;
+        }
+
+        function hasActiveQuizSession() {
+            return !!state.questionSet && !state.reviewMode && !document.getElementById("quizView").classList.contains("hidden");
+        }
+
+        function leaveQuizMessage() {
+            return "当前练习尚未提交，离开后本次作答和计时会丢失。确定要离开吗？";
+        }
+
+        function confirmLeaveActiveQuiz() {
+            return window.confirm(leaveQuizMessage());
+        }
+
+        function resetQuizRuntime() {
+            clearInterval(state.timerHandle);
+            state.timerHandle = null;
+            state.deadline = null;
+        }
+
+        function allowNavigationAway() {
+            state.allowPageLeave = true;
         }
 
         function setView(name) {
@@ -642,6 +665,7 @@
         function startTimer() {
             clearInterval(state.timerHandle);
             state.deadline = Date.now() + state.questionSet.durationMinutes * 60 * 1000;
+            state.allowPageLeave = false;
             state.timerHandle = setInterval(() => {
                 const remain = Math.max(0, state.deadline - Date.now());
                 const totalSeconds = Math.floor(remain / 1000);
@@ -746,7 +770,7 @@
                 state.questionSet.year
             );
             if (!granted) return;
-            clearInterval(state.timerHandle);
+            resetQuizRuntime();
             const result = computeResult();
             state.lastScore = result;
             state.reviewMode = true;
@@ -808,10 +832,20 @@
             }
         }
 
+        document.querySelector(".back-link").addEventListener("click", (event) => {
+            if (hasActiveQuizSession() && !confirmLeaveActiveQuiz()) {
+                event.preventDefault();
+                return;
+            }
+            allowNavigationAway();
+            resetQuizRuntime();
+        });
+
         document.getElementById("levelTabs").addEventListener("click", (event) => {
             const button = event.target.closest(".tab");
             if (!button) return;
-            clearInterval(state.timerHandle);
+            if (hasActiveQuizSession() && !confirmLeaveActiveQuiz()) return;
+            resetQuizRuntime();
             state.currentLevel = button.dataset.level;
             state.selectedYear = null;
             state.questionSet = null;
@@ -824,6 +858,12 @@
         });
 
         document.getElementById("selectorGrid").addEventListener("click", (event) => {
+            const link = event.target.closest('a[href]');
+            if (link && hasActiveQuizSession() && !confirmLeaveActiveQuiz()) {
+                event.preventDefault();
+                return;
+            }
+
             const button = event.target.closest('[data-action="start"]');
             if (!button || button.classList.contains("disabled")) return;
             const year = Number(button.dataset.year);
@@ -868,6 +908,12 @@
             const yearEntry = currentYearEntry();
             if (!yearEntry?.quizReady) return;
             loadQuestionSet(yearEntry);
+        });
+
+        window.addEventListener("beforeunload", (event) => {
+            if (!hasActiveQuizSession() || state.allowPageLeave) return;
+            event.preventDefault();
+            event.returnValue = "";
         });
 
         loadManifest().catch((error) => {

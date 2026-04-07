@@ -420,6 +420,28 @@
             renderYears();
         }
 
+        async function ensureActiveLogin() {
+            const token = localStorage.getItem("token");
+            if (!token) {
+                window.requireLogin?.("登录后才能打开试卷或答案。普通用户最多可下载 5 次。");
+                return false;
+            }
+
+            try {
+                const response = await fetch("/api/auth/me", {
+                    headers: { "Authorization": `Bearer ${token}` },
+                });
+                if (response.ok) return true;
+            } catch (error) {
+                console.error("ensureActiveLogin failed", error);
+            }
+
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            window.requireLogin?.("登录后才能打开试卷或答案。普通用户最多可下载 5 次。");
+            return false;
+        }
+
         document.getElementById("tabs").addEventListener("click", (event) => {
             const button = event.target.closest(".tab");
             if (!button) return;
@@ -448,18 +470,14 @@
                 return;
             }
 
-            const token = localStorage.getItem("token");
-            if (!token) {
-                window.requireLogin?.("登录后才能打开试卷或答案。普通用户最多可下载 5 次。");
+            const loggedIn = await ensureActiveLogin();
+            if (!loggedIn) {
                 return;
             }
 
             const resourceTitle = `${button.dataset.year || ""} ${button.dataset.kind === "answer" ? "答案" : "试卷"}`.trim();
             const viewerUrl = `viewer.html?resource=${encodeURIComponent(targetUrl)}&title=${encodeURIComponent(resourceTitle || "AMC 资源查看")}`;
-            const popup = window.open(viewerUrl, "_blank");
-            if (!popup) {
-                location.href = viewerUrl;
-            }
+            location.href = viewerUrl;
         });
 
         loadManifest();
