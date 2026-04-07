@@ -135,6 +135,32 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
       quizFunnel: quizFunnelData,
     });
   } catch (e: any) {
+    if (String(e?.message || '').includes('no such table: ux_events')) {
+      return json({
+        days: 7,
+        since: new Date().toISOString(),
+        overview: { pageViews: 0, activeSessions: 0, errors: 0, avgDurationSeconds: 0, bounces: 0 },
+        pages: [],
+        friction: [],
+        auth: {
+          loginAttempts: 0,
+          loginSuccess: 0,
+          loginFailure: 0,
+          registerAttempts: 0,
+          registerSuccess: 0,
+          registerFailure: 0,
+        },
+        quiz: {
+          starts: 0,
+          submitAttempts: 0,
+          submitSuccess: 0,
+          saveHistorySuccess: 0,
+          submitFailed: 0,
+          inProgressLeave: 0,
+        },
+        quizFunnel: [],
+      });
+    }
     return json({ error: e.message || 'Internal error' }, 500);
   }
 };

@@ -55,6 +55,9 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     await context.env.DB.batch(batch);
     return json({ saved: batch.length });
   } catch (e: any) {
+    if (String(e?.message || '').includes('no such table: ux_events')) {
+      return json({ saved: 0, skipped: true, reason: 'ux_events_missing' });
+    }
     return json({ error: e.message || 'Internal error' }, 500);
   }
 };
