@@ -516,6 +516,7 @@
         </div>
     </div>
 
+    <script src="data/explanations.js"></script>
     <script>
         const state = {
             manifest: null,
@@ -624,6 +625,9 @@
             document.getElementById("selectorView").classList.toggle("hidden", name !== "selector");
             document.getElementById("quizView").classList.toggle("hidden", name !== "quiz");
             document.getElementById("resultView").classList.toggle("hidden", name !== "result");
+            // Level tabs only matter on the selector view; once the user is
+            // doing or reviewing a paper, the level is locked in.
+            document.getElementById("levelTabs").classList.toggle("hidden", name !== "selector");
         }
 
         function renderTabs() {
@@ -662,7 +666,6 @@
                     <div class="selector-actions">
                         <button class="btn primary ${year.quizReady ? "" : "disabled"}" data-action="start" data-year="${year.year}">开始练习</button>
                         <a class="link-btn" href="papers.html?level=${state.currentLevel}">查看真题</a>
-                        <a class="link-btn ${year.quizReady ? "" : "disabled"}" href="${year.questionDataUrl || "#"}" target="_blank" rel="noreferrer">题目 JSON</a>
                     </div>
                 </article>
             `).join("");
@@ -911,10 +914,23 @@
             });
         }
 
+        function applyExplanationOverrides(questionSet) {
+            const overrides = window.AMC_EXPLANATION_BANK?.[questionSet.level]?.[questionSet.year];
+            if (!overrides) return questionSet;
+
+            return {
+                ...questionSet,
+                questions: questionSet.questions.map((question) => ({
+                    ...question,
+                    explanation: overrides[question.number] ?? question.explanation,
+                })),
+            };
+        }
+
         async function loadQuestionSet(yearEntry) {
             const response = await fetch(yearEntry.questionDataUrl);
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            state.questionSet = await response.json();
+            state.questionSet = applyExplanationOverrides(await response.json());
             state.currentIndex = 0;
             state.answers = {};
             state.reviewMode = false;
