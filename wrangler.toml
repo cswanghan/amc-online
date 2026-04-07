@@ -1,3 +1,8 @@
 name = "amc-online"
 compatibility_date = "2024-12-01"
 pages_build_output_dir = "public"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "amc-users"
+database_id = "9c9ef21c-2a42-413f-aa13-3ca54b2c1ceb"

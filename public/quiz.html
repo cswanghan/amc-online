@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AMC Practice · 在线练习</title>
     <script src="analytics.js"></script>
+    <script src="auth-guard.js"></script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
@@ -702,6 +703,10 @@
 
         async function submitQuiz() {
             if (state.reviewMode) return;
+            const allowed = window.requireLogin?.(
+                "登录后才能提交答卷并查看判题结果，当前作答内容会保留在本页。",
+            );
+            if (allowed === false) return;
             clearInterval(state.timerHandle);
             const result = computeResult();
             state.lastScore = result;
