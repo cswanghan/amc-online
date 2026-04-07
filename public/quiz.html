@@ -701,12 +701,51 @@
             }
         }
 
+        async function requestAccess(category, resourceType, level, year) {
+            const token = localStorage.getItem("token");
+            if (!token) {
+                const allowed = window.requireLogin?.("登录后才能提交答卷并查看判题结果。普通用户最多可完成 5 次练习。");
+                return allowed === true;
+            }
+
+            const response = await fetch("/api/access/check", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({ category, resourceType, level, year }),
+            });
+
+            const payload = await response.json().catch(() => ({}));
+            if (response.status === 401) {
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+                window.requireLogin?.("登录后才能提交答卷并查看判题结果。普通用户最多可完成 5 次练习。");
+                return false;
+            }
+
+            if (!response.ok) {
+                alert(payload.error || "当前无法提交答卷，请稍后再试。");
+                return false;
+            }
+
+            return true;
+        }
+
         async function submitQuiz() {
             if (state.reviewMode) return;
             const allowed = window.requireLogin?.(
                 "登录后才能提交答卷并查看判题结果，当前作答内容会保留在本页。",
             );
             if (allowed === false) return;
+            const granted = await requestAccess(
+                "practice",
+                "quiz",
+                state.questionSet.level,
+                state.questionSet.year
+            );
+            if (!granted) return;
             clearInterval(state.timerHandle);
             const result = computeResult();
             state.lastScore = result;

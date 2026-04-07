@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AMC Papers · 真题浏览</title>
     <script src="analytics.js"></script>
+    <script src="auth-guard.js"></script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
@@ -146,6 +147,10 @@
             border-radius: 14px;
             font-size: 0.86rem;
         }
+        button.link {
+            cursor: pointer;
+            font-family: inherit;
+        }
         .link:hover { border-color: rgba(159, 76, 36, 0.3); color: var(--accent); }
         .link.disabled {
             opacity: 0.5;
@@ -262,8 +267,16 @@
                         </div>
                         <div class="status">${status.join("") || `<span class="chip">仅索引</span>`}</div>
                         <div class="links">
-                            <a class="link ${year.paper ? "" : "disabled"}" href="${year.paper?.url || "#"}" target="_blank" rel="noreferrer">打开试卷</a>
-                            <a class="link ${year.answer ? "" : "disabled"}" href="${year.answer?.url || "#"}" target="_blank" rel="noreferrer">打开答案</a>
+                            <button class="link ${year.paper ? "" : "disabled"}" type="button"
+                                data-action="open-resource" data-kind="paper" data-year="${year.year}"
+                                data-url="${year.paper?.url || ""}">
+                                打开试卷
+                            </button>
+                            <button class="link ${year.answer ? "" : "disabled"}" type="button"
+                                data-action="open-resource" data-kind="answer" data-year="${year.year}"
+                                data-url="${year.answer?.url || ""}">
+                                打开答案
+                            </button>
                             <a class="link ${year.quizReady ? "" : "disabled"}" href="${year.quizReady ? `quiz.html?level=${state.currentLevel}&year=${year.year}` : "#"}">进入练习</a>
                         </div>
                         <div class="note">${year.note || "当前年份已纳入索引，后续可继续补题图与逐题数据。"}</div>
@@ -288,6 +301,38 @@
             renderYears();
         }
 
+        async function requestAccess(category, resourceType, level, year) {
+            const token = localStorage.getItem("token");
+            if (!token) {
+                const allowed = window.requireLogin?.("登录后才能打开试卷或答案。普通用户最多可下载 5 次。");
+                return allowed === true;
+            }
+
+            const response = await fetch("/api/access/check", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify({ category, resourceType, level, year }),
+            });
+
+            const payload = await response.json().catch(() => ({}));
+            if (response.status === 401) {
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+                window.requireLogin?.("登录后才能打开试卷或答案。普通用户最多可下载 5 次。");
+                return false;
+            }
+
+            if (!response.ok) {
+                alert(payload.error || "当前操作失败，请稍后再试。");
+                return false;
+            }
+
+            return true;
+        }
+
         document.getElementById("tabs").addEventListener("click", (event) => {
             const button = event.target.closest(".tab");
             if (!button) return;
@@ -297,6 +342,23 @@
             renderSummary();
             renderYears();
             window.AMCAnalytics?.track("papers_level_switch", { meta: { level: state.currentLevel } });
+        });
+
+        document.getElementById("yearGrid").addEventListener("click", async (event) => {
+            const button = event.target.closest('[data-action="open-resource"]');
+            if (!button || button.classList.contains("disabled")) return;
+
+            const granted = await requestAccess(
+                "download",
+                button.dataset.kind,
+                state.currentLevel,
+                Number(button.dataset.year)
+            );
+            if (!granted) return;
+
+            const targetUrl = button.dataset.url;
+            if (!targetUrl) return;
+            window.open(targetUrl, "_blank", "noopener,noreferrer");
         });
 
         loadManifest();

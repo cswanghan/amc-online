@@ -54,3 +54,17 @@ CREATE TABLE IF NOT EXISTS quiz_answers (
 CREATE INDEX IF NOT EXISTS idx_sessions_user ON quiz_sessions(user_id);
 CREATE INDEX IF NOT EXISTS idx_sessions_level_year ON quiz_sessions(level, year);
 CREATE INDEX IF NOT EXISTS idx_answers_session ON quiz_answers(session_id);
+
+CREATE TABLE IF NOT EXISTS resource_access_logs (
+    id            INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id       INTEGER NOT NULL,
+    category      TEXT    NOT NULL,
+    resource_type TEXT    NOT NULL,
+    level         TEXT,
+    year          INTEGER,
+    created_at    TEXT    NOT NULL DEFAULT (datetime('now')),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_resource_access_user_category
+    ON resource_access_logs(user_id, category);
