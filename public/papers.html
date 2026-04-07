@@ -477,11 +477,9 @@
         });
 
         document.getElementById("yearGrid").addEventListener("click", async (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-
             const disabledLink = event.target.closest(".link.disabled");
             if (disabledLink) {
+                event.preventDefault();
                 const reason = disabledLink.dataset.disabledReason;
                 if (reason) alert(reason);
                 return;
@@ -489,6 +487,8 @@
 
             const button = event.target.closest('[data-action="open-resource"]');
             if (!button || button.classList.contains("disabled")) return;
+            event.preventDefault();
+            event.stopPropagation();
             if (state.openingResource) return;
 
             const targetUrl = button.dataset.url;
