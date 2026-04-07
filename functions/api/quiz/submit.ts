@@ -1,3 +1,5 @@
+import { AccessLimitError, enforceAccessLimit } from '../../../src/access';
+
 interface Env { DB: D1Database; JWT_SECRET: string; }
 
 interface SubmitBody {
@@ -21,6 +23,8 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       return json({ error: '参数错误' }, 400);
     }
 
+    await enforceAccessLimit(context.env, user, 'practice', 'quiz', body.level, body.year);
+
     const total = body.answers.length;
     const correctCount = body.answers.filter(a => a.isRight).length;
     // Use client-provided score (weighted by points) or fallback
@@ -42,6 +46,9 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
     return json({ sessionId: session.id, correct: correctCount, total, score });
   } catch (e: any) {
+    if (e instanceof AccessLimitError) {
+      return json(e.payload, e.status);
+    }
     return json({ error: e.message || 'Internal error', stack: e.stack }, 500);
   }
 };

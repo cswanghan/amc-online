@@ -301,23 +301,20 @@
             renderYears();
         }
 
-        async function requestAccess(category, resourceType, level, year) {
+        async function openProtectedResource(resourceUrl) {
             const token = localStorage.getItem("token");
             if (!token) {
-                const allowed = window.requireLogin?.("登录后才能打开试卷或答案。普通用户最多可下载 5 次。");
-                return allowed === true;
+                window.requireLogin?.("登录后才能打开试卷或答案。普通用户最多可下载 5 次。");
+                return false;
             }
 
-            const response = await fetch("/api/access/check", {
-                method: "POST",
+            const response = await fetch(resourceUrl, {
                 headers: {
-                    "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`,
                 },
-                body: JSON.stringify({ category, resourceType, level, year }),
             });
 
-            const payload = await response.json().catch(() => ({}));
+            const payload = await response.clone().json().catch(() => ({}));
             if (response.status === 401) {
                 localStorage.removeItem("token");
                 localStorage.removeItem("user");
@@ -330,7 +327,7 @@
                 return false;
             }
 
-            return true;
+            return response.blob();
         }
 
         document.getElementById("tabs").addEventListener("click", (event) => {
@@ -348,29 +345,21 @@
             const button = event.target.closest('[data-action="open-resource"]');
             if (!button || button.classList.contains("disabled")) return;
 
-            const hasToken = !!localStorage.getItem("token");
-            const popup = hasToken ? window.open("about:blank", "_blank", "noopener,noreferrer") : null;
-            const granted = await requestAccess(
-                "download",
-                button.dataset.kind,
-                state.currentLevel,
-                Number(button.dataset.year)
-            );
-            if (!granted) {
-                popup?.close();
-                return;
-            }
-
+            const popup = window.open("about:blank", "_blank", "noopener,noreferrer");
             const targetUrl = button.dataset.url;
             if (!targetUrl) {
                 popup?.close();
                 return;
             }
-            if (popup) {
-                popup.location.href = targetUrl;
+
+            const blob = await openProtectedResource(targetUrl);
+            if (!blob) {
+                popup?.close();
                 return;
             }
-            window.open(targetUrl, "_blank", "noopener,noreferrer");
+            const objectUrl = URL.createObjectURL(blob);
+            if (popup) popup.location.href = objectUrl;
+            setTimeout(() => URL.revokeObjectURL(objectUrl), 60_000);
         });
 
         loadManifest();
