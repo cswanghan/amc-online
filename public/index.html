@@ -345,16 +345,6 @@
             </a>
         </section>
 
-        <section class="section">
-            <div class="section-head">
-                <h3>层级状态</h3>
-                <p>数据来自 <code>/data/index.json</code></p>
-            </div>
-            <div class="status-grid" id="statusGrid">
-                <div class="status-card"><strong>读取中</strong><p>正在加载 AMC 题库 manifest。</p></div>
-            </div>
-        </section>
-
         <div class="footer">AMC Online · built on Cloudflare Pages · current stage: live practice</div>
     </div>
 
@@ -407,27 +397,6 @@
             });
         }
 
-        function renderStatusCards() {
-            const host = document.getElementById("statusGrid");
-            const levels = state.manifest?.levels || [];
-            if (!levels.length) {
-                host.innerHTML = `<div class="status-card"><strong>暂无数据</strong><p>请先运行 <code>npm run build:library</code> 生成题库索引。</p></div>`;
-                return;
-            }
-
-            host.innerHTML = levels.map((level) => {
-                const answers = level.years.filter((year) => year.answer).length;
-                const ready = level.years.filter((year) => year.quizReady).length;
-                return `
-                    <div class="status-card">
-                        <strong>${level.label}</strong>
-                        <p>${level.grade}</p>
-                        <p>试卷 ${level.years.length} 套，带答案 ${answers} 套，在线题图数据 ${ready} 套。</p>
-                    </div>
-                `;
-            }).join("");
-        }
-
         async function loadManifest() {
             try {
                 const response = await fetch("data/index.json");
@@ -441,7 +410,6 @@
             }
 
             renderHero();
-            renderStatusCards();
         }
 
         document.getElementById("levelTabs").addEventListener("click", (event) => {
