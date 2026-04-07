@@ -348,16 +348,28 @@
             const button = event.target.closest('[data-action="open-resource"]');
             if (!button || button.classList.contains("disabled")) return;
 
+            const hasToken = !!localStorage.getItem("token");
+            const popup = hasToken ? window.open("about:blank", "_blank", "noopener,noreferrer") : null;
             const granted = await requestAccess(
                 "download",
                 button.dataset.kind,
                 state.currentLevel,
                 Number(button.dataset.year)
             );
-            if (!granted) return;
+            if (!granted) {
+                popup?.close();
+                return;
+            }
 
             const targetUrl = button.dataset.url;
-            if (!targetUrl) return;
+            if (!targetUrl) {
+                popup?.close();
+                return;
+            }
+            if (popup) {
+                popup.location.href = targetUrl;
+                return;
+            }
             window.open(targetUrl, "_blank", "noopener,noreferrer");
         });
 
