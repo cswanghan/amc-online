@@ -166,24 +166,37 @@
             gap: 10px;
         }
         .link {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
             color: var(--text);
             background: white;
             border: 1px solid var(--line);
+            width: 100%;
+            box-sizing: border-box;
             min-height: 44px;
             padding: 10px 12px;
             border-radius: 14px;
+            margin: 0;
+            appearance: none;
+            -webkit-appearance: none;
+            font: inherit;
             font-size: 0.88rem;
+            font-weight: 600;
             text-align: center;
             line-height: 1.2;
         }
+        .link-label {
+            display: block;
+            line-height: 1;
+        }
         button.link {
             cursor: pointer;
-            font-family: inherit;
-            line-height: 1.2;
+        }
+        button.link::-moz-focus-inner {
+            border: 0;
+            padding: 0;
         }
         .link:hover { border-color: rgba(159, 76, 36, 0.3); color: var(--accent); }
         .link.disabled {
@@ -316,14 +329,16 @@
                             <button class="link ${year.paper ? "" : "disabled"}" type="button"
                                 data-action="open-resource" data-kind="paper" data-year="${year.year}"
                                 data-url="${year.paper?.url || ""}">
-                                打开试卷
+                                <span class="link-label">打开试卷</span>
                             </button>
                             <button class="link ${year.answer ? "" : "disabled"}" type="button"
                                 data-action="open-resource" data-kind="answer" data-year="${year.year}"
                                 data-url="${year.answer?.url || ""}">
-                                打开答案
+                                <span class="link-label">打开答案</span>
                             </button>
-                            <a class="link ${year.quizReady ? "" : "disabled"}" href="${year.quizReady ? `quiz.html?level=${state.currentLevel}&year=${year.year}` : "#"}">进入练习</a>
+                            <a class="link ${year.quizReady ? "" : "disabled"}" href="${year.quizReady ? `quiz.html?level=${state.currentLevel}&year=${year.year}` : "#"}">
+                                <span class="link-label">进入练习</span>
+                            </a>
                         </div>
                         <div class="note ${year.quizReady ? "ready" : ""}">
                             ${year.quizReady ? "这套题已经可以直接在线作答、提交判题并查看解析。" : "当前提供试卷与答案浏览，在线练习题集还在整理中。"}
