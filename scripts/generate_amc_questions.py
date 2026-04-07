@@ -37,6 +37,11 @@ class Marker:
 
 
 ANSWER_LIST_EXPLANATION = "Official answer list only. Detailed explanation is not yet available."
+LEGACY_LEVEL_CODE = {
+    "a": "MP",
+    "b": "UP",
+    "c": "J",
+}
 
 
 def parse_args() -> argparse.Namespace:
@@ -175,22 +180,38 @@ def document_text(doc: fitz.Document) -> str:
 
 def is_answer_list_document(doc: fitz.Document) -> bool:
     first_pages = "\n".join(page.get_text("text") for page in doc[: min(doc.page_count, 2)])
-    return "Answer List" in first_pages
+    if "Answer List" in first_pages:
+        return True
+    return bool(re.search(r"(?m)^(MP|UP|J|I|S)\s*$", first_pages))
 
 
 def parse_answer_list(answer_doc: fitz.Document, level: str) -> dict[int, str]:
     text = document_text(answer_doc)
     normalized_level = level.upper()
-    pattern = re.compile(
+    section_text = None
+
+    modern_pattern = re.compile(
         rf"Level\s+{normalized_level}\s*(.*?)(?=Level\s+[A-Z]|$)",
         flags=re.DOTALL,
     )
-    match = pattern.search(text)
-    if not match:
-        raise ValueError(f"Could not find Level {normalized_level} in answer list")
+    modern_match = modern_pattern.search(text)
+    if modern_match:
+        section_text = modern_match.group(1)
+    else:
+        legacy_level = LEGACY_LEVEL_CODE[level]
+        legacy_pattern = re.compile(
+            rf"(?m)^{legacy_level}\s*$\s*(.*?)(?=^(MP|UP|J|I|S)\s*$|\Z)",
+            flags=re.DOTALL | re.MULTILINE,
+        )
+        legacy_match = legacy_pattern.search(text)
+        if legacy_match:
+            section_text = legacy_match.group(1)
+
+    if section_text is None:
+        raise ValueError(f"Could not find answer list section for level {level}")
 
     answers: dict[int, str] = {}
-    for number_text, answer_text in re.findall(r"(\d{1,2})\s*:\s*([A-E]|\d{1,3})", match.group(1)):
+    for number_text, answer_text in re.findall(r"(\d{1,2})\s*:\s*([A-E]|\d{1,3})", section_text):
         answers[int(number_text)] = answer_text.strip()
 
     missing = [number for number in range(1, 31) if number not in answers]
@@ -200,14 +221,27 @@ def parse_answer_list(answer_doc: fitz.Document, level: str) -> dict[int, str]:
     return answers
 
 
+def find_answer_path(level: str, year: int) -> Path | None:
+    asset_dir = LIBRARY_ROOT / level / str(year)
+    for candidate in [asset_dir / "answer.pdf", asset_dir / "answer.png"]:
+        if candidate.exists():
+            return candidate
+
+    # Some historical answer lists are shared across multiple AMC levels for the same year.
+    for sibling_level in ["a", "b", "c"]:
+        if sibling_level == level:
+            continue
+        sibling_dir = LIBRARY_ROOT / sibling_level / str(year)
+        sibling_pdf = sibling_dir / "answer.pdf"
+        if sibling_pdf.exists():
+            return sibling_pdf
+    return None
+
+
 def build_question_set(level: str, year: int) -> dict:
     asset_dir = LIBRARY_ROOT / level / str(year)
     paper_path = asset_dir / "paper.pdf"
-    answer_path = None
-    for candidate in [asset_dir / "answer.pdf", asset_dir / "answer.png"]:
-        if candidate.exists():
-            answer_path = candidate
-            break
+    answer_path = find_answer_path(level, year)
 
     if not paper_path.exists():
         raise FileNotFoundError(f"Missing paper: {paper_path}")

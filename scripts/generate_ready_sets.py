@@ -12,6 +12,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 READY_SETS = [
+    ("a", 2018),
+    ("c", 2018),
+    ("a", 2019),
+    ("b", 2019),
+    ("c", 2019),
+    ("c", 2020),
     ("a", 2024),
     ("b", 2024),
     ("c", 2024),

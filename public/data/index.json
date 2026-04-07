@@ -1,12 +1,12 @@
 {
   "competition": "Australian Mathematics Competition",
-  "generatedAt": "2026-04-07T00:51:49.540042+00:00",
+  "generatedAt": "2026-04-07T01:57:14.765997+00:00",
   "sourceRoot": "extracted/澳大利亚AMC",
   "stats": {
     "levels": 3,
     "papers": 57,
     "answers": 21,
-    "quizReady": 6
+    "quizReady": 12
   },
   "levels": [
     {
@@ -145,9 +145,9 @@
           "sourceFiles": [
             "2019A试卷.pdf"
           ],
-          "quizReady": false,
-          "questionDataUrl": null,
-          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+          "quizReady": true,
+          "questionDataUrl": "/data/generated/a/2019.json",
+          "note": "已生成题目 JSON，可接入正式练习流程。"
         },
         {
           "year": 2018,
@@ -165,9 +165,9 @@
             "2018A 答案.pdf",
             "2018A试卷.pdf"
           ],
-          "quizReady": false,
-          "questionDataUrl": null,
-          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+          "quizReady": true,
+          "questionDataUrl": "/data/generated/a/2018.json",
+          "note": "已生成题目 JSON，可接入正式练习流程。"
         },
         {
           "year": 2017,
@@ -477,9 +477,9 @@
             "2019 答案.pdf",
             "2019B试卷.pdf"
           ],
-          "quizReady": false,
-          "questionDataUrl": null,
-          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+          "quizReady": true,
+          "questionDataUrl": "/data/generated/b/2019.json",
+          "note": "已生成题目 JSON，可接入正式练习流程。"
         },
         {
           "year": 2018,
@@ -779,9 +779,9 @@
           "sourceFiles": [
             "2020C试卷.pdf"
           ],
-          "quizReady": false,
-          "questionDataUrl": null,
-          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+          "quizReady": true,
+          "questionDataUrl": "/data/generated/c/2020.json",
+          "note": "已生成题目 JSON，可接入正式练习流程。"
         },
         {
           "year": 2019,
@@ -799,9 +799,9 @@
             "2019C答案.pdf",
             "2019C试卷.pdf"
           ],
-          "quizReady": false,
-          "questionDataUrl": null,
-          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+          "quizReady": true,
+          "questionDataUrl": "/data/generated/c/2019.json",
+          "note": "已生成题目 JSON，可接入正式练习流程。"
         },
         {
           "year": 2018,
@@ -814,9 +814,9 @@
           "sourceFiles": [
             "2018C试卷.pdf"
           ],
-          "quizReady": false,
-          "questionDataUrl": null,
-          "note": "当前仅提供试卷与答案索引，题图切割后可接入在线练习。"
+          "quizReady": true,
+          "questionDataUrl": "/data/generated/c/2018.json",
+          "note": "已生成题目 JSON，可接入正式练习流程。"
         },
         {
           "year": 2017,
