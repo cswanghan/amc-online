@@ -435,27 +435,30 @@
     <div class="page">
         <div class="topbar">
             <div class="heading">
-                <a class="back-link" href="index.html">← 返回首页</a>
-                <h1>AMC 在线练习</h1>
-                <p id="pageLead">选择层级与年份，进入已生成题集的在线练习。未就绪年份会继续保留 PDF 浏览入口。</p>
+                <a class="back-link" href="index.html" data-i18n="back_home">← 返回首页</a>
+                <h1 data-i18n="quiz_title">AMC 在线练习</h1>
+                <p id="pageLead" data-i18n="quiz_lead">选择层级与年份，进入已生成题集的在线练习。未就绪年份会继续保留 PDF 浏览入口。</p>
+            </div>
+            <div>
+                <button class="i18n-toggle" onclick="I18n.toggle()" style="padding:4px 14px;border-radius:999px;border:1px solid rgba(0,0,0,0.1);background:white;font-size:0.82rem;font-family:inherit;cursor:pointer;">EN</button>
             </div>
         </div>
 
         <div class="tabs" id="levelTabs">
-            <button class="tab active" data-level="a">AMC A · 3-4 年级</button>
-            <button class="tab" data-level="b">AMC B · 5-6 年级</button>
-            <button class="tab" data-level="c">AMC C · 7-8 年级</button>
+            <button class="tab active" data-level="a" data-i18n="tab_a">AMC A · 3-4 年级</button>
+            <button class="tab" data-level="b" data-i18n="tab_b">AMC B · 5-6 年级</button>
+            <button class="tab" data-level="c" data-i18n="tab_c">AMC C · 7-8 年级</button>
         </div>
 
         <section id="selectorView">
             <div class="notice" id="selectorNotice">
-                <strong>读取题库中</strong>
-                <p>正在检查哪些年份已经具备逐题题图和答案 JSON。</p>
+                <strong data-i18n="notice_loading_title">读取题库中</strong>
+                <p data-i18n="notice_loading_desc">正在检查哪些年份已经具备逐题题图和答案 JSON。</p>
             </div>
             <div class="selector-grid" id="selectorGrid">
                 <div class="selector-card">
-                    <strong>读取中</strong>
-                    <div class="desc">正在加载年份状态。</div>
+                    <strong data-i18n="notice_loading_title">读取中</strong>
+                    <div class="desc" data-i18n="notice_loading_desc">正在加载年份状态。</div>
                 </div>
             </div>
         </section>
@@ -464,26 +467,26 @@
             <div class="quiz-layout">
                 <div class="panel">
                     <div class="question-meta" id="questionMeta"></div>
-                    <div class="question-title" id="questionTitle">题目 1</div>
-                    <p id="questionDesc">请根据题图作答。</p>
+                    <div class="question-title" id="questionTitle" data-i18n="question_default_title">题目 1</div>
+                    <p id="questionDesc" data-i18n="question_default_desc">请根据题图作答。</p>
                     <div class="images" id="questionImages"></div>
                     <div class="answer-block" id="answerBlock"></div>
                     <div id="feedbackHost"></div>
                     <div id="explanationHost"></div>
                     <div class="result-actions" style="justify-content:flex-start; margin-top:18px;">
-                        <button class="btn secondary" id="prevBtn">上一题</button>
-                        <button class="btn secondary" id="nextBtn">下一题</button>
-                        <button class="btn primary" id="submitBtn">提交答卷</button>
+                        <button class="btn secondary" id="prevBtn" data-i18n="btn_prev">上一题</button>
+                        <button class="btn secondary" id="nextBtn" data-i18n="btn_next">下一题</button>
+                        <button class="btn primary" id="submitBtn" data-i18n="btn_submit">提交答卷</button>
                     </div>
                 </div>
 
                 <aside class="sidebar">
                     <div class="status-card">
                         <div class="timer" id="timerValue">60:00</div>
-                        <p id="progressText">已答 0 / 0</p>
+                        <p id="progressText" data-i18n="progress_default">已答 0 / 0</p>
                     </div>
                     <div class="status-card">
-                        <p id="quizSummary">加载题集信息中。</p>
+                        <p id="quizSummary" data-i18n="quiz_summary_loading">加载题集信息中。</p>
                         <div class="nav-grid" id="navGrid"></div>
                     </div>
                 </aside>
@@ -492,13 +495,13 @@
 
         <section id="resultView" class="hidden">
             <div class="result-card">
-                <h2>完成本套练习</h2>
+                <h2 data-i18n="result_title">完成本套练习</h2>
                 <div class="result-score" id="resultScore">0</div>
-                <div class="result-sub" id="resultSummary">正在计算成绩。</div>
+                <div class="result-sub" id="resultSummary" data-i18n="result_computing">正在计算成绩。</div>
                 <div class="result-actions">
-                    <button class="btn primary" id="reviewBtn">查看解析</button>
-                    <button class="btn secondary" id="restartBtn">重新开始</button>
-                    <a class="link-btn" id="paperLink" href="papers.html">打开真题</a>
+                    <button class="btn primary" id="reviewBtn" data-i18n="btn_review">查看解析</button>
+                    <button class="btn secondary" id="restartBtn" data-i18n="btn_restart">重新开始</button>
+                    <a class="link-btn" id="paperLink" href="papers.html" data-i18n="btn_open_paper">打开真题</a>
                 </div>
             </div>
         </section>
@@ -507,14 +510,140 @@
     <div class="leave-overlay" id="leaveOverlay" aria-hidden="true">
         <div class="leave-dialog" role="dialog" aria-modal="true" aria-labelledby="leaveTitle">
             <div class="leave-icon">↩</div>
-            <h3 id="leaveTitle">确认离开当前练习？</h3>
-            <p id="leaveMessage">当前练习尚未提交，离开后本次作答内容和计时进度都会丢失。</p>
+            <h3 id="leaveTitle" data-i18n="leave_title">确认离开当前练习？</h3>
+            <p id="leaveMessage" data-i18n="leave_message">当前练习尚未提交，离开后本次作答内容和计时进度都会丢失。</p>
             <div class="leave-actions">
-                <button class="btn secondary" type="button" id="leaveStayBtn">继续做题</button>
-                <button class="btn primary" type="button" id="leaveConfirmBtn">确认离开</button>
+                <button class="btn secondary" type="button" id="leaveStayBtn" data-i18n="btn_stay">继续做题</button>
+                <button class="btn primary" type="button" id="leaveConfirmBtn" data-i18n="btn_leave">确认离开</button>
             </div>
         </div>
     </div>
+
+    <script>
+    window.I18N = {
+        zh: {
+            back_home: '← 返回首页',
+            quiz_title: 'AMC 在线练习',
+            quiz_lead: '选择层级与年份，进入已生成题集的在线练习。未就绪年份会继续保留 PDF 浏览入口。',
+            tab_a: 'AMC A · 3-4 年级',
+            tab_b: 'AMC B · 5-6 年级',
+            tab_c: 'AMC C · 7-8 年级',
+            question_default_title: '题目 1',
+            question_default_desc: '请根据题图作答。',
+            btn_prev: '上一题',
+            btn_next: '下一题',
+            btn_submit: '提交答卷',
+            btn_review: '查看解析',
+            btn_restart: '重新开始',
+            btn_open_paper: '打开真题',
+            btn_stay: '继续做题',
+            btn_leave: '确认离开',
+            progress_default: '已答 0 / 0',
+            quiz_summary_loading: '加载题集信息中。',
+            result_title: '完成本套练习',
+            result_computing: '正在计算成绩。',
+            leave_title: '确认离开当前练习？',
+            leave_message: '当前练习尚未提交，离开后本次作答内容和计时进度都会丢失。',
+            leave_switch_level: '当前练习尚未提交，切换层级后本次作答内容会被清空。',
+            notice_loading_title: '读取题库中',
+            notice_loading_desc: '正在检查哪些年份已经具备逐题题图和答案 JSON。',
+            notice_no_level_title: '未找到层级数据',
+            notice_no_level_desc: '请先运行题库构建脚本。',
+            notice_level_summary: '当前层级共 {total} 个年份，已完成 {ready} 套在线题集。未完成年份保留 PDF 真题浏览入口。',
+            badge_has_paper: '有试卷',
+            badge_no_paper: '无试卷',
+            badge_has_answer: '有答案',
+            badge_no_answer: '无答案',
+            badge_quiz_ready: '题集已生成',
+            badge_quiz_pending: '等待切题',
+            no_year_note: '当前年份尚未备注。',
+            btn_start: '开始练习',
+            btn_view_paper: '查看真题',
+            chip_question: '第 {n} 题',
+            chip_points: '{n} 分',
+            chip_choice: '选择题',
+            chip_integer: '整数题',
+            question_title: '题目 {n}',
+            desc_choice: '请根据题图选择 A-E 中的正确答案。',
+            desc_integer: '请输入 0-999 之间的整数答案。',
+            placeholder_integer: '例如 270',
+            img_alt: '题目 {q} - 图 {i}',
+            feedback_your_answer: '你的答案：{ans}',
+            feedback_correct_answer: '正确答案：{ans}',
+            feedback_not_answered: '未作答',
+            progress_text: '已答 {done} / {total}',
+            quiz_summary: '{level} {year} · 共 {total} 题 · 总分 {score}',
+            result_summary: '答对 {correct} / {total} 题，得分 {score} / {maxScore}。',
+            login_submit: '登录后才能提交答卷并查看判题结果。普通用户最多可完成 5 次练习。',
+            login_submit_keep: '登录后才能提交答卷并查看判题结果，当前作答内容会保留在本页。',
+            submit_failed: '当前无法提交答卷，请稍后再试。',
+            load_failed_title: '加载失败',
+            load_failed_desc: '{msg}。请先运行 npm run build:library，以及生成题集脚本。',
+            quiz_load_failed: '题集加载失败：{msg}',
+        },
+        en: {
+            back_home: '← Back to Home',
+            quiz_title: 'AMC Online Practice',
+            quiz_lead: 'Select a level and year to start an online practice quiz. Years not yet ready still offer PDF paper browsing.',
+            tab_a: 'AMC A · Years 3-4',
+            tab_b: 'AMC B · Years 5-6',
+            tab_c: 'AMC C · Years 7-8',
+            question_default_title: 'Question 1',
+            question_default_desc: 'Answer based on the question image.',
+            btn_prev: 'Previous',
+            btn_next: 'Next',
+            btn_submit: 'Submit',
+            btn_review: 'Review Answers',
+            btn_restart: 'Restart',
+            btn_open_paper: 'View Paper',
+            btn_stay: 'Continue Quiz',
+            btn_leave: 'Leave',
+            progress_default: 'Answered 0 / 0',
+            quiz_summary_loading: 'Loading quiz info...',
+            result_title: 'Quiz Complete',
+            result_computing: 'Calculating score...',
+            leave_title: 'Leave this quiz?',
+            leave_message: 'Your answers have not been submitted. All progress will be lost if you leave.',
+            leave_switch_level: 'Your answers have not been submitted. Switching levels will clear your progress.',
+            notice_loading_title: 'Loading Question Bank',
+            notice_loading_desc: 'Checking which years have per-question images and answer data.',
+            notice_no_level_title: 'No Level Data Found',
+            notice_no_level_desc: 'Please run the library build script first.',
+            notice_level_summary: '{total} years in this level, {ready} online quiz sets ready. Years not yet ready still offer PDF paper browsing.',
+            badge_has_paper: 'Paper',
+            badge_no_paper: 'No Paper',
+            badge_has_answer: 'Answer Key',
+            badge_no_answer: 'No Answer',
+            badge_quiz_ready: 'Quiz Ready',
+            badge_quiz_pending: 'Pending',
+            no_year_note: 'No notes for this year.',
+            btn_start: 'Start Quiz',
+            btn_view_paper: 'View Paper',
+            chip_question: 'Q{n}',
+            chip_points: '{n} pts',
+            chip_choice: 'Multiple Choice',
+            chip_integer: 'Integer Answer',
+            question_title: 'Question {n}',
+            desc_choice: 'Select the correct answer from A-E based on the question image.',
+            desc_integer: 'Enter an integer between 0 and 999.',
+            placeholder_integer: 'e.g. 270',
+            img_alt: 'Question {q} - Image {i}',
+            feedback_your_answer: 'Your answer: {ans}',
+            feedback_correct_answer: 'Correct answer: {ans}',
+            feedback_not_answered: 'Not answered',
+            progress_text: 'Answered {done} / {total}',
+            quiz_summary: '{level} {year} · {total} questions · {score} points',
+            result_summary: 'Correct: {correct} / {total}, Score: {score} / {maxScore}.',
+            login_submit: 'Please log in to submit answers and view results. Free users get up to 5 attempts.',
+            login_submit_keep: 'Please log in to submit and view results. Your answers are preserved on this page.',
+            submit_failed: 'Unable to submit answers. Please try again later.',
+            load_failed_title: 'Loading Failed',
+            load_failed_desc: '{msg}. Please run npm run build:library and the quiz generation script.',
+            quiz_load_failed: 'Failed to load quiz: {msg}',
+        }
+    };
+    </script>
+    <script src="i18n.js"></script>
 
     <script src="data/explanations.js"></script>
     <script>
@@ -583,7 +712,7 @@
         function showLeavePrompt(action, message) {
             const overlay = leaveOverlay();
             document.getElementById("leaveMessage").textContent =
-                message || "当前练习尚未提交，离开后本次作答内容和计时进度都会丢失。";
+                message || I18n.t('leave_message');
             state.pendingLeaveAction = action;
             overlay.classList.add("open");
             overlay.setAttribute("aria-hidden", "false");
@@ -642,7 +771,7 @@
             const host = document.getElementById("selectorGrid");
 
             if (!level) {
-                notice.innerHTML = "<strong>未找到层级数据</strong><p>请先运行题库构建脚本。</p>";
+                notice.innerHTML = `<strong>${I18n.t('notice_no_level_title')}</strong><p>${I18n.t('notice_no_level_desc')}</p>`;
                 host.innerHTML = "";
                 return;
             }
@@ -650,7 +779,7 @@
             const ready = level.years.filter((item) => item.quizReady).length;
             notice.innerHTML = `
                 <strong>${level.label} · ${level.grade}</strong>
-                <p>当前层级共 ${level.years.length} 个年份，已完成 ${ready} 套在线题集。未完成年份保留 PDF 真题浏览入口。</p>
+                <p>${I18n.t('notice_level_summary').replace('{total}', level.years.length).replace('{ready}', ready)}</p>
             `;
 
             host.innerHTML = level.years.map((year) => `
@@ -658,14 +787,14 @@
                     <strong>${year.year}</strong>
                     <div class="meta">${level.label}</div>
                     <div class="badges">
-                        <span class="badge">${year.paper ? "有试卷" : "无试卷"}</span>
-                        <span class="badge">${year.answer ? "有答案" : "无答案"}</span>
-                        <span class="badge">${year.quizReady ? "题集已生成" : "等待切题"}</span>
+                        <span class="badge">${year.paper ? I18n.t('badge_has_paper') : I18n.t('badge_no_paper')}</span>
+                        <span class="badge">${year.answer ? I18n.t('badge_has_answer') : I18n.t('badge_no_answer')}</span>
+                        <span class="badge">${year.quizReady ? I18n.t('badge_quiz_ready') : I18n.t('badge_quiz_pending')}</span>
                     </div>
-                    <div class="desc">${year.note || "当前年份尚未备注。"}</div>
+                    <div class="desc">${year.note || I18n.t('no_year_note')}</div>
                     <div class="selector-actions">
-                        <button class="btn primary ${year.quizReady ? "" : "disabled"}" data-action="start" data-year="${year.year}">开始练习</button>
-                        <a class="link-btn" href="papers.html?level=${state.currentLevel}">查看真题</a>
+                        <button class="btn primary ${year.quizReady ? "" : "disabled"}" data-action="start" data-year="${year.year}">${I18n.t('btn_start')}</button>
+                        <a class="link-btn" href="papers.html?level=${state.currentLevel}">${I18n.t('btn_view_paper')}</a>
                     </div>
                 </article>
             `).join("");
@@ -681,16 +810,16 @@
 
             document.getElementById("questionMeta").innerHTML = [
                 `<span class="chip">${state.questionSet.level.toUpperCase()} · ${state.questionSet.year}</span>`,
-                `<span class="chip">第 ${question.number} 题</span>`,
-                `<span class="chip">${question.points} 分</span>`,
-                `<span class="chip">${question.type === "choice" ? "选择题" : "整数题"}</span>`
+                `<span class="chip">${I18n.t('chip_question').replace('{n}', question.number)}</span>`,
+                `<span class="chip">${I18n.t('chip_points').replace('{n}', question.points)}</span>`,
+                `<span class="chip">${question.type === "choice" ? I18n.t('chip_choice') : I18n.t('chip_integer')}</span>`
             ].join("");
-            document.getElementById("questionTitle").textContent = `题目 ${question.number}`;
+            document.getElementById("questionTitle").textContent = I18n.t('question_title').replace('{n}', question.number);
             document.getElementById("questionDesc").textContent =
-                question.type === "choice" ? "请根据题图选择 A-E 中的正确答案。" : "请输入 0-999 之间的整数答案。";
+                question.type === "choice" ? I18n.t('desc_choice') : I18n.t('desc_integer');
 
             document.getElementById("questionImages").innerHTML = question.images.map((src, index) => `
-                <img src="${src}" alt="题目 ${question.number} - 图 ${index + 1}">
+                <img src="${src}" alt="${I18n.t('img_alt').replace('{q}', question.number).replace('{i}', index + 1)}">
             `).join("");
 
             const currentAnswer = state.answers[question.number] ?? "";
@@ -714,7 +843,7 @@
                 answerHtml = `
                     <label>
                         <input class="integer-input" id="integerInput" type="text" inputmode="numeric" maxlength="3"
-                            value="${currentAnswer}" ${inReview ? "disabled" : ""} placeholder="例如 270">
+                            value="${currentAnswer}" ${inReview ? "disabled" : ""} placeholder="${I18n.t('placeholder_integer')}">
                     </label>
                 `;
             }
@@ -728,8 +857,8 @@
                 const isRight = normalizeAnswer(currentAnswer, question.type) === normalizeAnswer(question.answer, question.type);
                 feedbackHost.innerHTML = `
                     <div class="feedback ${isRight ? "ok" : "bad"}">
-                        你的答案：${currentAnswer || "未作答"}<br>
-                        正确答案：${question.answer}
+                        ${I18n.t('feedback_your_answer').replace('{ans}', currentAnswer || I18n.t('feedback_not_answered'))}<br>
+                        ${I18n.t('feedback_correct_answer').replace('{ans}', question.answer)}
                     </div>
                 `;
                 explanationHost.innerHTML = `<div class="explanation">${escapeHtml(question.explanation)}</div>`;
@@ -741,7 +870,7 @@
             document.getElementById("nextBtn").disabled = state.currentIndex === state.questionSet.questions.length - 1;
             document.getElementById("submitBtn").classList.toggle("hidden", state.reviewMode);
             document.getElementById("quizSummary").textContent =
-                `${state.questionSet.level.toUpperCase()} ${state.questionSet.year} · 共 ${state.questionSet.totalQuestions} 题 · 总分 ${state.questionSet.totalScore}`;
+                I18n.t('quiz_summary').replace('{level}', state.questionSet.level.toUpperCase()).replace('{year}', state.questionSet.year).replace('{total}', state.questionSet.totalQuestions).replace('{score}', state.questionSet.totalScore);
         }
 
         function renderNavGrid() {
@@ -759,7 +888,7 @@
 
         function renderStatusText() {
             const answeredCount = Object.values(state.answers).filter(Boolean).length;
-            document.getElementById("progressText").textContent = `已答 ${answeredCount} / ${state.questionSet.totalQuestions}`;
+            document.getElementById("progressText").textContent = I18n.t('progress_text').replace('{done}', answeredCount).replace('{total}', state.questionSet.totalQuestions);
         }
 
         function normalizeAnswer(value, type) {
@@ -851,7 +980,7 @@
         async function requestAccess(category, resourceType, level, year) {
             const token = localStorage.getItem("token");
             if (!token) {
-                const allowed = window.requireLogin?.("登录后才能提交答卷并查看判题结果。普通用户最多可完成 5 次练习。");
+                const allowed = window.requireLogin?.(I18n.t('login_submit'));
                 return allowed === true;
             }
 
@@ -868,12 +997,12 @@
             if (response.status === 401) {
                 localStorage.removeItem("token");
                 localStorage.removeItem("user");
-                window.requireLogin?.("登录后才能提交答卷并查看判题结果。普通用户最多可完成 5 次练习。");
+                window.requireLogin?.(I18n.t('login_submit'));
                 return false;
             }
 
             if (!response.ok) {
-                alert(payload.error || "当前无法提交答卷，请稍后再试。");
+                alert(payload.error || I18n.t('submit_failed'));
                 return false;
             }
 
@@ -883,7 +1012,7 @@
         async function submitQuiz() {
             if (state.reviewMode) return;
             const allowed = window.requireLogin?.(
-                "登录后才能提交答卷并查看判题结果，当前作答内容会保留在本页。",
+                I18n.t('login_submit_keep'),
             );
             if (allowed === false) return;
             const granted = await requestAccess(
@@ -899,7 +1028,7 @@
             state.reviewMode = true;
             document.getElementById("resultScore").textContent = `${result.score}`;
             document.getElementById("resultSummary").textContent =
-                `答对 ${result.correct} / ${state.questionSet.totalQuestions} 题，得分 ${result.score} / ${state.questionSet.totalScore}。`;
+                I18n.t('result_summary').replace('{correct}', result.correct).replace('{total}', state.questionSet.totalQuestions).replace('{score}', result.score).replace('{maxScore}', state.questionSet.totalScore);
             document.getElementById("paperLink").href = `papers.html?level=${state.currentLevel}`;
             setView("result");
             renderQuestion();
@@ -1018,7 +1147,7 @@
             };
 
             if (hasActiveQuizSession()) {
-                requestLeaveActiveQuiz(switchLevel, "当前练习尚未提交，切换层级后本次作答内容会被清空。");
+                requestLeaveActiveQuiz(switchLevel, I18n.t('leave_switch_level'));
                 return;
             }
 
@@ -1046,7 +1175,7 @@
             if (!yearEntry?.quizReady) return;
             loadQuestionSet(yearEntry).catch((error) => {
                 console.error(error);
-                alert(`题集加载失败：${error.message}`);
+                alert(I18n.t('quiz_load_failed').replace('{msg}', error.message));
             });
         });
 
@@ -1096,10 +1225,15 @@
             event.returnValue = "";
         });
 
+        I18n.onSwitch(() => {
+            if (state.questionSet) renderQuestion();
+            else renderSelector();
+        });
+
         loadManifest().catch((error) => {
             document.getElementById("selectorNotice").innerHTML = `
-                <strong>加载失败</strong>
-                <p>${error.message}。请先运行 <code>npm run build:library</code>，以及生成题集脚本。</p>
+                <strong>${I18n.t('load_failed_title')}</strong>
+                <p>${I18n.t('load_failed_desc').replace('{msg}', error.message)}</p>
             `;
         });
     </script>

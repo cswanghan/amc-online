@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AMC Online · 学习诊断</title>
     <script src="auth-guard.js"></script>
+    <script src="analytics.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Raleway:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -149,27 +150,27 @@
 <body>
     <div class="page">
         <div class="select-header">
-            <h1>学习诊断</h1>
-            <p class="sub">基于你的做题数据生成个性化分析报告</p>
+            <h1 data-i18n="analysis_title">学习诊断</h1>
+            <p class="sub" data-i18n="analysis_sub">基于你的做题数据生成个性化分析报告</p>
+            <button class="i18n-toggle" onclick="I18n.toggle()" style="margin-top:12px;padding:4px 14px;border-radius:999px;border:1px solid rgba(0,0,0,0.1);background:white;font-size:0.82rem;font-family:inherit;cursor:pointer;">EN</button>
         </div>
 
         <div class="nav-row">
-            <a href="index.html" class="nav-link">&larr; 首页</a>
-            <a href="quiz.html" class="nav-link">在线练习</a>
+            <a href="index.html" class="nav-link" data-i18n="nav_home">&larr; 首页</a>
+            <a href="quiz.html" class="nav-link" data-i18n="nav_quiz">在线练习</a>
         </div>
 
         <!-- Loading -->
         <div id="loadingState" class="loading-state">
             <div class="spinner"></div>
-            <p>正在加载数据...</p>
+            <p data-i18n="loading">正在加载数据...</p>
         </div>
 
         <!-- Empty -->
         <div id="emptyState" class="empty-state" style="display:none;">
             <div class="empty-icon">📊</div>
-            <h2>暂无做题数据</h2>
-            <p>完成至少一次在线练习后，这里会生成你的个性化学习诊断报告。<br>
-            <a href="quiz.html">去做一套题 &rarr;</a></p>
+            <h2 data-i18n="empty_title">暂无做题数据</h2>
+            <p data-i18n-html="empty_desc">完成至少一次在线练习后，这里会生成你的个性化学习诊断报告。<br><a href="quiz.html">去做一套题 &rarr;</a></p>
         </div>
 
         <!-- Main content -->
@@ -177,30 +178,30 @@
 
             <!-- Section 1: Overview Cards -->
             <div class="section">
-                <div class="section-title">总体概况</div>
+                <div class="section-title" data-i18n="sec_overview">总体概况</div>
                 <div class="overview-grid">
                     <div class="stat-card">
                         <div class="stat-value" id="statQuizzes">-</div>
-                        <div class="stat-label">总做题次数</div>
+                        <div class="stat-label" data-i18n="stat_quizzes">总做题次数</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" id="statAvgScore">-</div>
-                        <div class="stat-label">平均得分</div>
+                        <div class="stat-label" data-i18n="stat_avg_score">平均得分</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" id="statCorrectRate">-</div>
-                        <div class="stat-label">总正确率</div>
+                        <div class="stat-label" data-i18n="stat_correct_rate">总正确率</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" id="statBestScore">-</div>
-                        <div class="stat-label">最高分</div>
+                        <div class="stat-label" data-i18n="stat_best_score">最高分</div>
                     </div>
                 </div>
             </div>
 
             <!-- Section 2: Difficulty Analysis -->
             <div class="section">
-                <div class="section-title">难度维度分析</div>
+                <div class="section-title" data-i18n="sec_difficulty">难度维度分析</div>
                 <div class="chart-box">
                     <canvas id="difficultyChart"></canvas>
                 </div>
@@ -208,7 +209,7 @@
 
             <!-- Section 3: Trend -->
             <div class="section">
-                <div class="section-title">正确率趋势</div>
+                <div class="section-title" data-i18n="sec_trend">正确率趋势</div>
                 <div class="chart-box">
                     <canvas id="trendChart"></canvas>
                 </div>
@@ -216,7 +217,7 @@
 
             <!-- Section 4: By Level -->
             <div class="section">
-                <div class="section-title">各级别表现</div>
+                <div class="section-title" data-i18n="sec_by_level">各级别表现</div>
                 <div class="chart-box">
                     <canvas id="levelChart"></canvas>
                 </div>
@@ -224,7 +225,7 @@
 
             <!-- Section 5: Frequent Wrong -->
             <div class="section">
-                <div class="section-title">高频错题</div>
+                <div class="section-title" data-i18n="sec_wrong">高频错题</div>
                 <div class="wrong-table-wrap">
                     <div id="wrongTableContent"></div>
                 </div>
@@ -232,11 +233,95 @@
 
             <!-- Section 6: Suggestions -->
             <div class="section">
-                <div class="section-title">学习建议</div>
+                <div class="section-title" data-i18n="sec_suggestions">学习建议</div>
                 <div class="suggestions-box" id="suggestionsContent"></div>
             </div>
         </div>
     </div>
+
+    <script>
+    window.I18N = {
+        zh: {
+            analysis_title: '学习诊断',
+            analysis_sub: '基于你的做题数据生成个性化分析报告',
+            nav_home: '← 首页',
+            nav_quiz: '在线练习',
+            loading: '正在加载数据...',
+            empty_title: '暂无做题数据',
+            empty_desc: '完成至少一次在线练习后，这里会生成你的个性化学习诊断报告。<br><a href="quiz.html">去做一套题 &rarr;</a>',
+            sec_overview: '总体概况',
+            stat_quizzes: '总做题次数',
+            stat_avg_score: '平均得分',
+            stat_correct_rate: '总正确率',
+            stat_best_score: '最高分',
+            sec_difficulty: '难度维度分析',
+            sec_trend: '正确率趋势',
+            sec_by_level: '各级别表现',
+            sec_wrong: '高频错题',
+            sec_suggestions: '学习建议',
+            load_error: '加载失败：{msg}',
+            load_error_hint: '请打开浏览器控制台(F12)查看详细错误',
+            tier_3pts: '3 分题（基础）',
+            tier_4pts: '4 分题（中等）',
+            tier_5pts: '5 分题（困难）',
+            chart_correct_rate: '正确率 %',
+            chart_tooltip_rate: '正确率 {rate}%（{correct}/{total}）',
+            chart_avg_rate: '平均正确率 %',
+            chart_tooltip_level: '正确率 {rate}%（{quizzes} 次练习）',
+            wrong_empty: '暂无错题记录，继续保持！',
+            wrong_th_rank: '排名',
+            wrong_th_question: '题号',
+            wrong_th_count: '错误次数',
+            wrong_count: '{n} 次',
+            sug_hard_low: '5 分难题正确率偏低（{rate}%），建议多做高难度题目，重点攻克难题。',
+            sug_basic_low: '基础题（3 分题）正确率不足 80%（{rate}%），建议回顾基础知识，确保基础题得分。',
+            sug_few_quizzes: '练习次数较少（仅 {n} 次），建议多做几套真题来巩固知识、提升熟练度。',
+            sug_medium_low: '4 分中等难度题正确率为 {rate}%，这部分是拉开差距的关键，建议重点练习。',
+            sug_many_wrong: '有 {n} 道高频错题，建议利用错题本功能针对性复习。',
+            sug_good: '各项表现良好，继续保持！可以尝试挑战更高难度的级别来进一步提升。',
+        },
+        en: {
+            analysis_title: 'Learning Analytics',
+            analysis_sub: 'Personalized analysis report based on your practice data',
+            nav_home: '← Home',
+            nav_quiz: 'Online Practice',
+            loading: 'Loading data...',
+            empty_title: 'No Practice Data Yet',
+            empty_desc: 'Complete at least one online practice quiz and your personalized report will appear here.<br><a href="quiz.html">Start a quiz &rarr;</a>',
+            sec_overview: 'Overview',
+            stat_quizzes: 'Total Quizzes',
+            stat_avg_score: 'Average Score',
+            stat_correct_rate: 'Accuracy Rate',
+            stat_best_score: 'Best Score',
+            sec_difficulty: 'Difficulty Analysis',
+            sec_trend: 'Accuracy Trend',
+            sec_by_level: 'Performance by Level',
+            sec_wrong: 'Frequently Missed Questions',
+            sec_suggestions: 'Study Recommendations',
+            load_error: 'Failed to load: {msg}',
+            load_error_hint: 'Open the browser console (F12) for details',
+            tier_3pts: '3 pts (Basic)',
+            tier_4pts: '4 pts (Medium)',
+            tier_5pts: '5 pts (Hard)',
+            chart_correct_rate: 'Accuracy %',
+            chart_tooltip_rate: 'Accuracy {rate}% ({correct}/{total})',
+            chart_avg_rate: 'Average Accuracy %',
+            chart_tooltip_level: 'Accuracy {rate}% ({quizzes} quizzes)',
+            wrong_empty: 'No missed questions — keep it up!',
+            wrong_th_rank: 'Rank',
+            wrong_th_question: 'Question',
+            wrong_th_count: 'Times Wrong',
+            wrong_count: '{n} times',
+            sug_hard_low: 'Low accuracy on 5-point hard questions ({rate}%). Focus on practicing harder problems.',
+            sug_basic_low: 'Basic question (3 pts) accuracy is below 80% ({rate}%). Review foundational concepts to secure these points.',
+            sug_few_quizzes: 'You have only completed {n} quizzes. More practice with past papers will strengthen your skills.',
+            sug_medium_low: 'Medium difficulty (4 pts) accuracy is {rate}%. These questions are key to improving your score.',
+            sug_many_wrong: 'You have {n} frequently missed questions. Review them to target your weak spots.',
+            sug_good: 'Strong performance across the board! Try challenging yourself with a higher level.',
+        }
+    };
+    </script>
+    <script src="i18n.js"></script>
 
     <script>
     (async function() {
@@ -270,7 +355,7 @@
         } catch (e) {
             console.error('Stats load error:', e);
             document.getElementById('loadingState').innerHTML =
-                `<p style="color:var(--error);">加载失败：${e.message}</p><p style="color:var(--ink-light);font-size:0.8rem;margin-top:8px;">请打开浏览器控制台(F12)查看详细错误</p>`;
+                `<p style="color:var(--error);">${I18n.t('load_error').replace('{msg}', e.message)}</p><p style="color:var(--ink-light);font-size:0.8rem;margin-top:8px;">${I18n.t('load_error_hint')}</p>`;
         }
     })();
 
@@ -285,7 +370,7 @@
     }
 
     function renderDifficultyChart(items) {
-        const tierLabels = { '3pts': '3 分题（基础）', '4pts': '4 分题（中等）', '5pts': '5 分题（困难）' };
+        const tierLabels = { '3pts': I18n.t('tier_3pts'), '4pts': I18n.t('tier_4pts'), '5pts': I18n.t('tier_5pts') };
         const tierColors = { '3pts': '#6b9a7d', '4pts': '#e6a23c', '5pts': '#c47070' };
         const tiers = ['3pts', '4pts', '5pts'];
         const tierMap = {};
@@ -300,7 +385,7 @@
             data: {
                 labels: labels,
                 datasets: [{
-                    label: '正确率 %',
+                    label: I18n.t('chart_correct_rate'),
                     data: rates,
                     backgroundColor: colors.map(c => c + '33'),
                     borderColor: colors,
@@ -320,7 +405,7 @@
                             label: function(ctx) {
                                 const tier = tiers[ctx.dataIndex];
                                 const d = tierMap[tier];
-                                if (d) return `正确率 ${ctx.raw}%（${d.correct}/${d.total}）`;
+                                if (d) return I18n.t('chart_tooltip_rate').replace('{rate}', ctx.raw).replace('{correct}', d.correct).replace('{total}', d.total);
                                 return ctx.raw + '%';
                             }
                         }
@@ -408,7 +493,7 @@
                             label: function(ctx) {
                                 const i = ctx.dataIndex;
                                 const s = sorted[i];
-                                return `${ctx.dataset.label}: ${ctx.raw}%（${s.correct}/${s.total}）`;
+                                return `${ctx.dataset.label}: ${ctx.raw}% (${s.correct}/${s.total})`;
                             }
                         }
                     }
@@ -443,7 +528,7 @@
             data: {
                 labels: labels,
                 datasets: [{
-                    label: '平均正确率 %',
+                    label: I18n.t('chart_avg_rate'),
                     data: rates,
                     backgroundColor: 'rgba(186, 109, 115, 0.15)',
                     borderColor: '#BA6D73',
@@ -464,7 +549,7 @@
                                 const idx = ctx.dataIndex;
                                 const lvKey = allLevels.filter(l => levelMap[l])[idx];
                                 const d = levelMap[lvKey];
-                                return `正确率 ${ctx.raw}%（${d.quizzes} 次练习）`;
+                                return I18n.t('chart_tooltip_level').replace('{rate}', ctx.raw).replace('{quizzes}', d.quizzes);
                             }
                         }
                     }
@@ -485,22 +570,22 @@
     function renderWrongTable(items) {
         const container = document.getElementById('wrongTableContent');
         if (!items.length) {
-            container.innerHTML = '<div class="wrong-empty">暂无错题记录，继续保持！</div>';
+            container.innerHTML = `<div class="wrong-empty">${I18n.t('wrong_empty')}</div>`;
             return;
         }
 
         let html = `<table class="wrong-table">
             <thead><tr>
-                <th>排名</th>
-                <th>题号</th>
-                <th>错误次数</th>
+                <th>${I18n.t('wrong_th_rank')}</th>
+                <th>${I18n.t('wrong_th_question')}</th>
+                <th>${I18n.t('wrong_th_count')}</th>
             </tr></thead><tbody>`;
 
         items.forEach((item, i) => {
             html += `<tr>
                 <td style="color:var(--ink-light);">${i + 1}</td>
                 <td><span class="q-num">Q${item.question}</span></td>
-                <td><span class="wrong-count">${item.wrongCount} 次</span></td>
+                <td><span class="wrong-count">${I18n.t('wrong_count').replace('{n}', item.wrongCount)}</span></td>
             </tr>`;
         });
 
@@ -519,42 +604,42 @@
         if (diffMap['5pts'] && diffMap['5pts'].rate < 0.5) {
             suggestions.push({
                 type: 'error',
-                text: '5 分难题正确率偏低（' + Math.round(diffMap['5pts'].rate * 100) + '%），建议多做高难度题目，重点攻克难题。'
+                text: I18n.t('sug_hard_low').replace('{rate}', Math.round(diffMap['5pts'].rate * 100))
             });
         }
 
         if (diffMap['3pts'] && diffMap['3pts'].rate < 0.8) {
             suggestions.push({
                 type: 'warn',
-                text: '基础题（3 分题）正确率不足 80%（' + Math.round(diffMap['3pts'].rate * 100) + '%），建议回顾基础知识，确保基础题得分。'
+                text: I18n.t('sug_basic_low').replace('{rate}', Math.round(diffMap['3pts'].rate * 100))
             });
         }
 
         if (data.overview && data.overview.totalQuizzes < 5) {
             suggestions.push({
                 type: 'warn',
-                text: '练习次数较少（仅 ' + data.overview.totalQuizzes + ' 次），建议多做几套真题来巩固知识、提升熟练度。'
+                text: I18n.t('sug_few_quizzes').replace('{n}', data.overview.totalQuizzes)
             });
         }
 
         if (diffMap['4pts'] && diffMap['4pts'].rate < 0.6) {
             suggestions.push({
                 type: 'warn',
-                text: '4 分中等难度题正确率为 ' + Math.round(diffMap['4pts'].rate * 100) + '%，这部分是拉开差距的关键，建议重点练习。'
+                text: I18n.t('sug_medium_low').replace('{rate}', Math.round(diffMap['4pts'].rate * 100))
             });
         }
 
         if (data.frequentWrong && data.frequentWrong.length > 5) {
             suggestions.push({
                 type: 'warn',
-                text: '有 ' + data.frequentWrong.length + ' 道高频错题，建议利用错题本功能针对性复习。'
+                text: I18n.t('sug_many_wrong').replace('{n}', data.frequentWrong.length)
             });
         }
 
         if (!suggestions.length) {
             suggestions.push({
                 type: 'good',
-                text: '各项表现良好，继续保持！可以尝试挑战更高难度的级别来进一步提升。'
+                text: I18n.t('sug_good')
             });
         }
 
