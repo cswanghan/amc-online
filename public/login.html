@@ -79,13 +79,14 @@
 
         .auth-footer {
             text-align: center; margin-top: 20px;
+            display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
         }
-        .auth-footer a {
+        .auth-footer a, .auth-footer button {
             color: var(--text-light); text-decoration: none; font-size: 0.85rem;
             padding: 6px 16px; border: 1px solid var(--warm); border-radius: 14px;
-            transition: all 0.2s;
+            transition: all 0.2s; background: transparent; font-family: inherit; cursor: pointer;
         }
-        .auth-footer a:hover { color: var(--accent); border-color: var(--rose); }
+        .auth-footer a:hover, .auth-footer button:hover { color: var(--accent); border-color: var(--rose); }
 
         #loginForm, #registerForm { display: none; }
         #loginForm.active, #registerForm.active { display: block; }
@@ -96,54 +97,101 @@
     <div class="auth-header">
         <div class="icon">🦘</div>
         <h1>AMC Online</h1>
-        <p class="sub">登录或注册开始练习</p>
+        <p class="sub" data-i18n="login_sub">登录或注册开始练习</p>
     </div>
 
     <div class="auth-card">
         <div class="tabs">
-            <div class="tab active" onclick="showTab('login')">登录</div>
-            <div class="tab" onclick="showTab('register')">注册</div>
+            <div class="tab active" onclick="showTab('login')" data-i18n="tab_login">登录</div>
+            <div class="tab" onclick="showTab('register')" data-i18n="tab_register">注册</div>
         </div>
 
         <form id="loginForm" class="active" onsubmit="handleLogin(event)">
             <div class="form-group">
-                <label class="form-label">用户名</label>
-                <input class="form-input" name="username" placeholder="请输入用户名" required>
+                <label class="form-label" data-i18n="label_username">用户名</label>
+                <input class="form-input" name="username" data-i18n-placeholder="ph_username" placeholder="请输入用户名" required>
             </div>
             <div class="form-group">
-                <label class="form-label">密码</label>
-                <input class="form-input" name="password" type="password" placeholder="请输入密码" required>
+                <label class="form-label" data-i18n="label_password">密码</label>
+                <input class="form-input" name="password" type="password" data-i18n-placeholder="ph_password" placeholder="请输入密码" required>
             </div>
-            <button class="submit-btn" type="submit">登录</button>
+            <button class="submit-btn" type="submit" data-i18n="btn_login">登录</button>
             <div class="message" id="loginMsg"></div>
         </form>
 
         <form id="registerForm" onsubmit="handleRegister(event)">
             <div class="form-group">
-                <label class="form-label">用户名</label>
-                <input class="form-input" name="username" placeholder="3-20 字符" required>
+                <label class="form-label" data-i18n="label_username">用户名</label>
+                <input class="form-input" name="username" data-i18n-placeholder="ph_username_reg" placeholder="3-20 字符" required>
             </div>
             <div class="form-group">
-                <label class="form-label">密码</label>
-                <input class="form-input" name="password" type="password" placeholder="至少 6 位" required>
+                <label class="form-label" data-i18n="label_password">密码</label>
+                <input class="form-input" name="password" type="password" data-i18n-placeholder="ph_password_reg" placeholder="至少 6 位" required>
             </div>
             <div class="form-group">
-                <label class="form-label">邮箱</label>
-                <input class="form-input" name="email" type="email" placeholder="用于找回密码" required>
+                <label class="form-label" data-i18n="label_email">邮箱</label>
+                <input class="form-input" name="email" type="email" data-i18n-placeholder="ph_email" placeholder="用于找回密码" required>
             </div>
             <div class="form-group">
-                <label class="form-label">手机号（选填）</label>
-                <input class="form-input" name="phone" placeholder="选填">
+                <label class="form-label" data-i18n="label_phone">手机号（选填）</label>
+                <input class="form-input" name="phone" data-i18n-placeholder="ph_phone" placeholder="选填">
             </div>
-            <button class="submit-btn" type="submit">注册</button>
+            <button class="submit-btn" type="submit" data-i18n="btn_register">注册</button>
             <div class="message" id="registerMsg"></div>
         </form>
     </div>
 
     <div class="auth-footer">
-        <a href="index.html">← 返回首页</a>
+        <a href="index.html" data-i18n="back_home">← 返回首页</a>
+        <button class="i18n-toggle" onclick="I18n.toggle()" style="padding:4px 14px;border-radius:999px;border:1px solid rgba(0,0,0,0.1);background:white;font-size:0.82rem;font-family:inherit;cursor:pointer;">EN</button>
     </div>
 </div>
+
+<script>
+window.I18N = {
+    zh: {
+        login_sub: '登录或注册开始练习',
+        tab_login: '登录',
+        tab_register: '注册',
+        label_username: '用户名',
+        label_password: '密码',
+        label_email: '邮箱',
+        label_phone: '手机号（选填）',
+        ph_username: '请输入用户名',
+        ph_password: '请输入密码',
+        ph_username_reg: '3-20 字符',
+        ph_password_reg: '至少 6 位',
+        ph_email: '用于找回密码',
+        ph_phone: '选填',
+        btn_login: '登录',
+        btn_register: '注册',
+        back_home: '← 返回首页',
+        err_server: '服务端错误',
+        err_network: '网络错误: ',
+    },
+    en: {
+        login_sub: 'Log in or register to start practicing',
+        tab_login: 'Login',
+        tab_register: 'Register',
+        label_username: 'USERNAME',
+        label_password: 'PASSWORD',
+        label_email: 'EMAIL',
+        label_phone: 'PHONE (OPTIONAL)',
+        ph_username: 'Enter username',
+        ph_password: 'Enter password',
+        ph_username_reg: '3-20 characters',
+        ph_password_reg: 'At least 6 characters',
+        ph_email: 'For password recovery',
+        ph_phone: 'Optional',
+        btn_login: 'Login',
+        btn_register: 'Register',
+        back_home: '← Back to Home',
+        err_server: 'Server error',
+        err_network: 'Network error: ',
+    }
+};
+</script>
+<script src="i18n.js"></script>
 
 <script>
     const _redirect = new URLSearchParams(location.search).get('redirect') || 'index.html';
@@ -194,7 +242,7 @@
             try {
                 res = JSON.parse(text);
             } catch {
-                showMsg('loginMsg', `服务端错误 (${r.status}): ${text.slice(0, 120)}`, 'error');
+                showMsg('loginMsg', `${I18n.t('err_server')} (${r.status}): ${text.slice(0, 120)}`, 'error');
                 return;
             }
 
@@ -209,7 +257,7 @@
             }
         } catch (err) {
             window.KangarooAnalytics?.track('auth_login_failure', { group: 'friction', label: err.message });
-            showMsg('loginMsg', '网络错误: ' + err.message, 'error');
+            showMsg('loginMsg', I18n.t('err_network') + err.message, 'error');
         }
     }
 
@@ -230,7 +278,14 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data),
             });
-            const res = await r.json();
+            const text = await r.text();
+            let res;
+            try {
+                res = JSON.parse(text);
+            } catch {
+                showMsg('registerMsg', `${I18n.t('err_server')} (${r.status}): ${text.slice(0, 120)}`, 'error');
+                return;
+            }
 
             if (r.ok) {
                 window.KangarooAnalytics?.track('auth_register_success');
@@ -240,9 +295,9 @@
                 window.KangarooAnalytics?.track('auth_register_failure', { group: 'friction', label: res.error });
                 showMsg('registerMsg', res.error, 'error');
             }
-        } catch {
-            window.KangarooAnalytics?.track('auth_register_failure', { group: 'friction' });
-            showMsg('registerMsg', '网络错误', 'error');
+        } catch (err) {
+            window.KangarooAnalytics?.track('auth_register_failure', { group: 'friction', label: err.message });
+            showMsg('registerMsg', I18n.t('err_network') + err.message, 'error');
         }
     }
 </script>

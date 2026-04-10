@@ -139,22 +139,65 @@
                 <p id="pageDesc">正在校验登录态并加载资源。</p>
             </div>
             <div class="toolbar-actions" id="toolbarActions" hidden>
-                <a class="action" id="downloadLink" href="#" download>下载文件</a>
-                <a class="action" id="openRawLink" href="#" target="_blank" rel="noopener">新标签打开</a>
+                <a class="action" id="downloadLink" href="#" download data-i18n="btn_download">下载文件</a>
+                <a class="action" id="openRawLink" href="#" target="_blank" rel="noopener" data-i18n="btn_open_new_tab">新标签打开</a>
+                <button class="i18n-toggle" onclick="I18n.toggle()" style="padding:4px 14px;border-radius:999px;border:1px solid rgba(0,0,0,0.1);background:white;font-size:0.82rem;font-family:inherit;cursor:pointer;">EN</button>
             </div>
         </header>
         <main class="stage" id="stage">
             <section class="card">
-                <h2>正在加载资源</h2>
-                <p>文件校验通过后会直接显示，如果文件较大，请稍等几秒。</p>
+                <h2 data-i18n="loading_title">正在加载资源</h2>
+                <p data-i18n="loading_desc">文件校验通过后会直接显示，如果文件较大，请稍等几秒。</p>
             </section>
         </main>
     </div>
 
     <script>
+    window.I18N = {
+        zh: {
+            btn_download: '下载文件',
+            btn_open_new_tab: '新标签打开',
+            loading_title: '正在加载资源',
+            loading_desc: '文件校验通过后会直接显示，如果文件较大，请稍等几秒。',
+            verifying: '正在校验登录态并加载资源。',
+            load_failed: '资源加载失败',
+            err_no_url: '缺少资源地址参数。',
+            err_not_logged_in: '你还没有登录，请先登录后重新打开该资源。',
+            err_session_expired: '登录状态已失效，请重新登录后再试。',
+            err_operation_failed: '当前操作失败，请稍后再试。',
+            err_cannot_open: '当前无法打开资源',
+            btn_close: '关闭此页',
+            desc_image_loaded: '图片资源已加载完成。',
+            desc_doc_loaded: '文档资源已加载完成。',
+            login_prompt: '登录后才能打开试卷或答案。普通用户最多可下载 5 次。',
+            err_unknown: '发生未知错误，请稍后再试。',
+        },
+        en: {
+            btn_download: 'Download',
+            btn_open_new_tab: 'Open in New Tab',
+            loading_title: 'Loading Resource',
+            loading_desc: 'The file will display once verification is complete. Large files may take a few seconds.',
+            verifying: 'Verifying login and loading resource.',
+            load_failed: 'Failed to load resource',
+            err_no_url: 'Missing resource URL parameter.',
+            err_not_logged_in: 'You are not logged in. Please log in and try again.',
+            err_session_expired: 'Your session has expired. Please log in again.',
+            err_operation_failed: 'Operation failed. Please try again later.',
+            err_cannot_open: 'Unable to open resource',
+            btn_close: 'Close Page',
+            desc_image_loaded: 'Image loaded successfully.',
+            desc_doc_loaded: 'Document loaded successfully.',
+            login_prompt: 'Please log in to open papers or answers. Free users get 5 downloads.',
+            err_unknown: 'An unknown error occurred. Please try again later.',
+        }
+    };
+    </script>
+    <script src="i18n.js"></script>
+
+    <script>
         const params = new URLSearchParams(location.search);
         const resourceUrl = params.get("resource") || "";
-        const resourceTitle = params.get("title") || "AMC 资源查看";
+        const resourceTitle = params.get("title") || I18n.t('err_cannot_open');
         const pageTitle = document.getElementById("pageTitle");
         const pageDesc = document.getElementById("pageDesc");
         const stage = document.getElementById("stage");
@@ -166,13 +209,13 @@
         pageTitle.textContent = resourceTitle;
 
         function setError(message) {
-            pageDesc.textContent = "资源加载失败";
+            pageDesc.textContent = I18n.t('load_failed');
             toolbarActions.hidden = true;
             stage.innerHTML = `
                 <section class="card error">
-                    <h2>当前无法打开资源</h2>
+                    <h2>${I18n.t('err_cannot_open')}</h2>
                     <p>${message}</p>
-                    <button class="action" type="button" id="closePage">关闭此页</button>
+                    <button class="action" type="button" id="closePage">${I18n.t('btn_close')}</button>
                 </section>
             `;
             document.getElementById("closePage").addEventListener("click", () => window.close());
@@ -194,14 +237,14 @@
 
         async function loadResource() {
             if (!resourceUrl) {
-                setError("缺少资源地址参数。");
+                setError(I18n.t('err_no_url'));
                 return;
             }
 
             const token = localStorage.getItem("token");
             if (!token) {
-                window.requireLogin?.("登录后才能打开试卷或答案。普通用户最多可下载 5 次。");
-                setError("你还没有登录，请先登录后重新打开该资源。");
+                window.requireLogin?.(I18n.t('login_prompt'));
+                setError(I18n.t('err_not_logged_in'));
                 return;
             }
 
@@ -215,13 +258,13 @@
             if (response.status === 401) {
                 localStorage.removeItem("token");
                 localStorage.removeItem("user");
-                window.requireLogin?.("登录后才能打开试卷或答案。普通用户最多可下载 5 次。");
-                setError("登录状态已失效，请重新登录后再试。");
+                window.requireLogin?.(I18n.t('login_prompt'));
+                setError(I18n.t('err_session_expired'));
                 return;
             }
 
             if (!response.ok) {
-                setError(payload.error || "当前操作失败，请稍后再试。");
+                setError(payload.error || I18n.t('err_operation_failed'));
                 return;
             }
 
@@ -235,7 +278,7 @@
             const isImage = contentType.startsWith("image/");
             const isPdf = contentType.includes("pdf");
 
-            pageDesc.textContent = isImage ? "图片资源已加载完成。" : "文档资源已加载完成。";
+            pageDesc.textContent = isImage ? I18n.t('desc_image_loaded') : I18n.t('desc_doc_loaded');
             downloadLink.href = blobUrl;
             downloadLink.download = filename;
             openRawLink.href = blobUrl;
@@ -253,7 +296,7 @@
         }
 
         loadResource().catch((error) => {
-            setError(error?.message || "发生未知错误，请稍后再试。");
+            setError(error?.message || I18n.t('err_unknown'));
         });
     </script>
 </body>

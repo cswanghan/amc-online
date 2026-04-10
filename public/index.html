@@ -287,15 +287,15 @@
             <div class="brand">
                 <div class="brand-kicker">Australian Mathematics Competition</div>
                 <h1>AMC Online</h1>
-                <p>
+                <p data-i18n="brand_desc">
                     基于澳大利亚 AMC 真题构建的在线练习站。当前已完成 A/B/C 三个层级的题库清洗与试卷浏览入口，
                     下一步会把题图切割、答案校验和逐题练习接入到同一套练习流程里。
                 </p>
             </div>
             <div class="top-links" id="topLinks">
-                <a class="pill" href="papers.html">真题浏览</a>
-                <a class="pill" href="quiz.html">在线练习</a>
-                <a class="pill" href="login.html">登录 / 注册</a>
+                <a class="pill" href="papers.html" data-i18n="nav_papers">真题浏览</a>
+                <a class="pill" href="quiz.html" data-i18n="nav_quiz">在线练习</a>
+                <a class="pill" href="login.html" data-i18n="nav_login">登录 / 注册</a>
             </div>
         </div>
 
@@ -312,24 +312,24 @@
                 </p>
                 <div class="level-meta" id="heroMeta"></div>
                 <div class="hero-actions">
-                    <a class="button primary" id="heroBrowse" href="papers.html?level=a">进入真题库</a>
-                    <a class="button secondary" id="heroQuiz" href="quiz.html?level=a">查看练习状态</a>
+                    <a class="button primary" id="heroBrowse" href="papers.html?level=a" data-i18n="hero_browse">进入真题库</a>
+                    <a class="button secondary" id="heroQuiz" href="quiz.html?level=a" data-i18n="hero_quiz">查看练习状态</a>
                 </div>
             </div>
             <aside class="hero-side">
                 <div>
-                    <h3>你现在可以做什么</h3>
+                    <h3 data-i18n="side_what">你现在可以做什么</h3>
                     <p id="librarySummary">正在读取题库索引...</p>
                 </div>
                 <div>
-                    <h3>使用方式</h3>
+                    <h3 data-i18n="side_how">使用方式</h3>
                     <ul>
-                        <li>先按层级进入真题库或在线练习</li>
-                        <li>每套共 30 题，限时 60 分钟</li>
-                        <li>第 1-25 题是五选一选择题</li>
-                        <li>第 26-30 题是 0-999 整数填空题</li>
-                        <li>登录后可下载试卷、提交答卷并查看成绩</li>
-                        <li>普通用户下载和练习各限 5 次</li>
+                        <li data-i18n="how_1">先按层级进入真题库或在线练习</li>
+                        <li data-i18n="how_2">每套共 30 题，限时 60 分钟</li>
+                        <li data-i18n="how_3">第 1-25 题是五选一选择题</li>
+                        <li data-i18n="how_4">第 26-30 题是 0-999 整数填空题</li>
+                        <li data-i18n="how_5">登录后可下载试卷、提交答卷并查看成绩</li>
+                        <li data-i18n="how_6">普通用户下载和练习各限 5 次</li>
                     </ul>
                 </div>
             </aside>
@@ -338,20 +338,20 @@
         <section class="grid">
             <a class="card" href="papers.html">
                 <div class="card-kicker">Library</div>
-                <div class="card-title">历年真题</div>
-                <div class="card-desc">按 A/B/C 层级和年份浏览 AMC 原卷、答案和可练状态。当前已整理 2007-2025 题库，并保留原始 PDF 入口。</div>
+                <div class="card-title" data-i18n="card_papers_title">历年真题</div>
+                <div class="card-desc" data-i18n="card_papers_desc">按 A/B/C 层级和年份浏览 AMC 原卷、答案和可练状态。当前已整理 2007-2025 题库，并保留原始 PDF 入口。</div>
                 <div class="card-meta">Browse papers →</div>
             </a>
             <a class="card" href="quiz.html">
                 <div class="card-kicker">Practice</div>
-                <div class="card-title">在线练习</div>
-                <div class="card-desc">已支持真实做题流程，包括 60 分钟计时、选择题与整数题作答、本地判分和提交后查看答案解析。</div>
+                <div class="card-title" data-i18n="card_quiz_title">在线练习</div>
+                <div class="card-desc" data-i18n="card_quiz_desc">已支持真实做题流程，包括 60 分钟计时、选择题与整数题作答、本地判分和提交后查看答案解析。</div>
                 <div class="card-meta">Start practice →</div>
             </a>
             <a class="card" href="analysis.html">
                 <div class="card-kicker">Analytics</div>
-                <div class="card-title">学习诊断</div>
-                <div class="card-desc">登录后可查看做题次数、平均得分、正确率趋势和错题分布。当前是基础诊断页，后续再补 AMC 专项分析。</div>
+                <div class="card-title" data-i18n="card_analytics_title">学习诊断</div>
+                <div class="card-desc" data-i18n="card_analytics_desc">登录后可查看做题次数、平均得分、正确率趋势和错题分布。当前是基础诊断页，后续再补 AMC 专项分析。</div>
                 <div class="card-meta">View dashboard →</div>
             </a>
         </section>
@@ -360,23 +360,95 @@
     </div>
 
     <script>
+    window.I18N = {
+        zh: {
+            brand_desc: '基于澳大利亚 AMC 真题构建的在线练习站。当前已完成 A/B/C 三个层级的题库清洗与试卷浏览入口，下一步会把题图切割、答案校验和逐题练习接入到同一套练习流程里。',
+            nav_papers: '真题浏览',
+            nav_quiz: '在线练习',
+            nav_login: '登录 / 注册',
+            nav_admin: '管理后台',
+            nav_analytics: '学习诊断',
+            nav_logout: '退出登录',
+            hero_browse: '进入真题库',
+            hero_quiz: '查看练习状态',
+            side_what: '你现在可以做什么',
+            side_how: '使用方式',
+            how_1: '先按层级进入真题库或在线练习',
+            how_2: '每套共 30 题，限时 60 分钟',
+            how_3: '第 1-25 题是五选一选择题',
+            how_4: '第 26-30 题是 0-999 整数填空题',
+            how_5: '登录后可下载试卷、提交答卷并查看成绩',
+            how_6: '普通用户下载和练习各限 5 次',
+            card_papers_title: '历年真题',
+            card_papers_desc: '按 A/B/C 层级和年份浏览 AMC 原卷、答案和可练状态。当前已整理 2007-2025 题库，并保留原始 PDF 入口。',
+            card_quiz_title: '在线练习',
+            card_quiz_desc: '已支持真实做题流程，包括 60 分钟计时、选择题与整数题作答、本地判分和提交后查看答案解析。',
+            card_analytics_title: '学习诊断',
+            card_analytics_desc: '登录后可查看做题次数、平均得分、正确率趋势和错题分布。当前是基础诊断页，后续再补 AMC 专项分析。',
+            library_loading: '正在读取题库索引...',
+            library_summary: '当前已收录 {papers} 份试卷、{answers} 份答案，覆盖 {levels} 个 AMC 层级。',
+            library_error: '题库信息暂时加载失败，请稍后刷新页面重试。',
+            meta_years: '{n} 年份',
+            meta_quiz_ready: '{n} 套可在线练习',
+            level_a_title: '3-4 年级的历年 AMC 真题',
+            level_a_lead: '适合小学中年段。以原始 PDF 试卷为题源，后续在线练习会按题号切图，支持选择题与整数题分开作答。',
+            level_b_title: '5-6 年级的历年 AMC 真题',
+            level_b_lead: '适合小学高年段。这个层级最适合作为第一批在线化目标，会优先补齐题图切割、分值计算与答案校验。',
+            level_c_title: '7-8 年级的历年 AMC 真题',
+            level_c_lead: '适合初中阶段。后续会和 A/B 共享同一套练习引擎，但保留按层级区分的题库、成绩和错题视图。',
+        },
+        en: {
+            brand_desc: 'An online practice platform built on Australian Mathematics Competition (AMC) past papers. Currently covers levels A/B/C with paper browsing. Next up: question image slicing, answer validation, and per-question practice.',
+            nav_papers: 'Papers',
+            nav_quiz: 'Practice',
+            nav_login: 'Login / Register',
+            nav_admin: 'Admin',
+            nav_analytics: 'Analytics',
+            nav_logout: 'Logout',
+            hero_browse: 'Browse Papers',
+            hero_quiz: 'Practice Status',
+            side_what: 'What you can do',
+            side_how: 'How it works',
+            how_1: 'Choose a level to browse papers or start practicing',
+            how_2: '30 questions per paper, 60-minute time limit',
+            how_3: 'Questions 1-25 are multiple choice (A-E)',
+            how_4: 'Questions 26-30 are integer answer (0-999)',
+            how_5: 'Log in to download papers, submit answers and view results',
+            how_6: 'Free users get 5 downloads and 5 practice sessions',
+            card_papers_title: 'Past Papers',
+            card_papers_desc: 'Browse AMC papers, answer keys and practice status by level (A/B/C) and year. Currently covers 2007-2025 with original PDF access.',
+            card_quiz_title: 'Online Practice',
+            card_quiz_desc: 'Full practice workflow with 60-minute timer, multiple choice and integer answers, local grading, and post-submission answer explanations.',
+            card_analytics_title: 'Learning Analytics',
+            card_analytics_desc: 'View your practice count, average score, accuracy trends and error distribution after logging in. Basic analytics with more AMC-specific analysis coming soon.',
+            library_loading: 'Loading paper index...',
+            library_summary: 'Currently {papers} papers and {answers} answer keys across {levels} AMC levels.',
+            library_error: 'Failed to load paper index. Please refresh and try again.',
+            meta_years: '{n} years',
+            meta_quiz_ready: '{n} online quizzes',
+            level_a_title: 'AMC Past Papers for Years 3-4',
+            level_a_lead: 'Designed for upper primary students. Papers sourced from original PDFs, with online practice coming with image slicing and separate MC/integer sections.',
+            level_b_title: 'AMC Past Papers for Years 5-6',
+            level_b_lead: 'For upper primary students. This level is prioritized for online practice with image slicing, scoring and answer validation.',
+            level_c_title: 'AMC Past Papers for Years 7-8',
+            level_c_lead: 'For junior secondary students. Will share the same practice engine as A/B while maintaining separate paper libraries, scores and error views.',
+        }
+    };
+    </script>
+    <script src="i18n.js"></script>
+
+    <script>
         const levelConfig = {
             a: {
                 short: "AMC A",
-                title: "3-4 年级的历年 AMC 真题",
-                lead: "适合小学中年段。以原始 PDF 试卷为题源，后续在线练习会按题号切图，支持选择题与整数题分开作答。",
                 grade: "School Years 3-4",
             },
             b: {
                 short: "AMC B",
-                title: "5-6 年级的历年 AMC 真题",
-                lead: "适合小学高年段。这个层级最适合作为第一批在线化目标，会优先补齐题图切割、分值计算与答案校验。",
                 grade: "School Years 5-6",
             },
             c: {
                 short: "AMC C",
-                title: "7-8 年级的历年 AMC 真题",
-                lead: "适合初中阶段。后续会和 A/B 共享同一套练习引擎，但保留按层级区分的题库、成绩和错题视图。",
                 grade: "School Years 7-8",
             }
         };
@@ -401,23 +473,25 @@
             const user = state.currentUser;
 
             const links = [
-                `<a class="pill" href="papers.html">真题浏览</a>`,
-                `<a class="pill" href="quiz.html">在线练习</a>`
+                `<a class="pill" href="papers.html">${I18n.t('nav_papers')}</a>`,
+                `<a class="pill" href="quiz.html">${I18n.t('nav_quiz')}</a>`
             ];
 
             if (!user) {
-                links.push(`<a class="pill" href="login.html">登录 / 注册</a>`);
+                links.push(`<a class="pill" href="login.html">${I18n.t('nav_login')}</a>`);
+                links.push(`<button class="i18n-toggle" onclick="I18n.toggle()" style="padding:4px 14px;border-radius:999px;border:1px solid rgba(0,0,0,0.1);background:white;font-size:0.82rem;font-family:inherit;cursor:pointer;">EN</button>`);
                 host.innerHTML = links.join("");
                 return;
             }
 
             links.push(`<span class="pill pill-static">${escapeHtml(user.username)}</span>`);
             if (user.role === "admin") {
-                links.push(`<a class="pill" href="admin.html">管理后台</a>`);
+                links.push(`<a class="pill" href="admin.html">${I18n.t('nav_admin')}</a>`);
             } else {
-                links.push(`<a class="pill" href="analysis.html">学习诊断</a>`);
+                links.push(`<a class="pill" href="analysis.html">${I18n.t('nav_analytics')}</a>`);
             }
-            links.push(`<button class="pill pill-button" type="button" id="logoutBtn">退出登录</button>`);
+            links.push(`<button class="pill pill-button" type="button" id="logoutBtn">${I18n.t('nav_logout')}</button>`);
+            links.push(`<button class="i18n-toggle" onclick="I18n.toggle()" style="padding:4px 14px;border-radius:999px;border:1px solid rgba(0,0,0,0.1);background:white;font-size:0.82rem;font-family:inherit;cursor:pointer;">EN</button>`);
             host.innerHTML = links.join("");
 
             document.getElementById("logoutBtn")?.addEventListener("click", () => {
@@ -435,15 +509,15 @@
             const yearCount = levelData?.years?.length || 0;
             const quizReadyCount = (levelData?.years || []).filter((year) => year.quizReady).length;
 
-            document.getElementById("heroTitle").textContent = config.title;
-            document.getElementById("heroLead").textContent = config.lead;
+            document.getElementById("heroTitle").textContent = I18n.t('level_' + state.currentLevel + '_title');
+            document.getElementById("heroLead").textContent = I18n.t('level_' + state.currentLevel + '_lead');
             document.getElementById("heroBrowse").href = `papers.html?level=${state.currentLevel}`;
             document.getElementById("heroQuiz").href = `quiz.html?level=${state.currentLevel}`;
             document.getElementById("heroMeta").innerHTML = [
                 `<span class="meta-chip">${config.short}</span>`,
                 `<span class="meta-chip">${config.grade}</span>`,
-                `<span class="meta-chip">${yearCount} 年份</span>`,
-                `<span class="meta-chip">${quizReadyCount} 套可在线练习</span>`
+                `<span class="meta-chip">${I18n.t('meta_years').replace('{n}', yearCount)}</span>`,
+                `<span class="meta-chip">${I18n.t('meta_quiz_ready').replace('{n}', quizReadyCount)}</span>`
             ].join("");
 
             document.querySelectorAll(".level-tab").forEach((button) => {
@@ -484,10 +558,12 @@
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 state.manifest = await response.json();
                 document.getElementById("librarySummary").textContent =
-                    `当前已收录 ${state.manifest.stats.papers} 份试卷、${state.manifest.stats.answers} 份答案，覆盖 ${state.manifest.stats.levels} 个 AMC 层级。`;
+                    I18n.t('library_summary')
+                        .replace('{papers}', state.manifest.stats.papers)
+                        .replace('{answers}', state.manifest.stats.answers)
+                        .replace('{levels}', state.manifest.stats.levels);
             } catch (error) {
-                document.getElementById("librarySummary").textContent =
-                    "题库信息暂时加载失败，请稍后刷新页面重试。";
+                document.getElementById("librarySummary").textContent = I18n.t('library_error');
             }
 
             renderHero();
@@ -499,6 +575,18 @@
             state.currentLevel = button.dataset.level;
             renderHero();
             window.AMCAnalytics?.track("home_level_switch", { meta: { level: state.currentLevel } });
+        });
+
+        I18n.onSwitch(() => {
+            renderTopLinks();
+            renderHero();
+            if (state.manifest) {
+                document.getElementById("librarySummary").textContent =
+                    I18n.t('library_summary')
+                        .replace('{papers}', state.manifest.stats.papers)
+                        .replace('{answers}', state.manifest.stats.answers)
+                        .replace('{levels}', state.manifest.stats.levels);
+            }
         });
 
         loadCurrentUser();

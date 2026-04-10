@@ -286,29 +286,89 @@
     <div class="page">
         <div class="topbar">
             <div>
-                <a class="back" href="index.html">← 返回首页</a>
-                <h1>AMC 真题浏览</h1>
-                <p class="sub">按层级和年份浏览原始试卷与答案解析。所有链接由题库构建脚本生成的 manifest 驱动。</p>
+                <a class="back" href="index.html" data-i18n="back_home">← 返回首页</a>
+                <h1 data-i18n="papers_title">AMC 真题浏览</h1>
+                <p class="sub" data-i18n="papers_sub">按层级和年份浏览原始试卷与答案解析。所有链接由题库构建脚本生成的 manifest 驱动。</p>
+            </div>
+            <div>
+                <button class="i18n-toggle" onclick="I18n.toggle()" style="padding:4px 14px;border-radius:999px;border:1px solid rgba(0,0,0,0.1);background:white;font-size:0.82rem;font-family:inherit;cursor:pointer;">EN</button>
             </div>
         </div>
 
         <div class="toolbar" id="tabs">
-            <button class="tab active" data-level="a">AMC A · 3-4 年级</button>
-            <button class="tab" data-level="b">AMC B · 5-6 年级</button>
-            <button class="tab" data-level="c">AMC C · 7-8 年级</button>
+            <button class="tab active" data-level="a" data-i18n="tab_a">AMC A · 3-4 年级</button>
+            <button class="tab" data-level="b" data-i18n="tab_b">AMC B · 5-6 年级</button>
+            <button class="tab" data-level="c" data-i18n="tab_c">AMC C · 7-8 年级</button>
         </div>
 
-        <section class="summary" id="summary">
-            <div class="summary-card"><strong>--</strong><span>试卷</span></div>
-            <div class="summary-card"><strong>--</strong><span>带答案</span></div>
-            <div class="summary-card"><strong>--</strong><span>可在线练习</span></div>
-            <div class="summary-card"><strong>--</strong><span>年份范围</span></div>
-        </section>
-
         <section class="year-grid" id="yearGrid">
-            <div class="empty">正在读取题库索引...</div>
+            <div class="empty" data-i18n="loading">正在读取题库索引...</div>
         </section>
     </div>
+
+    <script>
+    window.I18N = {
+        zh: {
+            back_home: '← 返回首页',
+            papers_title: 'AMC 真题浏览',
+            papers_sub: '按层级和年份浏览原始试卷与答案解析。所有链接由题库构建脚本生成的 manifest 驱动。',
+            tab_a: 'AMC A · 3-4 年级',
+            tab_b: 'AMC B · 5-6 年级',
+            tab_c: 'AMC C · 7-8 年级',
+            loading: '正在读取题库索引...',
+            no_level_data: '未找到当前层级数据。先运行 npm run build:library。',
+            chip_paper: '试卷',
+            chip_answer: '答案 / 解析',
+            chip_quiz_ready: '在线练习已就绪',
+            chip_index_only: '仅索引',
+            btn_open_paper: '打开试卷',
+            btn_open_answer: '打开答案',
+            btn_start_quiz: '进入练习',
+            reason_no_paper: '该年份试卷暂未收录，稍后会继续补齐。',
+            reason_no_answer: '该年份答案或解析暂未收录。',
+            reason_no_quiz: '这套题的在线练习题集还在整理中。',
+            note_ready: '这套题已经可以直接在线作答、提交判题并查看解析。',
+            note_not_ready: '当前提供试卷与答案浏览，在线练习题集还在整理中。',
+            load_error: '读取失败：{msg}。请先运行 npm run build:library。',
+            login_for_paper: '登录后才能打开试卷或答案。普通用户最多可下载 5 次。',
+            open_failed: '资源打开失败，请稍后再试。',
+            verifying: '校验中...',
+            resource_paper: '试卷',
+            resource_answer: '答案',
+            resource_default: 'AMC 资源查看',
+        },
+        en: {
+            back_home: '← Back to Home',
+            papers_title: 'AMC Past Papers',
+            papers_sub: 'Browse original papers and answer keys by level and year. All links are driven by the manifest generated from the paper library.',
+            tab_a: 'AMC A · Years 3-4',
+            tab_b: 'AMC B · Years 5-6',
+            tab_c: 'AMC C · Years 7-8',
+            loading: 'Loading paper index...',
+            no_level_data: 'No data found for this level. Run npm run build:library first.',
+            chip_paper: 'Paper',
+            chip_answer: 'Answer Key',
+            chip_quiz_ready: 'Online Practice Ready',
+            chip_index_only: 'Index Only',
+            btn_open_paper: 'Open Paper',
+            btn_open_answer: 'Open Answer',
+            btn_start_quiz: 'Start Quiz',
+            reason_no_paper: 'Paper not yet available for this year.',
+            reason_no_answer: 'Answer key not yet available for this year.',
+            reason_no_quiz: 'Online practice set is still being prepared.',
+            note_ready: 'This paper is ready for online practice, submission and answer review.',
+            note_not_ready: 'Paper and answer browsing available. Online practice set is being prepared.',
+            load_error: 'Failed to load: {msg}. Run npm run build:library first.',
+            login_for_paper: 'Please log in to open papers or answers. Free users get 5 downloads.',
+            open_failed: 'Failed to open resource. Please try again later.',
+            verifying: 'Verifying...',
+            resource_paper: 'Paper',
+            resource_answer: 'Answer',
+            resource_default: 'AMC Resource Viewer',
+        }
+    };
+    </script>
+    <script src="i18n.js"></script>
 
     <script>
         const state = {
@@ -327,48 +387,22 @@
             });
         }
 
-        function renderSummary() {
-            const level = levelData();
-            const host = document.getElementById("summary");
-            if (!level) {
-                host.innerHTML = `
-                    <div class="summary-card"><strong>0</strong><span>试卷</span></div>
-                    <div class="summary-card"><strong>0</strong><span>带答案</span></div>
-                    <div class="summary-card"><strong>0</strong><span>可在线练习</span></div>
-                    <div class="summary-card"><strong>--</strong><span>年份范围</span></div>
-                `;
-                return;
-            }
-
-            const answers = level.years.filter((year) => year.answer).length;
-            const ready = level.years.filter((year) => year.quizReady).length;
-            const minYear = level.years[level.years.length - 1]?.year || "--";
-            const maxYear = level.years[0]?.year || "--";
-
-            host.innerHTML = `
-                <div class="summary-card"><strong>${level.years.length}</strong><span>试卷</span></div>
-                <div class="summary-card"><strong>${answers}</strong><span>带答案</span></div>
-                <div class="summary-card"><strong>${ready}</strong><span>可在线练习</span></div>
-                <div class="summary-card"><strong>${minYear}-${maxYear}</strong><span>年份范围</span></div>
-            `;
-        }
-
         function renderYears() {
             const host = document.getElementById("yearGrid");
             const level = levelData();
             if (!level) {
-                host.innerHTML = `<div class="empty">未找到当前层级数据。先运行 <code>npm run build:library</code>。</div>`;
+                host.innerHTML = `<div class="empty">${I18n.t('no_level_data')}</div>`;
                 return;
             }
 
             host.innerHTML = level.years.map((year) => {
                 const status = [];
-                if (year.paper) status.push(`<span class="chip">试卷</span>`);
-                if (year.answer) status.push(`<span class="chip">答案 / 解析</span>`);
-                if (year.quizReady) status.push(`<span class="chip ready">在线练习已就绪</span>`);
-                const paperReason = year.paper ? "" : "该年份试卷暂未收录，稍后会继续补齐。";
-                const answerReason = year.answer ? "" : "该年份答案或解析暂未收录。";
-                const quizReason = year.quizReady ? "" : "这套题的在线练习题集还在整理中。";
+                if (year.paper) status.push(`<span class="chip">${I18n.t('chip_paper')}</span>`);
+                if (year.answer) status.push(`<span class="chip">${I18n.t('chip_answer')}</span>`);
+                if (year.quizReady) status.push(`<span class="chip ready">${I18n.t('chip_quiz_ready')}</span>`);
+                const paperReason = year.paper ? "" : I18n.t('reason_no_paper');
+                const answerReason = year.answer ? "" : I18n.t('reason_no_answer');
+                const quizReason = year.quizReady ? "" : I18n.t('reason_no_quiz');
 
                 return `
                     <article class="year-card ${year.quizReady ? "ready" : ""}">
@@ -379,30 +413,30 @@
                             </div>
                             <span class="year-level">${level.label}</span>
                         </div>
-                        <div class="status">${status.join("") || `<span class="chip">仅索引</span>`}</div>
+                        <div class="status">${status.join("") || `<span class="chip">${I18n.t('chip_index_only')}</span>`}</div>
                         <div class="links">
                             <button class="link ${year.paper ? "" : "disabled"}" type="button"
                                 data-action="open-resource" data-kind="paper" data-year="${year.year}"
                                 data-url="${year.paper?.url || ""}"
                                 data-disabled-reason="${paperReason}"
                                 title="${paperReason}">
-                                <span class="link-label">打开试卷</span>
+                                <span class="link-label">${I18n.t('btn_open_paper')}</span>
                             </button>
                             <button class="link ${year.answer ? "" : "disabled"}" type="button"
                                 data-action="open-resource" data-kind="answer" data-year="${year.year}"
                                 data-url="${year.answer?.url || ""}"
                                 data-disabled-reason="${answerReason}"
                                 title="${answerReason}">
-                                <span class="link-label">打开答案</span>
+                                <span class="link-label">${I18n.t('btn_open_answer')}</span>
                             </button>
                             <a class="link ${year.quizReady ? "" : "disabled"}" href="${year.quizReady ? `quiz.html?level=${state.currentLevel}&year=${year.year}` : "#"}"
                                 data-disabled-reason="${quizReason}"
                                 title="${quizReason}">
-                                <span class="link-label">进入练习</span>
+                                <span class="link-label">${I18n.t('btn_start_quiz')}</span>
                             </a>
                         </div>
                         <div class="note ${year.quizReady ? "ready" : ""}">
-                            ${year.quizReady ? "这套题已经可以直接在线作答、提交判题并查看解析。" : "当前提供试卷与答案浏览，在线练习题集还在整理中。"}
+                            ${year.quizReady ? I18n.t('note_ready') : I18n.t('note_not_ready')}
                         </div>
                     </article>
                 `;
@@ -416,19 +450,18 @@
                 state.manifest = await response.json();
             } catch (error) {
                 document.getElementById("yearGrid").innerHTML =
-                    `<div class="empty">读取失败：${error.message}。请先运行 <code>npm run build:library</code>。</div>`;
+                    `<div class="empty">${I18n.t('load_error').replace('{msg}', error.message)}</div>`;
                 return;
             }
 
             renderTabs();
-            renderSummary();
             renderYears();
         }
 
         async function ensureActiveLogin() {
             const token = localStorage.getItem("token");
             if (!token) {
-                window.requireLogin?.("登录后才能打开试卷或答案。普通用户最多可下载 5 次。");
+                window.requireLogin?.(I18n.t('login_for_paper'));
                 return false;
             }
 
@@ -443,7 +476,7 @@
 
             localStorage.removeItem("token");
             localStorage.removeItem("user");
-            window.requireLogin?.("登录后才能打开试卷或答案。普通用户最多可下载 5 次。");
+            window.requireLogin?.(I18n.t('login_for_paper'));
             return false;
         }
 
@@ -458,7 +491,7 @@
             if (!label) return;
             if (opening) {
                 button.dataset.originalLabel = label.textContent || "";
-                label.textContent = "校验中...";
+                label.textContent = I18n.t('verifying');
             } else if (button.dataset.originalLabel) {
                 label.textContent = button.dataset.originalLabel;
                 delete button.dataset.originalLabel;
@@ -504,14 +537,18 @@
                     return;
                 }
 
-                const resourceTitle = `${button.dataset.year || ""} ${button.dataset.kind === "answer" ? "答案" : "试卷"}`.trim();
-                const viewerUrl = `viewer.html?resource=${encodeURIComponent(targetUrl)}&title=${encodeURIComponent(resourceTitle || "AMC 资源查看")}`;
+                const resourceTitle = `${button.dataset.year || ""} ${button.dataset.kind === "answer" ? I18n.t('resource_answer') : I18n.t('resource_paper')}`.trim();
+                const viewerUrl = `viewer.html?resource=${encodeURIComponent(targetUrl)}&title=${encodeURIComponent(resourceTitle || I18n.t('resource_default'))}`;
                 location.assign(viewerUrl);
             } catch (error) {
                 console.error("open resource failed", error);
-                alert("资源打开失败，请稍后再试。");
+                alert(I18n.t('open_failed'));
                 setResourceOpening(button, false);
             }
+        });
+
+        I18n.onSwitch(() => {
+            renderYears();
         });
 
         loadManifest();
