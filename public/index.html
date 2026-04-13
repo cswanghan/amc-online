@@ -299,6 +299,14 @@
             </div>
         </div>
 
+        <section class="support-ribbon">
+            <div style="display:flex;align-items:center;gap:10px;flex:1;flex-wrap:wrap;">
+                <strong>Support Us</strong>
+                <p>If this site helps your child, feel free to buy me a coffee.</p>
+            </div>
+            <button onclick="openDonate()">☕ Buy Me a Coffee</button>
+        </section>
+
         <section class="hero">
             <div class="hero-main">
                 <div class="level-tabs" id="levelTabs">
@@ -591,6 +599,77 @@
 
         loadCurrentUser();
         loadManifest();
+
+        // Donate modal
+        function openDonate() { document.getElementById('donateModal').classList.add('show'); }
+        function closeDonate() { document.getElementById('donateModal').classList.remove('show'); }
+        function switchQR(type) {
+            document.querySelectorAll('.qr-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector('.qr-tab.' + type).classList.add('active');
+            document.getElementById('qrImg').src = 'images/' + type + '-qr.png';
+        }
     </script>
+
+    <!-- Donate Modal -->
+    <style>
+        .modal-overlay {
+            display: none; position: fixed; inset: 0; background: rgba(50,40,35,0.5);
+            z-index: 100; align-items: center; justify-content: center; backdrop-filter: blur(3px);
+        }
+        .modal-overlay.show { display: flex; }
+        .donate-modal {
+            background: var(--panel-solid); border-radius: 20px; padding: 36px 32px;
+            max-width: 420px; width: 90%; max-height: 90vh; overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(50,40,35,0.2); position: relative;
+        }
+        .donate-modal h2 { font-size: 1.3rem; text-align: center; margin-bottom: 18px; }
+        .donate-close {
+            position: absolute; top: 14px; right: 18px; background: none; border: none;
+            font-size: 1.4rem; color: var(--muted); cursor: pointer;
+        }
+        .donate-intro { text-align: center; color: var(--muted); font-size: 0.88rem; line-height: 1.8; margin-bottom: 20px; }
+        .qr-tabs { display: flex; justify-content: center; gap: 0; margin-bottom: 16px; border-bottom: 1px solid var(--line); }
+        .qr-tab {
+            padding: 8px 24px; font-size: 0.88rem; cursor: pointer; border-bottom: 2px solid transparent;
+            color: var(--muted); font-family: inherit; background: none; border-top: none; border-left: none; border-right: none;
+        }
+        .qr-tab.active { font-weight: 600; border-bottom-color: currentColor; }
+        .qr-tab.alipay.active { color: #1677ff; }
+        .qr-tab.wechat.active { color: #07c160; }
+        .qr-img { display: block; margin: 0 auto; max-width: 260px; border-radius: 12px; }
+        .donate-thanks { text-align: center; margin-top: 16px; color: var(--muted); font-size: 0.82rem; line-height: 1.7; }
+        .support-ribbon {
+            background: var(--panel); border: 1px solid var(--line); border-radius: 18px;
+            padding: 12px 20px; display: flex; justify-content: space-between; align-items: center;
+            gap: 12px; flex-wrap: wrap; margin-bottom: 22px;
+        }
+        .support-ribbon strong { color: var(--accent); font-size: 0.95rem; }
+        .support-ribbon p { color: var(--muted); font-size: 0.82rem; margin: 0; }
+        .support-ribbon button {
+            padding: 8px 18px; border-radius: 999px; border: 1px solid var(--line);
+            background: var(--panel-solid); color: var(--text); font: inherit; font-size: 0.85rem; cursor: pointer;
+        }
+        .support-ribbon button:hover { color: var(--accent); border-color: var(--accent); }
+    </style>
+
+    <div class="modal-overlay" id="donateModal" onclick="if(event.target===this)closeDonate()">
+        <div class="donate-modal">
+            <button class="donate-close" onclick="closeDonate()">&times;</button>
+            <h2>Support Us</h2>
+            <div class="donate-intro">
+                This site is built and maintained by a parent in spare time.<br>
+                If it helps you, feel free to buy me a coffee :)
+            </div>
+            <div class="qr-tabs">
+                <button class="qr-tab alipay active" onclick="switchQR('alipay')">Alipay</button>
+                <button class="qr-tab wechat" onclick="switchQR('wechat')">WeChat</button>
+            </div>
+            <img class="qr-img" id="qrImg" src="images/alipay-qr.png" alt="Payment QR">
+            <div class="donate-thanks">
+                Thank you for your support and encouragement.<br>
+                Every bit of kindness keeps this project going.
+            </div>
+        </div>
+    </div>
 </body>
 </html>
